@@ -1,0 +1,95 @@
+.hero{
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    margin-top: 100px;
+  }
+  
+  .heroContent{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, var(--primary, #1b8722) 0%, var(--primary, #1b8722) 50%, transparent 70%);
+  }
+  
+  .heroContentInner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60vw;
+    height: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: 'Montserrat', sans-serif;
+    
+  }
+  .heroTitle{
+    font-size: 40px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+  }
+  .heroDescription{
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+  }
+  .heroButton{
+    background: #ffffff;
+    color: #1b8722;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .heroButton:hover {
+    opacity: 0.9;
+    scale: 1.1;
+  }
+  .heroButtonCall:hover {
+    opacity: 0.9;
+    scale: 1.1;
+  }
+  .heroButtonBook:hover {
+    opacity: 0.9;
+    scale: 1.1;
+  }
+  .heroButtonCall {
+    background: var(--primary, #1b8722);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 20px;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .heroButtonBook {
+    background: var(--primary-dark, #0d4210);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .heroButtonContainer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 60vw;
+    height: 100%;
+    gap: 10px;
+  }

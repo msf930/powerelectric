@@ -1,0 +1,25 @@
+.callBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    text-wrap: nowrap;
+    background: white;
+    color: #171717;
+    padding: 10px 15px;
+    width: 130px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    z-index: 0;
+    border: 1px solid #171717;
+}
+
+.callBtn:hover {
+    background: var(--primary-dark, #0d4210);
+    color: #ffffff;
+    scale: 1.05;
+    transition: all 0.3s ease;
+}

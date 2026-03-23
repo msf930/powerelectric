@@ -1,0 +1,116 @@
+.financeCont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.financeContInner {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+.financeContInnerContentLeft {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: var(--primary, #24af2e);
+    color: var(--background, #ffffff);
+}
+.financeContInnerContentRight {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: var(--primary-light, #24af2e);
+    color: var(--background, #ffffff);
+}
+.financeContTitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    font-family: var(--font-montserrat-sans);
+}
+.financeContDescription {
+    font-size: 16px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    font-family: var(--font-montserrat-sans);
+}
+.financeContButtons {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.financeContButton {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    font-family: var(--font-montserrat-sans);
+    background: var(--primary-dark, #24af2e);
+    padding: 10px 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.financeContButton:hover {
+    background: var(--secondary, #d0e907);
+    color: var(--foreground, #171717);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}   
+.financeContButton:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.financeContButton:focus {
+    outline: none;
+}
+.financeContButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.MembershipContButton {
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    font-family: var(--font-montserrat-sans);
+    background: white;
+    padding: 10px 10px;
+    border: 1px solid var(--primary, #24af2e);
+    color: var(--foreground, #171717);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.MembershipContButton:hover {
+    background: var(--secondary, #d0e907);
+    color: var(--foreground, #171717);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}   
+.MembershipContButton:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}

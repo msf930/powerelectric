@@ -1,0 +1,246 @@
+.locationsContOuter {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.locationsCont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+}
+
+.locationsContTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.locationsContMap {
+    width: 100%;
+    height: 400px;
+    background: #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+.locationsContAddressLink {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.locationsContAddressLink:hover {
+    color: black;
+    text-decoration: underline;
+}
+.locationsContAddressLink {
+    color: #6b7280;
+    font-size: 0.9375rem;
+}
+
+.locationsContList {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    /* gap: 1rem; */
+}
+
+.locationsContItem {
+    padding: 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    min-width: 200px;
+}
+
+.locationsContItem h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.locationsContItem p {
+    font-size: 0.875rem;
+    color: #4b5563;
+    margin: 0;
+}
+
+.locationsContInfo {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+}
+
+.locationsContList {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    height: 250px;
+    gap: 1rem;
+}
+
+.locationsContItemButton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: white;
+    /* border: 1px solid #24af2e; */
+    color: #171717;
+    padding: 10px;
+    /* border-radius: 8px; */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.locationsContItemButton:hover {
+    background: #24af2e;
+    color: white;
+}
+
+.locationsContItemButtonIcon {
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+.locationsContBookButtonCont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+.locationsContItemContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.locationsContItemContentHidden {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    
+    pointer-events: none;
+    z-index: -1;
+    
+}
+
+.locationsContItemContentInner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+.locationsContItemContentTitle {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.locationsContItemContentButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    background: #24af2e;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.locationsContItemContentButton:hover {
+    background: #1a8a24;
+}
+
+.locationsContItemContentList {
+    display: flex;
+    width: fit-content;
+    height: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    height: 300px;
+    padding: 20px;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.locationsContItemContentList li {
+    list-style: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    
+    color: #171717;
+}
+
+.locationsContItemContentLink {
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    background: var(--primary, #1b8722);
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}

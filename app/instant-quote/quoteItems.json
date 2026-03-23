@@ -1,0 +1,86 @@
+{
+  "buttons": [
+    {
+      "id": 1,
+      "title": "Test Quote Item",
+      "description": "This is a test description for an Instant Quote item.",
+      "icon": "FaLightbulb",
+      "pointsTo": [
+        2
+      ],
+      "price": 100,
+      "pointsToPageId": "B"
+    },
+    {
+      "id": 2,
+      "title": "Test Quote Item 2",
+      "description": "This is a test description for an Instant Quote item 2.",
+      "icon": "",
+      "pointsTo": [
+        3
+      ],
+      "price": 200,
+      "pointsToPageId": "C"
+    },
+    {
+      "id": 3,
+      "title": "Test Quote Item 3",
+      "description": "This is a test description for an Instant Quote item 3.",
+      "icon": "FaAngry",
+      "pointsTo": [
+        4,4,4,4,4,4,4
+      ],
+      "price": 300,
+      "pointsToPageId": "D"
+    },
+    {
+      "id": 4,
+      "title": "Test Quote Item 4",
+      "description": "This is a test description for an Instant Quote item 4.",
+      "icon": "FaBaseballBall",
+      "pointsTo": [
+        1
+      ],
+      "price": 400,
+      "pointsToPageId": "END"
+    },
+    {
+      "id": 5,
+      "title": "Test Quote Item 4",
+      "description": "This is a test description for an Instant Quote item 4.",
+      "icon": "FaAnchor",
+      "pointsTo": [
+        1
+      ],
+      "price": 400,
+      "pointsToPageId": "A"
+    }
+  ],
+  "pages": [
+    {
+      "id": "A",
+      "title": "Test Page",
+      "description": "This is a test description for an Instant Quote page."
+    },
+    {
+      "id": "B",
+      "title": "Test Page 2",
+      "description": "This is a test description for an Instant Quote page 2."
+    },
+    {
+      "id": "C",
+      "title": "Test Page 3",
+      "description": "This is a test description for an Instant Quote page 3."
+    },
+    {
+      "id": "D",
+      "title": "Test Page 4",
+      "description": "This is a test description for an Instant Quote page 4."
+    },
+    {
+      "id": "END",
+      "title": "End Page",
+      "description": "This is a test description for an Instant Quote page end."
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+.footer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.footerStrip {
+    width: 100%;
+    height: 400px;
+    
+    position: relative;
+    
+  }
+  
+  .footerStripContent {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-transparent);  
+    backdrop-filter: blur(2px);
+    z-index: -1;
+  }
+  
+  .footerStripImage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 400px;
+    background-color: var(--primary-transparent);
+    background-image: url("/statsBG.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    z-index: -2;
+  }
+
+  .footerStripInner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footerStripInnerContentLeft {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .footerStripInnerContentLeftImage {
+   
+    object-fit: contain;
+  }
+  .footerStripInnerContentLeftButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .footerStripInnerContentLeftButton {
+    background: #24af2e;
+    color: #ffffff;
+    border: none;
+    padding: 0.5rem 1rem;
+    
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  .footerStripInnerContentLeftButton:hover {
+    background: #1a8a24;
+    color: #ffffff;
+  }
+  .footerStripInnerContentLeftButton:focus {
+    outline: none;
+  }
+  .footerStripInnerContentLeftButton:active {
+    background: #1a8a24;
+    color: #ffffff;
+  }
+  .footerStripInnerContentRightButton {
+    background: #ffffff;
+    color: #171717;
+    border: none;
+    padding: 0.5rem 1rem;
+    
+    cursor: pointer;
+  }
+  .footerStripInnerContentRightButton:hover {
+    background: #1a8a24;
+    color: #ffffff;
+  }
+  .footerStripInnerContentRightButton:focus {
+    outline: none;
+  }
+  .footerStripInnerContentRightButton:active {
+    background: #1a8a24;
+    color: #ffffff;
+  }
+  .footerStripInnerContentCenter {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .locationsCont {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+}
+.locationsContMap {
+    width: 100%;
+    height: 200px;
+    background: #e5e7eb;
+    
+    margin-bottom: 1.5rem;
+}
+
+.locationsContAddressLink {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.locationsContAddressLink:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+.locationsContMessage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+.locationsContMessage:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+  .footerStripInnerContentRight {
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .footerStripInnerContentRightImagesContainer {    
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .footerStripInnerContentRightImage {
+    object-fit: contain;
+  }
+  .footerStripInnerContentRightMessage {
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+  }

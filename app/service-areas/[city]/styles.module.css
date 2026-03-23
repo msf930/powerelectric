@@ -1,0 +1,156 @@
+.serviceAreasPage {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    margin: 0 auto;
+}
+
+.serviceAreasPageHeader {
+    position: relative;
+    width: 100%;
+    height: 200px;
+}
+
+.serviceAreasPageHeaderContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.serviceAreasPageHeaderContent h1 {
+    color: #ffffff;
+    font-size: 34px;
+    font-weight: 700;
+    text-align: center;
+
+    letter-spacing: 2px;
+    margin: 0;
+    padding: 0;
+}
+
+.serviceAreasPageHeaderButtonContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.serviceAreasPageTitle {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--primary);
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+.serviceAreasPageTitleSub {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--primary);
+    padding-bottom: 20px;
+}
+
+.serviceAreasPageButtonContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.serviceAreasPageButtonContainerTitle {
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    padding-bottom: 10px;
+}
+
+.serviceAreasPageButton {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: var(--primary);
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.serviceAreasPageButton:hover {
+    background-color: var(--primary-dark);
+    color: #ffffff;
+}
+
+.serviceAreasPageContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 40px 80px;
+}
+
+.serviceAreaCity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    width: 180px;
+}
+
+.serviceAreaCity:hover {
+    color: var(--primary);
+}
+
+.serviceArea {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+    padding: 20px 40px;
+}
+
+.serviceAreasPageContent .serviceArea:nth-child(odd) {
+    background-color: var(--primary-light2);
+    padding: 20px 40px;
+    border-radius: 6px;
+}
+
+.serviceArea h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.serviceAreaCities {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 1rem;
+}

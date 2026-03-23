@@ -1,0 +1,110 @@
+.categoryHeader {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 100px;
+}
+.categoryHeaderImage {
+    position: relative;
+    width: 100%;
+    height: 314px;
+}
+.categoryHeaderImageContainer {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 315px;
+    z-index: 0;
+}
+.categoryHeaderImageOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary-transparent, #032405BB);
+    z-index: 1;
+}
+.categoryHeaderContent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    padding-top: 20px;
+    z-index: 2;
+}
+.categoryHeaderTitle {
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    z-index: 2;
+}
+.categoryHeaderSubTitle {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    z-index: 2;
+}
+.categoryHeaderButtonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    z-index: 2;
+}
+.categoryHeaderButtonBook {
+    background: var(--primary, #1b8722);
+    color: #ffffff;
+    padding: 10px 15px;
+   
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    z-index: 2;
+}
+.categoryHeaderButtonBook:hover {
+    background: var(--primary-dark, #0d4210);
+    color: #ffffff;
+    scale: 1.05;
+    transition: all 0.3s ease;
+}
+.categoryHeaderButtonCall {
+    background: #ffffff;
+    color: var(--primary, #1b8722);
+    padding: 10px 15px;
+    
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    z-index: 2;
+}
+.categoryHeaderButtonCall:hover {
+    background: var(--primary-dark, #0d4210);
+    color: #ffffff;
+    scale: 1.05;
+    transition: all 0.3s ease;
+}
+.categoryHeaderStatsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+}

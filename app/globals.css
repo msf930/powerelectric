@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #24af2e;
+  --secondary: #d0e907;
 }
 
 @theme inline {
@@ -14,8 +16,14 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff;
+    --foreground: #000;
+    --primary: #1b8722;
+    --primary-transparent: #032405BB;
+    --primary-light: #24af2e;
+    --primary-light2: #e6f5e6;
+    --primary-dark: #0d4210;
+    --secondary: #d0e907;
   }
 }
 
@@ -24,3 +32,4 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
