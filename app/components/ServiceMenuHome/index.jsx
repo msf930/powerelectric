@@ -36,8 +36,8 @@ export default async function ServiceMenuHome({city}) {
   
   return (
     <div className={styles.serviceMenuHome}>
-      {serviceCategories.map((serviceCategory) => (
-        <div key={serviceCategory._id} className={styles.serviceCategory}>
+      {serviceCategories.map((serviceCategory, index) => (
+        <div key={`${serviceCategory._id}-${index}`} className={styles.serviceCategory}>
             <div className={styles.serviceCategoryIcon}>
                 <div className="p-8 relative">
                     <Image src={urlFor(serviceCategory.icon).url()} alt={serviceCategory.title} fill objectFit="cover"  />

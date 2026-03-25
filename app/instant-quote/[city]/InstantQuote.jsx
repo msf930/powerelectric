@@ -26,9 +26,7 @@ function DynamicFaIcon({ name, setLoading: setLoadingProp, ...props }) {
             setLoadingProp?.(false);
             return;
         }
-        
-        
-        
+
         setLoading(true);
         setLoadingProp?.(true);
 
@@ -69,13 +67,7 @@ function DynamicFaIcon({ name, setLoading: setLoadingProp, ...props }) {
         return <span className={styles.iconLoading} aria-hidden />;
     }
     if (!Icon) return null;
-    return (
-        <Icon
-            aria-hidden
-            {...props}
-            style={{ color: "var(--primary)", ...(props.style ?? {}) }}
-        />
-    );
+    return <Icon aria-hidden {...props} />;
 }
 
 export default function InstantQuoteContainer() {
@@ -97,8 +89,8 @@ export default function InstantQuoteContainer() {
                         </div>
                     )}
                     <h3 className={styles.instantQuoteItemTotalPrice}>Total Price: {totalPrice}</h3>
-                    <h3 className={styles.instantQuoteItemTitle}>{currentPage?.title}</h3>
-                    <h3 className={styles.instantQuoteItemDescription}>{currentPage?.description}</h3>
+                    <h3 className={styles.instantQuoteItemTitle}>Current Page: {currentPage?.title}</h3>
+                    <h3 className={styles.instantQuoteItemDescription}>Current Page Description: {currentPage?.description}</h3>
                     {currentPage?.id === "END" ? <div className={styles.instantQuoteItemEnd}>
                         {/* <h3 className={styles.instantQuoteItemEndTitle}>{currentPage?.title}</h3>
                     <p className={styles.instantQuoteItemEndDescription}>{currentPage?.description}</p>*/}

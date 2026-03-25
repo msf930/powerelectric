@@ -1,26 +1,57 @@
-.googleCarousel {
-  width: 100%;
-  padding: 40px 16px;
-  background: #fff;
-  margin-bottom: 40px;
+@media (min-width: 768px) {
+  .googleCarousel {
+    width: 100%;
+    padding: 40px 16px;
+    background: #fff;
+    margin-bottom: 40px;
+  }
+
+  .carouselViewport {
+    position: relative;
+    margin-top: 2rem;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+  .carouselTrack {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .carouselCard {
+    flex: 0 0 calc(100% / 3);
+    padding: 0 0.75rem;
+
+  }
 }
 
-.carouselViewport {
-  position: relative;
-  margin-top: 2rem;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
-}
+@media (max-width: 767px) {
+  .googleCarousel {
+    width: 100%;
+    padding: 40px 16px;
+    background: #fff;
+    margin-bottom: 40px;
+  }
 
-.carouselTrack {
-  display: flex;
-  transition: transform 0.6s ease-in-out;
-}
+  .carouselViewport {
+    position: relative;
+    margin-top: 2rem;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
 
-.carouselCard {
-  flex: 0 0 calc(100% / 3);
-  padding: 0 0.75rem;
-  
+  .carouselTrack {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .carouselCard {
+    flex: 0 0 calc(100%);
+    padding: 0 0.75rem;
+
+  }
 }

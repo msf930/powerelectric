@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./styles.module.css";
 import { SlArrowLeft } from "react-icons/sl";
@@ -9,12 +9,24 @@ import Image from "next/image";
 
 const FEATURABLE_WIDGET_ID = "2e211976-a45b-49e0-bf80-c706b35c50a8";
 const WIDGET_API_URL = `https://featurable.com/api/v2/widgets/${FEATURABLE_WIDGET_ID}`;
-const VISIBLE_COUNT = 3;
+const VISIBLE_COUNT_DESKTOP = 3;
+const VISIBLE_COUNT_MOBILE = 1;
+const MOBILE_BREAKPOINT_PX = 768;
 
 export default function GoogleCarousel() {
   const [widget, setWidget] = useState(null);
   const [reviews, setReviews] = useState([]);
   const [current, setCurrent] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(VISIBLE_COUNT_DESKTOP);
+
+  useLayoutEffect(() => {
+    const query = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT_PX - 1}px)`);
+    const sync = () =>
+      setVisibleCount(query.matches ? VISIBLE_COUNT_MOBILE : VISIBLE_COUNT_DESKTOP);
+    sync();
+    query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -112,18 +124,18 @@ export default function GoogleCarousel() {
         />
       </div>
       {reviews.length > 0 && (
-        <div className="relative">
+        <div className="relative w-full h-full">
           <button
             type="button"
             onClick={() => setCurrent(current - 1)}
-            className="absolute left-[50px] top-1/3 cursor-pointer z-10"
+            className={`absolute ${visibleCount === VISIBLE_COUNT_DESKTOP ? "left-[50px]" : "left-[0px]"} top-1/3 cursor-pointer z-10`}
             aria-label="Show previous review"
           ><SlArrowLeft className="w-10 h-10" />
           </button>
           <button
             type="button"
             onClick={() => setCurrent(current + 1)}
-            className="absolute right-[50px] top-1/3 cursor-pointer z-10"
+            className={`absolute ${visibleCount === VISIBLE_COUNT_DESKTOP ? "right-[50px]" : "right-[0px]"} top-1/3 cursor-pointer z-10`}
             aria-label="Show next review"
           ><SlArrowRight className="w-10 h-10" />
           </button>
@@ -131,8 +143,7 @@ export default function GoogleCarousel() {
           <div
             className={styles.carouselTrack}
             style={{
-              transform: `translateX(-${(current * 100) / VISIBLE_COUNT
-                }%)`,
+              transform: `translateX(-${(current * 100) / visibleCount}%)`,
             }}
           >
 
@@ -188,7 +199,7 @@ export default function GoogleCarousel() {
             ))}
           </div>
 
-          {reviews.length > VISIBLE_COUNT && (
+          {reviews.length > visibleCount && (
             <div className="mt-3 flex justify-center gap-1">
               {reviews.map((_, i) => (
                 <button

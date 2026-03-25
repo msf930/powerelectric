@@ -1,104 +1,235 @@
-.infoContHome {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+@media (min-width: 768px) {
+    .infoContHome {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .infoContHomeInner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .infoContHomeInnerContent {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .infoContHomeInnerContentImage {
+        width: 40vw;
+        height: 40vh;
+        position: relative;
+
+    }
+
+    .infoContHomeInnerContentText {
+        width: 40vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .infoContHomeInnerContentText h1 {
+        font-size: 32px;
+        font-weight: 700;
+
+    }
+
+    .infoContHomeInnerContentText p {
+        font-size: 19px;
+        font-weight: 400;
+        color: var(--foreground, #171717);
+    }
+
+    .infoContHomeInnerContentBulletPoint {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .infoContHomeInnerButtonCont {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .infoContHomeInnerButton {
+        padding: 10px 20px;
+
+        background: var(--primary, #24af2e);
+        color: var(--background, #ffffff);
+        text-decoration: none;
+        font-size: 19px;
+        font-weight: 400;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .infoContHomeInnerButton:hover {
+        background: var(--secondary, #d0e907);
+        color: var(--foreground, #171717);
+        transform: scale(1.05);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .infoContHomeInnerPhoneButton {
+        padding: 10px 20px;
+
+        background: white;
+        color: var(--foreground, #171717);
+        border: 1px solid var(--primary, #24af2e);
+        text-decoration: none;
+        font-size: 19px;
+        font-weight: 400;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .infoContHomeInnerPhoneButton:hover {
+        background: var(--secondary, #d0e907);
+        color: var(--foreground, #171717);
+        transform: scale(1.05);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
 }
 
-.infoContHomeInner {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-.infoContHomeInnerContent {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-.infoContHomeInnerContentImage {
-    width: 40vw;
-    height: 40vh;
-    position: relative;
+@media (max-width: 768px) {
+    .infoContHome {
+        width: 100vw;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 
-}
-.infoContHomeInnerContentText {
-    width: 40vw;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-.infoContHomeInnerContentText h1 {
-    font-size: 32px;
-    font-weight: 700;
-    
-}
-.infoContHomeInnerContentText p {
-    font-size: 19px;
-    font-weight: 400;
-    color: var(--foreground, #171717);
-}
-.infoContHomeInnerContentBulletPoint {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-}
-.infoContHomeInnerButtonCont {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-}
-.infoContHomeInnerButton {
-    padding: 10px 20px;
-    
-    background: var(--primary, #24af2e);
-    color: var(--background, #ffffff);
-    text-decoration: none;
-    font-size: 19px;
-    font-weight: 400;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.infoContHomeInnerButton:hover {
-    background: var(--secondary, #d0e907);
-    color: var(--foreground, #171717);
-    transform: scale(1.05);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-}
-.infoContHomeInnerPhoneButton {
-    padding: 10px 20px;
-    
-    background: white;
-    color: var(--foreground, #171717);
-    border: 1px solid var(--primary, #24af2e);
-    text-decoration: none;
-    font-size: 19px;
-    font-weight: 400;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}   
-.infoContHomeInnerPhoneButton:hover {
-    background: var(--secondary, #d0e907);
-    color: var(--foreground, #171717);
-    transform: scale(1.05);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    .infoContHomeInner {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .infoContHomeInnerContent {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .infoContHomeInnerContentImage {
+        width: 90vw;
+        height: 40vh;
+        position: relative;
+
+    }
+
+    .infoContHomeInnerContentText {
+        width: 90vw;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .infoContHomeInnerContentText h1 {
+        font-size: 32px;
+        font-weight: 700;
+
+    }
+
+    .infoContHomeInnerContentText p {
+        font-size: 19px;
+        font-weight: 400;
+        color: var(--foreground, #171717);
+    }
+
+    .infoContHomeInnerContentBulletPoint {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .infoContHomeInnerButtonCont {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .infoContHomeInnerButton {
+        padding: 10px 20px;
+
+        background: var(--primary, #24af2e);
+        color: var(--background, #ffffff);
+        text-decoration: none;
+        font-size: 19px;
+        font-weight: 400;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .infoContHomeInnerButton:hover {
+        background: var(--secondary, #d0e907);
+        color: var(--foreground, #171717);
+        transform: scale(1.05);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .infoContHomeInnerPhoneButton {
+        padding: 10px 20px;
+
+        background: white;
+        color: var(--foreground, #171717);
+        border: 1px solid var(--primary, #24af2e);
+        text-decoration: none;
+        font-size: 19px;
+        font-weight: 400;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .infoContHomeInnerPhoneButton:hover {
+        background: var(--secondary, #d0e907);
+        color: var(--foreground, #171717);
+        transform: scale(1.05);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
 }

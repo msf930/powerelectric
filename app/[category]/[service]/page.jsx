@@ -98,28 +98,30 @@ export default async function ServicePage({ params }) {
             )}
           </div>
           <div className={styles.primarySectionInfoContainer}>
-            <div className={styles.primarySectionInfoImageContainer}>
-              {data.imageSecond?.asset?.url && (
-                <Image
-                  src={urlFor(data.imageSecond).url()}
-                  alt={data.imageSecond?.alt ?? ""}
-                  fill
-                  objectFit="cover"
-                />
-              )}
-            </div>
-            <div className={styles.primarySectionInfoTextContainer}>
-              <h3>{data.bookNowText}</h3>
-              <p>{data.bookNowSubtext}</p>
-              <div className={styles.primarySectionInfoButtonContainer}>
-                <BookBtn />
-                <CallBtn />
-              </div>  
+            <div className={styles.primarySectionInfoContInner}>
+              <div className={styles.primarySectionInfoImageContainer}>
+                {data.imageSecond?.asset?.url && (
+                  <Image
+                    src={urlFor(data.imageSecond).url()}
+                    alt={data.imageSecond?.alt ?? ""}
+                    fill
+                    objectFit="cover"
+                  />
+                )}
+              </div>
+              <div className={styles.primarySectionInfoTextContainer}>
+                <h3>{data.bookNowText}</h3>
+                <p>{data.bookNowSubtext}</p>
+                <div className={styles.primarySectionInfoButtonContainer}>
+                  <BookBtn />
+                  <CallBtn />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      <ValueCont city={""}  />
+      <ValueCont city={""} />
 
       <section className={styles.secondarySection}>
         <div className={styles.secondarySectionInnerContainer}>
@@ -200,10 +202,10 @@ export default async function ServicePage({ params }) {
                 </div>
                 <div className={styles.relatedServicesItemTextContainer}>
                   <Link href={`${svc.slug.current}`} >
-                  <h3>{svc.bookNowText}</h3>
+                    <h3>{svc.bookNowText}</h3>
                   </Link>
                   <Link href={`${svc.slug.current}`} >
-                  <p>{svc.bookNowSubtext}</p>
+                    <p>{svc.bookNowSubtext}</p>
                   </Link>
                   <div className={styles.relatedServicesItemButtonContainer}>
                     <BookBtn />

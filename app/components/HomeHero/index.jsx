@@ -9,7 +9,9 @@ export default function HomeHero( { city } ) {
   
   return (
     <div className={styles.hero}>
+      <div className={styles.heroImage}>
         <Image src="/homeHero.jpg" alt="Hero" width={500} height={450} className="w-[50%] h-[450px] object-cover absolute top-0 right-0" />
+      </div>
         <div className={styles.heroContent}>
           <div className={styles.heroContentInner}>
             <h1 className={styles.heroTitle}>Power Electrical Services {city ? `in ${city.replace(/-/g, " ")}` : ""}</h1>
@@ -19,7 +21,7 @@ export default function HomeHero( { city } ) {
             <div className={styles.heroButtonContainer}>
               <BookBtn />
               <CallBtn />
-              <Link href="/instant-quote" className={styles.heroButton}>Get a Quote</Link>
+              <Link href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.heroButton}>Get a Quote</Link>
             </div>
 
           </div>

@@ -1,89 +1,199 @@
-.statCont {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    min-height: 20vh;
-    width: 100%;
-    margin-bottom: 50px;
-    overflow: hidden;
+@media (min-width: 768px) {
+    .statCont {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        min-height: 20vh;
+        width: 100%;
+        margin-bottom: 50px;
+        overflow: hidden;
+    }
+
+    .statContInner {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        width: 80%;
+        height: 135px;
+        padding: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .statContInnerBg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-image: url("/statsBG.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    .statContInnerBg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(2px);
+        background: var(--primary-transparent, rgba(36, 175, 46, 0.85));
+    }
+
+    .statContInnerContent {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    .statContItem {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 200px;
+    }
+
+    .statContItem:not(:last-child) {
+        border-right: 2px solid white;
+        padding-right: 20px;
+    }
+
+    .counterCont {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 35px;
+        font-weight: 600;
+        color: white;
+
+    }
+
+    .descriptionCont {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        font-size: 19px;
+
+    }
 }
 
-.statContInner {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    width: 80%;
-    height: 135px;
-    padding: 20px;
-    overflow: hidden;
-    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
-}
+@media (max-width: 768px) {
+    .statCont {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        min-height: 20vh;
+        width: 100vw;
+        margin-bottom: 50px;
+        overflow: hidden;
+    }
 
-.statContInnerBg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    background-image: url("/statsBG.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
+    .statContInner {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        width: 90%;
+        height: auto;
+        padding: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.1);
+    }
 
-.statContInnerBg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    backdrop-filter: blur(2px);
-    background: var(--primary-transparent, rgba(36, 175, 46, 0.85));
-}
+    .statContInnerBg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background-image: url("/statsBG.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
 
-.statContInnerContent {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-.statContItem {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 200px;
-}
+    .statContInnerBg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(2px);
+        background: var(--primary-transparent, rgba(36, 175, 46, 0.85));
+    }
 
-.statContItem:not(:last-child) {
-    border-right: 2px solid white;
-    padding-right: 20px;
-}
-.counterCont {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: 35px;
-    font-weight: 600;
-    color: white;
-    
-}
-.descriptionCont {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    font-size: 19px;
-    
+    .statContInnerContent {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            "stat1 stat2"
+            "stat3 stat4";
+        justify-items: center;
+        align-items: center;
+    }
+
+    .statContItem {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .statContItem:not(:nth-child(even)) {
+        border-right: 2px solid white;
+        padding-right: 0px;
+    }
+
+    .statContItem:nth-child(1),
+    .statContItem:nth-child(2) {
+        border-bottom: 2px solid white;
+        padding-right: 0px;
+    }
+
+    .counterCont {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        font-size: 35px;
+        font-weight: 600;
+        color: white;
+        
+
+    }
+
+    .descriptionCont {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+        font-size: 19px;
+
+    }
 }

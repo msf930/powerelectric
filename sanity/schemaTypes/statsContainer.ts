@@ -8,8 +8,11 @@ export const statsContainerType = defineType({
     defineField({
         name: 'stats',
         title: 'Stats',
+        description: 'Add 4 stats',
         type: 'array',
-        of: [{type: 'reference', to: [{type: 'stat'}]}]
-    }),
+        of: [{type: 'reference', to: [{type: 'stat'}]}],
+        validation: (Rule) => Rule.required().min(4).max(4),
+    })
+   
   ],
 })

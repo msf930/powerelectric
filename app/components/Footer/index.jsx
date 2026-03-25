@@ -98,6 +98,7 @@ export default function Footer() {
                 <div className={styles.footerStripInner}>
                     <div className={styles.footerStripInnerContentLeft}>
                         <Image src="/PESLogo.png" alt="Power Electrical Services" width={300} height={100} className={styles.footerStripInnerContentLeftImage} />
+                        <Image src="/PESLogo.png" alt="Power Electrical Services" width={500} height={500} className={styles.footerStripInnerContentLeftImageMobile} />
                         <div className={styles.footerStripInnerContentLeftButtonContainer}>
                             <BookBtn />
                             <CallBtn />

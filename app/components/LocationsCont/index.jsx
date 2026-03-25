@@ -9,6 +9,7 @@ import BookBtn from "../BookBtn";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import CallBtn from "../CallBtn";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 const MAP_CONFIG = {
     locations: [
         {
@@ -38,6 +39,7 @@ const LOCATIONS_QUERY = `*[_type == "locations"]{
     cities
 }`;
 export default function LocationsCont({ city = "" }) {
+    const pathname = usePathname();
     const mapRef = useRef(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
@@ -118,6 +120,7 @@ export default function LocationsCont({ city = "" }) {
     return (
         <div className={styles.locationsContOuter}>
             <div className={styles.locationsCont}>
+                <h2 className={styles.locationsContTitleMobile}>Locations</h2>
 
                 <Script
                     src={`https://maps.googleapis.com/maps/api/js?key=${apiKey}`}
@@ -152,9 +155,13 @@ export default function LocationsCont({ city = "" }) {
                         <div className={styles.locationsContItemContentInner }>
                             <button className={styles.locationsContItemContentButton} onClick={() => setLocationVisible(false)}>Close</button>
                             <h3 className={styles.locationsContItemContentTitle}>{selectedLocation?.County}</h3>
+                            <p>Select Location to see available services</p>
                             <ul className={styles.locationsContItemContentList}>
                                 {selectedLocation.cities.map((city) => (
-                                    <li key={city}>{city}</li>
+                                    <Link href={`/location/${city.replace(/\s+/g, "-") || ""}`} className={styles.locationsContItemContentItem} key={city}>
+                                        <FaMapMarkerAlt />
+                                        {city}
+                                    </Link>
                                 ))}
                             </ul>
                             <Link href={`/service-areas/${city && `${city}`}`} className={styles.locationsContItemContentLink}>See All Locations</Link>

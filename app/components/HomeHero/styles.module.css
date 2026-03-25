@@ -1,3 +1,4 @@
+@media (min-width: 768px) {
 .hero{
     position: relative;
     width: 100%;
@@ -93,3 +94,108 @@
     height: 100%;
     gap: 10px;
   }
+}
+@media (max-width: 768px) {
+.hero{
+    position: relative;
+    width: 100vw;
+    height: 450px;
+    overflow: hidden;
+    margin-top: 80px;
+  }
+  .heroImage{
+    display: none;
+  }
+  .heroContent{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--primary, #1b8722);
+  }
+  
+  .heroContentInner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    font-family: 'Montserrat', sans-serif;
+    
+  }
+  .heroTitle{
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+  }
+  .heroDescription{
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+  }
+  .heroButton{
+    background: #ffffff;
+    color: #1b8722;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .heroButton:hover {
+    opacity: 0.9;
+    scale: 1.1;
+  }
+  .heroButtonCall:hover {
+    opacity: 0.9;
+    scale: 1.1;
+  }
+  .heroButtonBook:hover {
+    opacity: 0.9;
+    scale: 1.1;
+  }
+  .heroButtonCall {
+    background: var(--primary, #1b8722);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 20px;
+    border: 1px solid white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .heroButtonBook {
+    background: var(--primary-dark, #0d4210);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .heroButtonContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    gap: 10px;
+  }
+}
