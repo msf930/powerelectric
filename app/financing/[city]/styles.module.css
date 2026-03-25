@@ -1,150 +1,305 @@
-.financingPage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-   
-   padding-top: 100px;
-}
-.financingInnerContainer {
-    width: 100%;
-    max-width: 1200px;
-    height: 100%;
-    
-}
-.financingContentEven {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: #f0f0f0;
-    margin-top: 50px;
-    text-align: center;
-}
-.financingContentEven h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 20px;
-}
-.financingContentEven p {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #000;
-    width: 80%;
-}
-.financingContentOdd {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background: #fff;
-    margin-top: 50px;
-    text-align: center;
-}
-.financingContentOdd h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 20px;
-}
-.financingContentOdd p {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #000;
-    width: 80%;
-}
-.financingContentButton {
-    background: var(--primary);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-top: 20px;
-}
-.financingContentRowContainer {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-}
-.financingContentRowItemLeft {
-    width: 50%;
-    height: stretch;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-start;
-    text-align: left;
-}
-.financingContentRowItemRight {
-    width: 50%;
-    height: stretch;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    text-align: left;
-}
-.financingContentRowItemTitle {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 10px;
-    width: 100%;
-    text-align: center;
-}
-.financingContentRowItemImage {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.financingContentRowItemText {
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: #000;
-    width: 100%;
-    height: 100%;
-}
-.financingContentRowItemList {
-    list-style: disc;
-    padding: 0;
-    margin: 0;
-    margin-left: 20px;
-}
-.financingContentRowItemList li {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #000;
-    margin-bottom: 4px;
-    color: var(--primary);
-}
-.financingContentRowItemButtonContainer {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-}
-.financingContentRowItemImageContainer {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: left;
-}
+@media (min-width: 768px) {
+    .financingPage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+       
+       padding-top: 100px;
+    }
+    .financingInnerContainer {
+        width: 100%;
+        max-width: 1200px;
+        height: 100%;
+        
+    }
+    .financingContentEven {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: #f0f0f0;
+        margin-top: 50px;
+        text-align: center;
+    }
+    .financingContentEven h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+    .financingContentEven p {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #000;
+        width: 80%;
+    }
+    .financingContentOdd {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: #fff;
+        margin-top: 50px;
+        text-align: center;
+    }
+    .financingContentOdd h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+    .financingContentOdd p {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #000;
+        width: 80%;
+    }
+    .financingContentButton {
+        background: var(--primary);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 20px;
+    }
+    .financingContentRowContainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+    .financingContentRowItemLeft {
+        width: 50%;
+        height: stretch;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-start;
+        text-align: left;
+    }
+    .financingContentRowItemRight {
+        width: 50%;
+        height: stretch;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        text-align: left;
+    }
+    .financingContentRowItemTitle {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: 10px;
+        width: 100%;
+        text-align: center;
+    }
+    .financingContentRowItemImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .financingContentRowItemText {
+        font-size: 1.2rem;
+        font-weight: 400;
+        color: #000;
+        width: 100%;
+        height: 100%;
+    }
+    .financingContentRowItemList {
+        list-style: disc;
+        padding: 0;
+        margin: 0;
+        margin-left: 20px;
+    }
+    .financingContentRowItemList li {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #000;
+        margin-bottom: 4px;
+        color: var(--primary);
+    }
+    .financingContentRowItemButtonContainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+    }
+    .financingContentRowItemImageContainer {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        text-align: left;
+    }
+    }
+    @media (max-width: 768px) {
+        .financingPage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+           
+           padding-top: 80px;
+        }
+        .financingInnerContainer {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            
+        }
+        .financingContentEven {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #f0f0f0;
+            margin-top: 0px;
+            text-align: center;
+        }
+        .financingContentEven h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .financingContentEven p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #000;
+            width: 80%;
+        }
+        .financingContentOdd {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: #fff;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .financingContentOdd h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        .financingContentOdd p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #000;
+            width: 80%;
+        }
+        .financingContentButton {
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .financingContentRowContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        .financingContentRowItemLeft {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+        }
+        .financingContentRowItemRight {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+        }
+        .financingContentRowItemTitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        .financingContentRowItemImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .financingContentRowItemText {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #000;
+            width: 100%;
+            height: 100%;
+        }
+        .financingContentRowItemList {
+            list-style: disc;
+            padding: 0;
+            margin: 0;
+            margin-left: 20px;
+        }
+        .financingContentRowItemList li {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #000;
+            margin-bottom: 4px;
+            color: var(--primary);
+        }
+        .financingContentRowItemButtonContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+        }
+        .financingContentRowItemImageContainer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            text-align: left;
+        }
+        }
+        

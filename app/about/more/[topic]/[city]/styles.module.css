@@ -1,157 +1,318 @@
-.aboutMorePage {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
-}
-.aboutMorePageInnerContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 1rem;
-    margin-top: 50px;
-}
-.aboutMorePageTitle {
-    font-size: 32px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    color: #1b8722;
-    margin-bottom: 20px;
-}
-.portableTextH1 { font-size: 1.75rem; font-weight: 700; margin: 1rem 0 0.5rem; }
-.portableTextH2 { font-size: 1.5rem; font-weight: 700; margin: 1rem 0 0.5rem; }
-.portableTextH3 { font-size: 1.25rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
-.portableTextH4 { font-size: 1.125rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
-.portableTextP { margin-bottom: 0.75rem; font-size: 19px; font-family: 'Montserrat', sans-serif;}
-.portableTextUl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: disc; }
-.portableTextOl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: decimal; }
-.portableTextLi { margin-bottom: 0.25rem; }
-.portableTextStrong { font-weight: 700; }
-.portableTextEm { font-style: italic; }
-.portableTextLink { color: var(--primary, #1b8722); text-decoration: underline; }
-.portableTextLink:hover { text-decoration: none; }
-
-
-.hero{
-    position: relative;
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-    
+@media (min-width: 768px) {
+  .aboutMorePage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 100px;
   }
+  .aboutMorePageInnerContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 1rem;
+      margin-top: 50px;
+  }
+  .aboutMorePageTitle {
+      font-size: 32px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      color: #1b8722;
+      margin-bottom: 20px;
+  }
+  .portableTextH1 { font-size: 1.75rem; font-weight: 700; margin: 1rem 0 0.5rem; }
+  .portableTextH2 { font-size: 1.5rem; font-weight: 700; margin: 1rem 0 0.5rem; }
+  .portableTextH3 { font-size: 1.25rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
+  .portableTextH4 { font-size: 1.125rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
+  .portableTextP { margin-bottom: 0.75rem; font-size: 19px; font-family: 'Montserrat', sans-serif;}
+  .portableTextUl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: disc; }
+  .portableTextOl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: decimal; }
+  .portableTextLi { margin-bottom: 0.25rem; }
+  .portableTextStrong { font-weight: 700; }
+  .portableTextEm { font-style: italic; }
+  .portableTextLink { color: var(--primary, #1b8722); text-decoration: underline; }
+  .portableTextLink:hover { text-decoration: none; }
   
-  .heroContent{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, var(--primary, #1b8722) 0%, var(--primary, #1b8722) 50%, transparent 70%);
-  }
   
-  .heroContentInner{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60vw;
-    height: 100%;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 16px;
-    font-family: 'Montserrat', sans-serif;
+  .hero{
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+      
+    }
     
+    .heroContent{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to right, var(--primary, #1b8722) 0%, var(--primary, #1b8722) 50%, transparent 70%);
+    }
+    
+    .heroContentInner{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60vw;
+      height: 100%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 16px;
+      font-family: 'Montserrat', sans-serif;
+      
+    }
+    .heroTitle{
+      font-size: 32px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      color: #ffffff;
+    }
+    .heroDescription{
+      font-size: 20px;
+      font-weight: 400;
+      font-family: 'Montserrat', sans-serif;
+      color: #ffffff;
+    }
+    .heroButton{
+      background: #ffffff;
+      color: #1b8722;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .heroButton:hover {
+      opacity: 0.9;
+      scale: 1.1;
+    }
+    .heroButtonCall:hover {
+      opacity: 0.9;
+      scale: 1.1;
+    }
+    .heroButtonBook:hover {
+      opacity: 0.9;
+      scale: 1.1;
+    }
+    .heroButtonCall {
+      background: var(--primary, #1b8722);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      padding: 10px 20px;
+      border: 1px solid white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .heroButtonBook {
+      background: var(--primary-dark, #0d4210);
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .heroButtonContainer{
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      width: 60vw;
+      height: 100%;
+      gap: 10px;
+    }
+  .aboutMorePageButtonContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 1rem;
+      margin-top: 50px;
   }
-  .heroTitle{
-    font-size: 32px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
+  .aboutMorePageButton {
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      color: #ffffff;
+      background: var(--primary, #1b8722);
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
   }
-  .heroDescription{
-    font-size: 20px;
-    font-weight: 400;
-    font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
+  .aboutMorePageButton:hover {
+      opacity: 0.9;
+      scale: 1.1;
   }
-  .heroButton{
-    background: #ffffff;
-    color: #1b8722;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
   }
-  .heroButton:hover {
-    opacity: 0.9;
-    scale: 1.1;
-  }
-  .heroButtonCall:hover {
-    opacity: 0.9;
-    scale: 1.1;
-  }
-  .heroButtonBook:hover {
-    opacity: 0.9;
-    scale: 1.1;
-  }
-  .heroButtonCall {
-    background: var(--primary, #1b8722);
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px 20px;
-    border: 1px solid white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .heroButtonBook {
-    background: var(--primary-dark, #0d4210);
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  .heroButtonContainer{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 60vw;
-    height: 100%;
-    gap: 10px;
-  }
-.aboutMorePageButtonContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 1200px;
-    padding: 0 1rem;
-    margin-top: 50px;
-}
-.aboutMorePageButton {
-    font-size: 16px;
-    font-weight: 700;
-    font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
-    background: var(--primary, #1b8722);
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-.aboutMorePageButton:hover {
-    opacity: 0.9;
-    scale: 1.1;
-}
+  @media (max-width: 768px) {
+    .aboutMorePage {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 80px;
+    }
+    .aboutMorePageInnerContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 1rem;
+        margin-top: 50px;
+    }
+    .aboutMorePageTitle {
+        font-size: 32px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        color: #1b8722;
+        margin-bottom: 20px;
+    }
+    .portableTextH1 { font-size: 1.75rem; font-weight: 700; margin: 1rem 0 0.5rem; }
+    .portableTextH2 { font-size: 1.5rem; font-weight: 700; margin: 1rem 0 0.5rem; }
+    .portableTextH3 { font-size: 1.25rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
+    .portableTextH4 { font-size: 1.125rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
+    .portableTextP { margin-bottom: 0.75rem; font-size: 19px; font-family: 'Montserrat', sans-serif;}
+    .portableTextUl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: disc; }
+    .portableTextOl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: decimal; }
+    .portableTextLi { margin-bottom: 0.25rem; }
+    .portableTextStrong { font-weight: 700; }
+    .portableTextEm { font-style: italic; }
+    .portableTextLink { color: var(--primary, #1b8722); text-decoration: underline; }
+    .portableTextLink:hover { text-decoration: none; }
+    
+    
+    .hero{
+        position: relative;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        
+      }
+      
+      .heroContent{
+        position: relative;
+        
+        width: 100%;
+        height: 100%;
+        background: var(--primary, #1b8722);
+      }
+      
+      .heroContentInner{
+        position: relative;
+        
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+        font-family: 'Montserrat', sans-serif;
+        
+      }
+      .heroTitle{
+        font-size: 32px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        color: #ffffff;
+        text-align: center;
+      }
+      .heroDescription{
+        font-size: 20px;
+        font-weight: 400;
+        font-family: 'Montserrat', sans-serif;
+        color: #ffffff;
+      }
+      .heroButton{
+        background: #ffffff;
+        color: #1b8722;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .heroButton:hover {
+        opacity: 0.9;
+        scale: 1.1;
+      }
+      .heroButtonCall:hover {
+        opacity: 0.9;
+        scale: 1.1;
+      }
+      .heroButtonBook:hover {
+        opacity: 0.9;
+        scale: 1.1;
+      }
+      .heroButtonCall {
+        background: var(--primary, #1b8722);
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        padding: 10px 20px;
+        border: 1px solid white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .heroButtonBook {
+        background: var(--primary-dark, #0d4210);
+        color: #ffffff;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .heroButtonContainer{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 60vw;
+        height: 100%;
+        gap: 10px;
+      }
+    .aboutMorePageButtonContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 1rem;
+        margin-top: 50px;
+    }
+    .aboutMorePageButton {
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Montserrat', sans-serif;
+        color: #ffffff;
+        background: var(--primary, #1b8722);
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+    .aboutMorePageButton:hover {
+        opacity: 0.9;
+        scale: 1.1;
+    }
+    }
+    

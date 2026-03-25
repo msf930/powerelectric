@@ -1,205 +1,459 @@
-.instantQuoteContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    margin-top: 100px;
-}
-.instantQuoteContainerInner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    height: 100vh;
-}
-.instantQuoteItemContainer {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    align-items: start;
-    justify-items: stretch;
-    width: 80%;
-    max-width: 1200px;
-    height: auto;
-    min-height: 0;
-    gap: 1rem;
-    margin-top: 60px;
-}
-@keyframes instantQuoteItemFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+@media (min-width: 768px) {
+    .instantQuoteContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        margin-top: 100px;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-.history {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    width: 100%;
-    height: auto;
-    gap: 1rem;
-}
-.history button {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.history button:hover {
-    background: var(--primary-light);
-}
-.history button:active {
-    background: var(--primary-dark);
-}
-.instantQuoteItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 200px    ;
-    height: 200px;
-    background: #f0f0f0;
-    border-radius: 10px;
-    border: 1px solid var(--primary-light);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    gap: 1rem;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-    animation: instantQuoteItemFadeIn 0.6s ease forwards;
-    animation-fill-mode: forwards;
-    opacity: 0;
-}
 
-@media (prefers-reduced-motion: reduce) {
+    .instantQuoteContainerInner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 100vh;
+    }
+
+    .instantQuoteItemContainer {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        align-items: start;
+        justify-items: stretch;
+        width: 80%;
+        max-width: 1200px;
+        height: auto;
+        min-height: 0;
+        gap: 1rem;
+        margin-top: 60px;
+    }
+
+    @keyframes instantQuoteItemFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .history {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        width: 100%;
+        height: auto;
+        gap: 1rem;
+    }
+
+    .history button {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .history button:hover {
+        background: var(--primary-light);
+    }
+
+    .history button:active {
+        background: var(--primary-dark);
+    }
+
     .instantQuoteItem {
-        animation: none;
-        animation-delay: 0s !important;
-        opacity: 1;
-        transform: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 200px;
+        height: 200px;
+        background: #f0f0f0;
+        border-radius: 10px;
+        border: 1px solid var(--primary-light);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        gap: 1rem;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+        animation: instantQuoteItemFadeIn 0.6s ease forwards;
+        animation-fill-mode: forwards;
+        opacity: 0;
     }
-}
-.instantQuoteItem:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
-    background: #e0e0e0;
-    border: 1px solid var(--primary);
+
+    @media (prefers-reduced-motion: reduce) {
+        .instantQuoteItem {
+            animation: none;
+            animation-delay: 0s !important;
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .instantQuoteItem:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+        background: #e0e0e0;
+        border: 1px solid var(--primary);
+    }
+
+    .instantQuoteItemEnd {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .instantQuoteItemEnd h3 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemEnd p {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+
+    .instantQuoteItemEnd button {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .iconLoading {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+        background: linear-gradient(90deg,
+                #e0e0e0 0%,
+                #f5f5f5 50%,
+                #e0e0e0 100%);
+        background-size: 200% 100%;
+        animation: iconShimmer 1s ease-in-out infinite;
+    }
+
+    @keyframes iconShimmer {
+        0% {
+            background-position: 100% 0;
+        }
+
+        100% {
+            background-position: -100% 0;
+        }
+    }
+
+    .instantQuoteItemContentContainer {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        width: 100%;
+        height: auto;
+        gap: 1rem;
+        background: #f0f0f0;
+        border-radius: 10px;
+        border: 1px solid var(--primary-light);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+    }
+
+    .instantQuoteItemTotalPrice {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemTitle {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemDescription {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+
+    .instantQuoteItemEndTitle {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemEndDescription {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+
+    .instantQuoteItemEndTotalPrice {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemContainerInner {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        align-content: flex-start;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        gap: 1rem;
+    }
 }
 
-.instantQuoteItemEnd {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-.instantQuoteItemEnd h3 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--primary);
-}
-.instantQuoteItemEnd p {
-    font-size: 1.5rem;
-    font-weight: 400;
-}
-.instantQuoteItemEnd button {
-    background: var(--primary);
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.iconLoading {
-    display: inline-block;
-    width: 28px;
-    height: 28px;
-    border-radius: 4px;
-    background: linear-gradient(
-        90deg,
-        #e0e0e0 0%,
-        #f5f5f5 50%,
-        #e0e0e0 100%
-    );
-    background-size: 200% 100%;
-    animation: iconShimmer 1s ease-in-out infinite;
-}
+@media (max-width: 768px) {
+    .instantQuoteContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        margin-top: 80px;
+    }
 
-@keyframes iconShimmer {
-    0% {
-        background-position: 100% 0;
+    .instantQuoteContainerInner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
     }
-    100% {
-        background-position: -100% 0;
+
+    .instantQuoteItemContainer {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        align-items: start;
+        justify-items: stretch;
+        width: 80%;
+        max-width: 1200px;
+        height: auto;
+        min-height: 0;
+        gap: 1rem;
+        margin-top: 60px;
     }
-}
-.instantQuoteItemContentContainer {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    width: 100%;
-    height: auto;
-    gap: 1rem;
-    background: #f0f0f0;
-    border-radius: 10px;
-    border: 1px solid var(--primary-light);
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-}
-.instantQuoteItemTotalPrice {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary);
-}
-.instantQuoteItemTitle {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary);
-}
-.instantQuoteItemDescription {
-    font-size: 1.5rem;
-    font-weight: 400;
-}
-.instantQuoteItemEndTitle {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--primary);
-}
-.instantQuoteItemEndDescription {
-    font-size: 1.5rem;
-    font-weight: 400;
-}
-.instantQuoteItemEndTotalPrice {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary);
-}
-.instantQuoteItemContainerInner {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: stretch;
-    align-content: flex-start;
-    justify-content: center;
-    width: 100%;
-    height: auto;
-    min-height: 0;
-    gap: 1rem;
+
+    @keyframes instantQuoteItemFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .history {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        width: 100%;
+        height: auto;
+        gap: 1rem;
+    }
+
+    .history button {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .history button:hover {
+        background: var(--primary-light);
+    }
+
+    .history button:active {
+        background: var(--primary-dark);
+    }
+
+    .instantQuoteItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 200px;
+        height: 200px;
+        background: #f0f0f0;
+        border-radius: 10px;
+        border: 1px solid var(--primary-light);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        gap: 1rem;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+        animation: instantQuoteItemFadeIn 0.6s ease forwards;
+        animation-fill-mode: forwards;
+        opacity: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .instantQuoteItem {
+            animation: none;
+            animation-delay: 0s !important;
+            opacity: 1;
+            transform: none;
+        }
+    }
+
+    .instantQuoteItem:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+        background: #e0e0e0;
+        border: 1px solid var(--primary);
+    }
+
+    .instantQuoteItemEnd {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .instantQuoteItemEnd h3 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemEnd p {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+
+    .instantQuoteItemEnd button {
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .iconLoading {
+        display: inline-block;
+        width: 28px;
+        height: 28px;
+        border-radius: 4px;
+        background: linear-gradient(90deg,
+                #e0e0e0 0%,
+                #f5f5f5 50%,
+                #e0e0e0 100%);
+        background-size: 200% 100%;
+        animation: iconShimmer 1s ease-in-out infinite;
+    }
+
+    @keyframes iconShimmer {
+        0% {
+            background-position: 100% 0;
+        }
+
+        100% {
+            background-position: -100% 0;
+        }
+    }
+
+    .instantQuoteItemContentContainer {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: center;
+        width: 100%;
+        height: auto;
+        gap: 1rem;
+        background: #f0f0f0;
+        border-radius: 10px;
+        border: 1px solid var(--primary-light);
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+        padding: 1rem;
+        padding-top: 70px;
+    }
+
+    .instantQuoteItemTotalPrice {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemTitle {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemDescription {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+
+    .instantQuoteItemEndTitle {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemEndDescription {
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+
+    .instantQuoteItemEndTotalPrice {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--primary);
+    }
+
+    .instantQuoteItemContainerInner {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: stretch;
+        align-content: flex-start;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        gap: 1rem;
+    }
 }

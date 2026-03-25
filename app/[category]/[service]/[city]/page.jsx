@@ -98,6 +98,7 @@ export default async function ServicePage({ params }) {
             )}
           </div>
           <div className={styles.primarySectionInfoContainer}>
+            <div className={styles.primarySectionInfoContInner}>
             <div className={styles.primarySectionInfoImageContainer}>
               {data.imageSecond?.asset?.url && (
                 <Image
@@ -115,6 +116,7 @@ export default async function ServicePage({ params }) {
                 <BookBtn />
                 <CallBtn />
               </div>
+            </div>
             </div>
           </div>
         </div>

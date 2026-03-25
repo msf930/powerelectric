@@ -241,7 +241,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             onClick={() => toggleMobileSection("services")}
             aria-expanded={!!expandedMobile.services}
           >
-            <Link href="/" className={styles.mobilePrimaryLink} onClick={() => setMobileMenuOpen(false)}>
+            <Link href={`/${city ? `location/${city}` : ""}`} className={styles.mobilePrimaryLink} onClick={() => setMobileMenuOpen(false)}>
               Home
             </Link>
           </button>

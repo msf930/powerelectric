@@ -37,7 +37,7 @@ export default async function MembershipPage() {
                         </div>
                         <div className={styles.membershipTierDiamond}>
                             <Image src="/diamond.png" alt="Tier 1" width={100} height={100} />
-                            <h3 className={styles.membershipTierTitle}>1 year</h3>
+                            <h3 className={styles.membershipTierTitle}>3 year</h3>
                             <h3 className={styles.membershipTierSubtitle}>Membership Plan</h3>
                             <div className={styles.membershipLine}></div>
                             <h2 className={styles.membershipTierPrice}>$268.00</h2>
@@ -45,7 +45,7 @@ export default async function MembershipPage() {
                         </div>
                         <div className={styles.membershipTierRight}>
                             <Image src="/star.png" alt="Tier 1" width={100} height={100} />
-                            <h3 className={styles.membershipTierTitle}>1 year</h3>
+                            <h3 className={styles.membershipTierTitle}>2 year</h3>
                             <h3 className={styles.membershipTierSubtitle}>Membership Plan</h3>
                             <div className={styles.membershipLine}></div>
                             <h2 className={styles.membershipTierPrice}>$189.00</h2>
