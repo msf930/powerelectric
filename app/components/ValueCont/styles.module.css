@@ -27,7 +27,7 @@
         justify-content: center;
         height: 100%;
         width: 100%;
-        background: linear-gradient(to top right, var(--primary-light), var(--primary-dark));
+        background: var(--primary);
         padding: 1rem;
         border-radius: 3px;
         color: #ffffff;
@@ -77,7 +77,7 @@
         justify-content: center;
         height: 100%;
         width: 45%;
-        background: linear-gradient(to top right, var(--primary-light), var(--primary-dark));
+        background: var(--primary);
         padding: 1rem;
         border-radius: 3px;
         color: #ffffff;

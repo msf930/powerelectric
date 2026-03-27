@@ -128,7 +128,7 @@ export default function LocationsCont({ city = "" }) {
                     onLoad={() => setIsLoaded(true)}
                 />
                 <div ref={mapRef} className={styles.locationsContMap} />
-                <Link className={styles.locationsContAddressLink} href="https://maps.app.goo.gl/Lw2x8JKXuSi5YrMq9" target="_blank"> <FaMapMarkerAlt /> 5650 N Wahsington St. Unit C-6
+                <Link className={styles.locationsContAddressLink} href="https://maps.app.goo.gl/Lw2x8JKXuSi5YrMq9" target="_blank"> <FaMapMarkerAlt /> 5650 N Washington St. Unit C-6
                 Denver, CO 80216</Link>
             </div>
             <div className={styles.locationsContInfo}>
