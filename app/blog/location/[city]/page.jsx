@@ -49,6 +49,8 @@ export default async function BlogPage({ searchParams, params }) {
 
     const blogPosts = await client.fetch(BLOG_POSTS_PAGE_QUERY, { start, end });
 
+    const blogLocationBase = `/blog/location/${city}`;
+
     return (
         <div>
             <NavServer city={city} />
@@ -79,9 +81,14 @@ export default async function BlogPage({ searchParams, params }) {
                 {total > 0 && (
                     <nav className={styles.blogPagination} aria-label="Blog pagination">
                         {page > 1 ? (
-                            <Link href={page === 2 ? "/blog" : `/blog?page=${page - 1}`} className={styles.blogPaginationLink}>
-                                Previous
-                            </Link>
+                            <div className={styles.blogPaginationLinkContainer}>
+                                <Link
+                                    href={page === 2 ? blogLocationBase : `${blogLocationBase}?page=${page - 1}`}
+                                    className={styles.blogPaginationLink}
+                                >
+                                    Previous
+                                </Link>
+                            </div>
                         ) : (
                             <span className={styles.blogPaginationDisabled} aria-disabled="true">Previous</span>
                         )}
@@ -89,9 +96,14 @@ export default async function BlogPage({ searchParams, params }) {
                             Page {page} of {totalPages}
                         </span>
                         {page < totalPages ? (
-                            <Link href={`/blog?page=${page + 1}`} className={styles.blogPaginationLink}>
-                                Next
-                            </Link>
+                            <div className={styles.blogPaginationLinkContainer}>
+                                <Link
+                                    href={`${blogLocationBase}?page=${page + 1}`}
+                                    className={styles.blogPaginationLink}
+                                >
+                                    Next
+                                </Link>
+                            </div>
                         ) : (
                             <span className={styles.blogPaginationDisabled} aria-disabled="true">Next</span>
                         )}

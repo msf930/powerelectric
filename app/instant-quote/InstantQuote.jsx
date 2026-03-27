@@ -96,7 +96,7 @@ export default function InstantQuoteContainer() {
                             <button onClick={() => { setCurrentPage(getPageById(history.length == 1 ? "A" : getItemById(history[history.length - 2])?.pointsToPageId) ?? "A"); setCurrentItems(history.length == 1 ? [1] : getItemById(history[history.length - 2])?.pointsTo ?? []); setTotalPrice((prev) => prev - getItemById(history[history.length - 1])?.price ?? 0); setHistory((prev) => prev.slice(0, -1)); }}>Back</button>
                         </div>
                     )}
-                    <h3 className={styles.instantQuoteItemTotalPrice}>Total Price: {totalPrice}</h3>
+                    {/* <h3 className={styles.instantQuoteItemTotalPrice}>Total Price: {totalPrice}</h3> */}
                     <h3 className={styles.instantQuoteItemTitle}>{currentPage?.title}</h3>
                     <h3 className={styles.instantQuoteItemDescription}>{currentPage?.description}</h3>
                     {currentPage?.id === "END" ? <div className={styles.instantQuoteItemEnd}>

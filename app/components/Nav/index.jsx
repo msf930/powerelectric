@@ -320,7 +320,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
               <div className={styles.mobileSectionBody}>
                 <div className={styles.mobileSubBlock}>
                   <p className={styles.mobileSubTitle}>Company</p>
-                  <Link href="/about" className={styles.mobileLink} onClick={() => setMobileMenuOpen(false)}>
+                  <Link href={`/about${city ? `/${city}` : ""}`} className={styles.mobileLink} onClick={() => setMobileMenuOpen(false)}>
                     About Us
                   </Link>
                   <Link

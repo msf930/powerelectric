@@ -2,10 +2,11 @@ import NavServer from "../../components/Nav/NavServer";
 import Footer from "../../components/Footer";
 import styles from "./styles.module.css";
 import InstantQuote from "./InstantQuote";
-export default function InstantQuotePage() {
+export default async function InstantQuotePage({ params }) {
+  const { city } = await params;
   return (
     <div>
-      <NavServer />
+      <NavServer city={city} />
       <div className={styles.instantQuoteContainer}>
         <InstantQuote />
       </div>

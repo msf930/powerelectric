@@ -88,13 +88,13 @@ export default function InstantQuoteContainer() {
                             <button onClick={() => { setCurrentPage(getPageById(history.length == 1 ? "A" : getItemById(history[history.length - 2])?.pointsToPageId) ?? "A"); setCurrentItems(history.length == 1 ? [1] : getItemById(history[history.length - 2])?.pointsTo ?? []); setTotalPrice((prev) => prev - getItemById(history[history.length - 1])?.price ?? 0); setHistory((prev) => prev.slice(0, -1)); }}>Back</button>
                         </div>
                     )}
-                    <h3 className={styles.instantQuoteItemTotalPrice}>Total Price: {totalPrice}</h3>
-                    <h3 className={styles.instantQuoteItemTitle}>Current Page: {currentPage?.title}</h3>
-                    <h3 className={styles.instantQuoteItemDescription}>Current Page Description: {currentPage?.description}</h3>
+                    {/* <h3 className={styles.instantQuoteItemTotalPrice}>Total Price: {totalPrice}</h3> */}
+                    <h3 className={styles.instantQuoteItemTitle}>{currentPage?.title}</h3>
+                    <h3 className={styles.instantQuoteItemDescription}>{currentPage?.description}</h3>
                     {currentPage?.id === "END" ? <div className={styles.instantQuoteItemEnd}>
                         {/* <h3 className={styles.instantQuoteItemEndTitle}>{currentPage?.title}</h3>
                     <p className={styles.instantQuoteItemEndDescription}>{currentPage?.description}</p>*/}
-                        <h3 className={styles.instantQuoteItemEndTotalPrice}>Estimated Total Price: {totalPrice}</h3>
+                        <h3 className={styles.instantQuoteItemEndTotalPrice}>Estimated Service Price: ${totalPrice * 0.8}.00 - ${totalPrice * 0.96}.00</h3>
                         <button onClick={() => { setCurrentPage(getPageById("A")); setCurrentItems([1]); setTotalPrice(0); setHistory([]); }}>Start Over</button>
                     </div> : null}
                 </div>
