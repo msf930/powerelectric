@@ -2,8 +2,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --primary: #24af2e;
+  --foreground: #000;
+  --primary: #1b8722;
+  --primary-transparent: #032405BB;
+  --primary-light: #24af2e;
+  --primary-light2: #e6f5e6;
+  --primary-dark: #0d4210;
   --secondary: #d0e907;
 }
 
