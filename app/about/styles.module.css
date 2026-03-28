@@ -307,9 +307,9 @@
     .aboutPageValuesTitle {
         font-size: 2rem;
         font-weight: 600;
-        text-align: left;
+        text-align: center;
         width: 100%;
-        padding-left: 100px;
+        
     }
     .aboutPageValuesDescription {
         font-size: 1.25rem;

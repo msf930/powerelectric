@@ -32,6 +32,7 @@ export default function HomeForm({ city = "" }) {
         const fetchData = async () => {
             const data = await client.fetch(CONTACT_QUERY);
             setContactData(data);
+            
         };
         fetchData();
     }, []);
@@ -125,7 +126,7 @@ export default function HomeForm({ city = "" }) {
                                                 src={urlFor(service.imagePrimary).url()}
                                                 alt={service.title ?? ""}
                                                 fill
-                                                object-fit="cover"
+                                                object-fit="contain"
                                                 className={styles.homeFormCarouselImage}
                                             />
                                             </Link>

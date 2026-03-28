@@ -134,7 +134,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                 aria-haspopup="true"
               >
                 {openDropdown === "about" ? (
-                  <Link href="/about" >
+                  <Link href={`/about${city ? `/${city}` : ""}`} >
                     About Us
                   </Link>
                 ) : (
