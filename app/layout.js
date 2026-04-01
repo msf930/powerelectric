@@ -23,38 +23,56 @@ export const metadata = {
   description: siteDescription,
 };
 
-const jsonLd = {
+const jsonLd = 
+{
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": ["Organization", "Electrician"],
-      "@id": `${siteUrl}/#organization`,
-      name: "Power Electrical Services",
-      description: siteDescription,
-      url: siteUrl,
-      logo: `${siteUrl}/PESLogo.png`,
-      email: "powerelectricalservicesco@gmail.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "5650 N Washington St. Unit C-6",
-        addressLocality: "Denver",
-        addressRegion: "CO",
-        postalCode: "80216",
-        addressCountry: "US",
-      },
-      sameAs: ["https://www.facebook.com/Powereletricalservices"],
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${siteUrl}/#website`,
-      url: siteUrl,
-      name: "Power Electrical Services",
-      description: siteDescription,
-      inLanguage: "en-US",
-      publisher: { "@id": `${siteUrl}/#organization` },
-    },
+  "@type": "LocalBusiness",
+  "@id": "https://www.powerelectricalservices.net/#business",
+  "name": "Power Electrical Heating & Cooling Services",
+  "url": "https://www.powerelectricalservices.net/",
+  "telephone": "+1-720-272-2562",
+  "priceRange": "$$",
+  "description": "Power Electrical Heating & Cooling Services is a licensed electrical and HVAC contractor providing electrical repair, panel upgrades, EV charger installation, air conditioning repair, furnace installation, and heating & cooling maintenance throughout Denver and surrounding Colorado communities.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Denver",
+    "addressRegion": "CO",
+    "postalCode": "80216",
+    "addressCountry": "US"
+  },
+  "areaServed": {
+    "@type": "AdministrativeArea",
+    "name": "Colorado"
+  },
+  "sameAs": [
+    "https://share.google/9u7bI1LkCrLW3RXhw",
+    "https://www.facebook.com/Powereletricalservices/",
+    "https://www.bbb.org/us/co/denver/profile/electrical-contractors/power-electrical-services-1296-1000125617",
+    "https://www.instagram.com/power_electrical_hvac_services/",
+    "https://www.tiktok.com/@powerelectricalhvac"
   ],
-};
+  "hasOfferCatalog": [
+    {
+      "@type": "OfferCatalog",
+      "name": "Electrical Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Electrical Repair" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Panel Upgrades" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "EV Charger Installation" }}
+      ]
+    },
+    {
+      "@type": "OfferCatalog",
+      "name": "HVAC Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "HVAC Repair" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Air Conditioning Installation" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Furnace Repair & Installation" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "HVAC Maintenance" }}
+      ]
+    }
+  ]
+}
 
 export default function RootLayout({ children }) {
   return (

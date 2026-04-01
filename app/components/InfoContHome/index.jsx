@@ -34,7 +34,7 @@ export default function InfoContHome() {
                             <Image src={urlFor(data.image).url()} alt={data.title} fill className="object-cover" />
                         </div>
                         <div className={styles.infoContHomeInnerContentText}>
-                            <h1>{data.title}</h1>
+                            <h2>{data.title}</h2>
                             <p>{data.description}</p>
 
                             <ul>
