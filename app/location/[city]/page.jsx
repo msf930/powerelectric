@@ -16,7 +16,7 @@ export default async function CityPage({ params }) {
         <div>
             <NavServer city={city} />
             <HomeHero city={city} />
-            <ServiceMenuHome city={city} />
+            {/* <ServiceMenuHome city={city} /> */}
             <StatCont />
             <InfoContHome />
             <GoogleCarousel />
