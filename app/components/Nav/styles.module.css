@@ -129,6 +129,29 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         z-index: 50;
     }
+    .dropdownCityItems {
+        position: absolute;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        width: 500px;
+        
+        gap: 20px;
+        top: 100%;
+        left: 0;
+        min-width: 160px;
+        margin: 0;
+        padding: 20px;
+        list-style: none;
+        background: linear-gradient(to top, var(--primary, #1b8722), var(--primary-light, #24af2e));
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        z-index: 50;
+    }
 
     .dropdownSubCategoryTitle {
         width: auto;

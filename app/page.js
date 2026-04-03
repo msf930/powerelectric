@@ -14,7 +14,7 @@ export default function Home() {
     <div>
       <NavServer />
       <HomeHero />
-      <ServiceMenuHome />
+      {/* <ServiceMenuHome /> */}
       <StatCont />
       <InfoContHome />
       <GoogleCarousel />

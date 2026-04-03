@@ -1,24 +1,24 @@
-import { client } from "../../../../sanity/lib/client";
-import { urlFor } from "../../../../sanity/sanityImageUrl";
+import { client } from "../../../../../sanity/lib/client";
+import { urlFor } from "../../../../../sanity/sanityImageUrl";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import styles from "./styles.module.css";
-import GoogleBadge from "../../../components/GoogleBadge";
-import BookBtn from "../../../components/BookBtn";
-import CallBtn from "../../../components/CallBtn";
-import ValueCont from "../../../components/ValueCont";
-import ServiceForm from "../../../components/ServiceForm";
-import GoogleCarousel from "../../../components/GoogleCarousel";
-import FinanceCont from "../../../components/FinanceCont";
-import LocationCont from "../../../components/LocationsCont";
-import ServiceMenuCategory from "../../../components/ServiceMenuCategory";
-import Footer from "../../../components/Footer";
+import GoogleBadge from "../../../../components/GoogleBadge";
+import BookBtn from "../../../../components/BookBtn";
+import CallBtn from "../../../../components/CallBtn";
+import ValueCont from "../../../../components/ValueCont";
+import ServiceForm from "../../../../components/ServiceForm";
+import GoogleCarousel from "../../../../components/GoogleCarousel";
+import FinanceCont from "../../../../components/FinanceCont";
+import LocationCont from "../../../../components/LocationsCont";
+import ServiceMenuCategory from "../../../../components/ServiceMenuCategory";
+import Footer from "../../../../components/Footer";
 import { getPortableTextComponents } from "./portableTextComponents";
 import ThirdSectionAccordion from "./ThirdSectionAccordion";
 import FaqAccordion from "./FaqAccordion";
-import NavServer from "../../../components/Nav/NavServer";
+import NavServer from "../../../../components/Nav/NavServer";
 const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]{
   _id,
   title,

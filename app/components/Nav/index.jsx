@@ -10,7 +10,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import BookBtn from "../BookBtn";
 import CallBtn from "../CallBtn";
 
-export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = [] }) {
+export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = [], cityItems = [] }) {
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -47,6 +47,8 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
     return null;
   }
 
+  const lowerCity = city.toLowerCase();
+  
   return (
     <>
       <nav className={styles.nav}>
@@ -71,6 +73,34 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
 
         <div className={styles.desktopNav}>
           <ul className={styles.menu}>
+          <li
+               className={styles.menuItem}
+                onMouseEnter={() => setOpenDropdown("electrician")}
+               onMouseLeave={() => setOpenDropdown(null)}
+               onClick={() => setOpenDropdown("electrician")}
+              >
+
+                <button
+                  type="button"
+                  className={styles.dropdownTrigger}
+                  aria-expanded={openDropdown === "electrician"}
+                  aria-haspopup="true"
+                >
+                  Electrician
+                  <GoTriangleDown className={styles.dropdownArrow} aria-hidden />
+                </button>
+                {openDropdown === "electrician" && (
+                  <ul className={styles.dropdownCityItems} role="menu">
+                    {cityItems.map((item) => (
+                      <li key={item._id} role="none">
+                        <Link href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/${item.slug.current}`) : "#"} className={styles.dropdownLink} role="menuitem">
+                          {item.city}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
             {dropdownItems.map((item, index) => (
               <li
                 key={`${item._id}-${index}`}
@@ -87,7 +117,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                   aria-haspopup="true"
                 >
                   {openDropdown === item._id ? (
-                    <Link href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/${item.slug.current}${city ? `/service-area/${city}` : ""}`) : "#"} >
+                    <Link href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/service/${item.slug.current}${city ? `/service-area/${city}` : ""}`) : "#"} >
                       {item.title}
                     </Link>
                   ) : (
@@ -107,7 +137,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                           {subCategory.title}
                         </p>
                         {(subCategory.services ?? []).map((service, index) => (
-                          <Link key={`${service._id}-${index}`} href={service.slug?.current ? (service.slug.current.startsWith("/") ? `${service.slug.current}${city ? `/${city}` : ""}` : `/${service.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
+                          <Link key={`${service._id}-${index}`} href={service.slug?.current ? (service.slug.current.startsWith("/") ? `service/${service.slug.current}${city ? `/${city}` : ""}` : `/service/${service.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
                             {service.title}
                           </Link>
                         ))}
@@ -246,6 +276,29 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             </Link>
           </button>
 
+        </div>
+        <div className={styles.mobileSection}>
+          <button
+            type="button"
+            className={styles.mobileSectionToggle}
+            onClick={() => toggleMobileSection("electrician")}
+            aria-expanded={!!expandedMobile.electrician}
+          >
+            Electrician Services
+            <GoTriangleDown
+                  className={`${styles.mobileChevron} ${expandedMobile.electrician ? styles.mobileChevronOpen : ""}`}
+                  aria-hidden
+                />
+          </button>
+          {expandedMobile.electrician && (
+            <div className={styles.mobileSectionBody}>
+              {cityItems.map((item) => (
+                <Link key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/${item.slug.current}`) : "#"} className={styles.mobileLink} onClick={() => setMobileMenuOpen(false)}>
+                  {item.city}
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
         <div className={styles.mobileScroll}>
           {dropdownItems.map((item, index) => (

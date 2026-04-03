@@ -4,8 +4,8 @@ import { PortableText } from "next-sanity";
 import { GoTriangleDown } from "react-icons/go";
 import styles from "./styles.module.css";
 import { getPortableTextComponents } from "./portableTextComponents";
-import BookBtn from "../../components/BookBtn";
-import CallBtn from "../../components/CallBtn";
+import BookBtn from "../components/BookBtn";
+import CallBtn from "../components/CallBtn";
 
 export default function ThirdSectionAccordion({ thirdItems }) {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -43,7 +43,7 @@ export default function ThirdSectionAccordion({ thirdItems }) {
             className={
               selectedItem !== item._id || hideContent
                 ? "h-0 opacity-0 overflow-hidden transition-all duration-300"
-                : "h-auto opacity-100 overflow-visible transition-all duration-300 w-[90%] sm:w-[80%]"
+                : "h-auto opacity-100 overflow-visible transition-all duration-300 w-[80%]"
             }
           >
             {item.content && (

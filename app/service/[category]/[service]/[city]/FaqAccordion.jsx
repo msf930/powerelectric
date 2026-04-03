@@ -4,8 +4,8 @@ import { PortableText } from "next-sanity";
 import { GoTriangleDown } from "react-icons/go";
 import styles from "./styles.module.css";
 import { getPortableTextComponents } from "./portableTextComponents";
-import BookBtn from "../../components/BookBtn";
-import CallBtn from "../../components/CallBtn";
+import BookBtn from "../../../../components/BookBtn";
+import CallBtn from "../../../../components/CallBtn";
 
 export default function FaqAccordion({ faqItems, serviceTitle }) {
   const [selectedItem, setSelectedItem] = useState(null);

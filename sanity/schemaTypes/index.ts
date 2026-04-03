@@ -22,6 +22,8 @@ import { monthlySpecialItemType } from './monthlySpecialItem'
 import { aboutMorePageType } from './aboutMorePage'
 import { aboutMoreType } from './aboutMore'
 import { blogPostType } from './blogPostType'
+import { newServicesType } from './newServices'
+import { newServicePageType } from './newServicePage'
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     serviceType, 
@@ -47,5 +49,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     aboutMoreType,
     aboutMorePageType,  
     blogPostType,
+    newServicesType,
+    newServicePageType,
   ],
 }

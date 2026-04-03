@@ -13,7 +13,7 @@ const HIDDEN_TYPES = [
   'aboutValues',
   'monthlySpecialItem',
   'aboutMorePage',
-  
+  'newServicePage',
 ]
 type SingletonConfig = [string, React.ComponentType, string]
 const SINGLETON_TYPES: SingletonConfig[] = [
@@ -28,6 +28,7 @@ const SINGLETON_TYPES: SingletonConfig[] = [
   ['about', FaArchive, 'About Page'],
   ['monthlyAd', FaAd, 'Monthly Ad'],
   ['aboutMore', FaInfoCircle, 'About More'],
+  ['newServices', FaHandHolding, 'New Services'],
   // ['homePage', FaHome],
   // ['servicesPage', FaHandHolding], 
   // ['aboutPage', InfoFilledIcon], 

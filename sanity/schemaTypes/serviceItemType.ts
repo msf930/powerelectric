@@ -17,6 +17,12 @@ export const serviceItemType = defineType({
         of: [{ type: 'block' }],
         validation: (rule) => rule.required(),
     }),
+    defineField({
+        name: 'link',
+        title: 'Link',
+        type: 'url',
+       
+    }),
    
   ],
 })

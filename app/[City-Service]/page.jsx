@@ -1,25 +1,25 @@
-import { client } from "../../../sanity/lib/client";
-import { urlFor } from "../../../sanity/sanityImageUrl";
+import { client } from "../../sanity/lib/client";
+import { urlFor } from "../../sanity/sanityImageUrl";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import styles from "./styles.module.css";
-import GoogleBadge from "../../components/GoogleBadge";
-import BookBtn from "../../components/BookBtn";
-import CallBtn from "../../components/CallBtn";
-import ValueCont from "../../components/ValueCont";
-import ServiceForm from "../../components/ServiceForm";
-import GoogleCarousel from "../../components/GoogleCarousel";
-import FinanceCont from "../../components/FinanceCont";
-import LocationCont from "../../components/LocationsCont";
-import ServiceMenuCategory from "../../components/ServiceMenuCategory";
-import Footer from "../../components/Footer";
+import GoogleBadge from "../components/GoogleBadge";
+import BookBtn from "../components/BookBtn";
+import CallBtn from "../components/CallBtn";
+import ValueCont from "../components/ValueCont";
+import ServiceForm from "../components/ServiceForm";
+import GoogleCarousel from "../components/GoogleCarousel";
+import FinanceCont from "../components/FinanceCont";
+import LocationCont from "../components/LocationsCont";
+import ServiceMenuCategory from "../components/ServiceMenuCategory";
+import Footer from "../components/Footer";
 import { getPortableTextComponents } from "./portableTextComponents";
 import ThirdSectionAccordion from "./ThirdSectionAccordion";
 import FaqAccordion from "./FaqAccordion";
-import NavServer from "../../components/Nav/NavServer";
-const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]{
+import NavServer from "../components/Nav/NavServer";
+const SERVICE_QUERY = `*[_type == "newServicePage" && slug.current == $slug][0]{
   _id,
   title,
   slug,
@@ -49,23 +49,28 @@ const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $categor
 }`;
 
 export default async function ServicePage({ params }) {
-  const { category, service } = await params;
-  const slug = `/${category}/${service}`;
-
-  const [data, categoryData] = await Promise.all([
-    client.fetch(SERVICE_QUERY, { slug }),
-    client.fetch(CATEGORY_QUERY, { category }),
-  ]);
-
-  if (!data) {
-    notFound();
+  // Segment name matches the folder `[City-Service]` → param key is "City-Service"
+  const { "City-Service": cityService } = await params;
+  const cityArray = cityService.split("-");
+  const service = cityArray[cityArray.length - 1];
+  cityArray.pop();
+  let fullCity = "";
+  for (const city of cityArray) {
+    const lowerCity = city.toLowerCase();
+    const cityString = lowerCity.charAt(0).toUpperCase() + lowerCity.slice(1);
+    fullCity += cityString + " ";
   }
-
+  const cityName = fullCity.trim();
+  const citySlug = cityName.replace(/ /g, "-");
+  // console.log(cityName, service);
+  // GROQ uses $slug — param keys must match (not cityService)
+  const data = await client.fetch(SERVICE_QUERY, { slug: cityService });
+ 
   const ptComponents = getPortableTextComponents(styles);
 
   return (
     <article className={styles.servicePage}>
-      <NavServer />
+      <NavServer city={citySlug} />
       <div className={styles.hero}>
         <Image
           src={urlFor(data.imagePrimary).width(1200).height(600).url()}
@@ -99,29 +104,29 @@ export default async function ServicePage({ params }) {
           </div>
           <div className={styles.primarySectionInfoContainer}>
             <div className={styles.primarySectionInfoContInner}>
-              <div className={styles.primarySectionInfoImageContainer}>
-                {data.imageSecond?.asset?.url && (
-                  <Image
-                    src={urlFor(data.imageSecond).url()}
-                    alt={data.imageSecond?.alt ?? ""}
-                    fill
-                    objectFit="cover"
-                  />
-                )}
+            <div className={styles.primarySectionInfoImageContainer}>
+              {data.imageSecond?.asset?.url && (
+                <Image
+                  src={urlFor(data.imageSecond).url()}
+                  alt={data.imageSecond?.alt ?? ""}
+                  fill
+                  objectFit="cover"
+                />
+              )}
+            </div>
+            <div className={styles.primarySectionInfoTextContainer}>
+              <h3>{data.bookNowText}</h3>
+              <p>{data.bookNowSubtext}</p>
+              <div className={styles.primarySectionInfoButtonContainer}>
+                <BookBtn />
+                <CallBtn />
               </div>
-              <div className={styles.primarySectionInfoTextContainer}>
-                <h3>{data.bookNowText}</h3>
-                <p>{data.bookNowSubtext}</p>
-                <div className={styles.primarySectionInfoButtonContainer}>
-                  <BookBtn />
-                  <CallBtn />
-                </div>
-              </div>
+            </div>
             </div>
           </div>
         </div>
       </section>
-      <ValueCont city={""} />
+      <ValueCont city={cityName} />
 
       <section className={styles.secondarySection}>
         <div className={styles.secondarySectionInnerContainer}>
@@ -137,8 +142,8 @@ export default async function ServicePage({ params }) {
           <div className={styles.secondarySectionImageContainer}>
             {data.imageSecond?.asset?.url && (
               <Image
-                src={urlFor(data.imageSecond).url()}
-                alt={data.imageSecond?.alt ?? ""}
+                src={urlFor(data.imagePrimary).url()}
+                alt={data.imagePrimary?.alt ?? ""}
                 fill
                 objectFit="cover"
               />
@@ -147,7 +152,7 @@ export default async function ServicePage({ params }) {
         </div>
       </section>
 
-      <ServiceForm serviceName={data.title} />
+      <ServiceForm serviceName={fullCity + " " + service.charAt(0).toUpperCase() + service.slice(1).toLowerCase()} />
 
       <section className={styles.thirdSection}>
         <div className={styles.thirdSectionInnerContainer}>
@@ -174,11 +179,11 @@ export default async function ServicePage({ params }) {
         </div>
       </section>
       <GoogleCarousel />
-      <FinanceCont />
-      <LocationCont />
-      <FaqAccordion faqItems={data.faqItems} serviceTitle={data.title} />
+      <FinanceCont city={cityName} />
+      <LocationCont city={cityName} />
+      <FaqAccordion faqItems={data.faqItems} serviceTitle={cityName + " " + service.charAt(0).toUpperCase() + service.slice(1).toLowerCase()} />
 
-      <div className={styles.relatedServicesContainer}>
+      {/* <div className={styles.relatedServicesContainer}>
         <h2>Related Services</h2>
         <div className={styles.relatedServicesGrid}>
           {categoryData?.subCategories?.flatMap((subCategory) =>
@@ -189,23 +194,22 @@ export default async function ServicePage({ params }) {
               >
                 <div className={styles.relatedServicesItemImageContainer}>
                   {svc.imagePrimary?.asset?.url && (
-                    <Link href={`${svc.slug.current}`} >
-
-                      <Image
-                        src={urlFor(svc.imagePrimary).url()}
-                        alt={svc.imagePrimary?.alt ?? ""}
-                        fill
-                        objectFit="cover"
-                      />
+                    <Link href={`${svc.slug.current}/${citySlug && `${citySlug}`}`} >
+                    <Image
+                      src={urlFor(svc.imagePrimary).url()}
+                      alt={svc.imagePrimary?.alt ?? ""}
+                      fill
+                      objectFit="cover"
+                    />
                     </Link>
                   )}
                 </div>
                 <div className={styles.relatedServicesItemTextContainer}>
-                  <Link href={`${svc.slug.current}`} >
-                    <h3>{svc.bookNowText}</h3>
+                <Link href={`${svc.slug.current}/${citySlug && `${citySlug}`}`} >
+                  <h3>{svc.bookNowText}</h3>
                   </Link>
-                  <Link href={`${svc.slug.current}`} >
-                    <p>{svc.bookNowSubtext}</p>
+                  <Link href={`${svc.slug.current}/${citySlug && `${citySlug}`}`} >
+                  <p>{svc.bookNowSubtext}</p>
                   </Link>
                   <div className={styles.relatedServicesItemButtonContainer}>
                     <BookBtn />
@@ -216,11 +220,11 @@ export default async function ServicePage({ params }) {
             ))
           )}
         </div>
-      </div>
-      <div className={styles.serviceMenuCategoryContainer}>
+      </div> */}
+      {/* <div className={styles.serviceMenuCategoryContainer}>
         <h2>All {categoryData?.title} Services</h2>
-      </div>
-      <ServiceMenuCategory slug={category} />
+      </div> */}
+      {/* <ServiceMenuCategory slug={category} city={citySlug} /> */}
       <Footer />
     </article>
   );

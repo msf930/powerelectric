@@ -1,24 +1,24 @@
-
-import { client } from "../../sanity/lib/client";
+import { client } from "../../../../../sanity/lib/client";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { urlFor } from "../../sanity/sanityImageUrl";
+import { urlFor } from "../../../../../sanity/sanityImageUrl";
 import Image from "next/image";
+
 import styles from "./styles.module.css";
-import Footer from "../components/Footer";
-import GoogleBadge from "../components/GoogleBadge";
-import StatCont from "../components/StatCont";
-import ServiceMenuCategory from "../components/ServiceMenuCategory";
-import LocationsCont from "../components/LocationsCont";
-import BookBtn from "../components/BookBtn";
-import CallBtn from "../components/CallBtn";
-import InfoContCategory from "../components/InfoContCategory";
-import ValueCont from "../components/ValueCont";
-import GoogleCarousel from "../components/GoogleCarousel";
-import ProcessCont from "../components/ProcessCont";
-import FinanceCont from "../components/FinanceCont";
-import CategoryForm from "../components/CategoryForm";
-import NavServer from "../components/Nav/NavServer";
+import Footer from "../../../../components/Footer";
+import GoogleBadge from "../../../../components/GoogleBadge";
+import StatCont from "../../../../components/StatCont";
+import ServiceMenuCategory from "../../../../components/ServiceMenuCategory";
+import LocationsCont from "../../../../components/LocationsCont";
+import BookBtn from "../../../../components/BookBtn";
+import CallBtn from "../../../../components/CallBtn";
+import InfoContCategory from "../../../../components/InfoContCategory";
+import ValueCont from "../../../../components/ValueCont";
+import GoogleCarousel from "../../../../components/GoogleCarousel";
+import ProcessCont from "../../../../components/ProcessCont";
+import FinanceCont from "../../../../components/FinanceCont";
+import CategoryForm from "../../../../components/CategoryForm";
+import NavServer from "../../../../components/Nav/NavServer";
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $slug][0]{
   _id,
   title,
@@ -32,8 +32,8 @@ const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $slug][0
   }
 }`;
 
-export default async function CategoryPage({ params }) {
-  const { category } = await params;
+export default async function CategoryCityPage({ params }) {
+  const { category, city } = await params;
 
   const data = await client.fetch(CATEGORY_QUERY, {
     slug: category,
@@ -45,7 +45,7 @@ export default async function CategoryPage({ params }) {
 
   return (
     <article>
-      <NavServer />
+      <NavServer city={city} />
       <header className={styles.categoryHeader}>
         <div className={styles.categoryHeaderContent}>
          
@@ -68,13 +68,13 @@ export default async function CategoryPage({ params }) {
           </div>
         )}
       </header>
-      <ServiceMenuCategory slug={category} />
-      <LocationsCont />
+      <ServiceMenuCategory slug={category} city={city} />
+      <LocationsCont city={city} />
       <InfoContCategory />
-      <ValueCont city={""} />
+      <ValueCont city={city} />
       <GoogleCarousel />
       <ProcessCont category={data.title} />
-      <FinanceCont />
+      <FinanceCont city={city} />
       <CategoryForm />
       <Footer />
     </article>
