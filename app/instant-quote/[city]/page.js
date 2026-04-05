@@ -8,7 +8,7 @@ export default async function InstantQuotePage({ params }) {
     <div>
       <NavServer city={city} />
       <div className={styles.instantQuoteContainer}>
-        <InstantQuote />
+        <InstantQuote city={city} />
       </div>
       <Footer />
     </div>

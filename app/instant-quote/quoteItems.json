@@ -2,14 +2,14 @@
   "buttons": [
     {
       "id": 1,
-      "title": "Test Quote Item",
+      "title": "Panel Size Calculator",
       "description": "This is a test description for an Instant Quote item.",
-      "icon": "FaLightbulb",
+      "icon": "FaPlug",
       "pointsTo": [
-        2
+        
       ],
       "price": 100,
-      "pointsToPageId": "B"
+      "pointsToPageId": "PanelSizeCalculator"
     },
     {
       "id": 2,
@@ -59,8 +59,8 @@
   "pages": [
     {
       "id": "A",
-      "title": "Test Page",
-      "description": "This is a test description for an Instant Quote page."
+      "title": "Instant Quote Calculator",
+      "description": "Calculate the cost of your electrical service needs with our Instant Quote Calculator."
     },
     {
       "id": "B",
@@ -81,6 +81,11 @@
       "id": "END",
       "title": "End Page",
       "description": "This is a test description for an Instant Quote page end."
+    },
+    {
+      "id": "PanelSizeCalculator",
+      "title": "Panel Size Calculator",
+      "description": "Calculate the size of your electrical panel with our Panel Size Calculator."
     }
   ]
 }

@@ -28,7 +28,7 @@ const SINGLETON_TYPES: SingletonConfig[] = [
   ['about', FaArchive, 'About Page'],
   ['monthlyAd', FaAd, 'Monthly Ad'],
   ['aboutMore', FaInfoCircle, 'About More'],
-  ['newServices', FaHandHolding, 'New Services'],
+  ['newServices', FaHandHolding, 'Electrician Services'],
   // ['homePage', FaHome],
   // ['servicesPage', FaHandHolding], 
   // ['aboutPage', InfoFilledIcon], 
