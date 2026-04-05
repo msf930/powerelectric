@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Panel Size Calculator",
-      "description": "This is a test description for an Instant Quote item.",
+      "description": "Calculate the size of your electrical panel with our Panel Size Calculator.",
       "icon": "FaPlug",
       "pointsTo": [
         
