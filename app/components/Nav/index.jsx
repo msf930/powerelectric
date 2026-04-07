@@ -206,16 +206,18 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                     </Link>
 
                   </li>
-                  <li key="more" role="none">
+                  {aboutMoreItems && (
+                    <li key="more" role="none">
                     <p className={styles.dropdownSubCategoryTitle}>
                       More
                     </p>
-                    {aboutMoreItems.map((item) => (
+                    { aboutMoreItems.map((item) => (
                       <Link key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/about/more/${item.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
                         {item.title}
                       </Link>
                     ))}
                   </li>
+                  )}
 
 
                 </ul>
