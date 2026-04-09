@@ -24,6 +24,7 @@ import { aboutMoreType } from './aboutMore'
 import { blogPostType } from './blogPostType'
 import { newServicesType } from './newServices'
 import { newServicePageType } from './newServicePage'
+import { blogCatagoryType } from './blogCatagory'
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     serviceType, 
@@ -51,5 +52,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     blogPostType,
     newServicesType,
     newServicePageType,
+    blogCatagoryType,
   ],
 }

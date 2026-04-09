@@ -9,9 +9,10 @@ import { GoTriangleDown } from "react-icons/go";
 import { HiMenu, HiX } from "react-icons/hi";
 import BookBtn from "../BookBtn";
 import CallBtn from "../CallBtn";
-
+import { useRouter } from "next/navigation";
 export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = [], cityItems = [] }) {
   const pathname = usePathname();
+  const router = useRouter();
   const [openDropdown, setOpenDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState({});
@@ -100,6 +101,32 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                     ))}
                   </ul>
                 )}
+              </li>
+          <li
+               className={styles.menuItem}
+                
+              >
+
+                <button
+                  type="button"
+                  className={styles.dropdownTrigger}
+                  aria-expanded={openDropdown === "electrician"}
+                  aria-haspopup="true"
+                  onClick={() => router.push("/real-estate-inspection-repairs-denver")}
+                >
+                  Real Estate Pro
+                  
+                </button>
+              
+              </li>
+          <li className={styles.menuItem}>
+                <button
+                  type="button"
+                  className={styles.dropdownTrigger}
+                  onClick={() => router.push("/contractor")}
+                >
+                  Contractor
+                </button>
               </li>
             {dropdownItems.map((item, index) => (
               <li
@@ -302,6 +329,26 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             </div>
           )}
         </div>
+        <div className={styles.mobileSection}>
+          <button
+            type="button"
+            className={styles.mobileSectionToggle}
+            onClick={() => router.push("/real-estate-inspection-repairs-denver")}
+          >
+            Real Estate Pro
+           
+          </button>
+         
+        </div>
+        <div className={styles.mobileSection}>
+          <button
+            type="button"
+            className={styles.mobileSectionToggle}
+            onClick={() => router.push("/contractor")}
+          >
+            Contractor
+          </button>
+        </div>
         <div className={styles.mobileScroll}>
           {dropdownItems.map((item, index) => (
             <div key={`${item._id}-${index}`} className={styles.mobileSection}>
@@ -424,6 +471,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                     Financing
                   </Link>
                 </div>
+                {aboutMoreItems && (
                 <div className={styles.mobileSubBlock}>
                   <p className={styles.mobileSubTitle}>More</p>
                   {aboutMoreItems.map((moreItem) => (
@@ -443,6 +491,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                     </Link>
                   ))}
                 </div>
+                )}
               </div>
             )}
           </div>

@@ -1,0 +1,92 @@
+.section {
+  width: 100%;
+  padding: 2.5rem 1.25rem 2rem;
+  background: #fff;
+  font-family: var(--font-montserrat-sans), "Montserrat", sans-serif;
+}
+
+.inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  margin: 0 0 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  margin: 0;
+  padding: 1.25rem;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.avatar {
+  display: block;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  object-fit: cover;
+  background: #eee;
+}
+
+.avatarPlaceholder {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #ddd;
+}
+
+.name {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #111;
+}
+
+.stars {
+  color: rgb(248, 175, 13);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.star {
+  display: inline;
+}
+
+.quote {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #444;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+}

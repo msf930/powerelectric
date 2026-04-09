@@ -14,6 +14,7 @@ const HIDDEN_TYPES = [
   'monthlySpecialItem',
   'aboutMorePage',
   'newServicePage',
+  'blogCatagory',
 ]
 type SingletonConfig = [string, React.ComponentType, string]
 const SINGLETON_TYPES: SingletonConfig[] = [

@@ -94,6 +94,21 @@ export default function Footer() {
     }
     return (
         <footer className={styles.footer}>
+            <div className={styles.footerMeta}>
+                <div className={styles.footerTrustBadges} role="list" aria-label="Trust badges">
+                    <span className={styles.trustBadge} role="listitem">Best of Business</span>
+                    <span className={styles.trustBadge} role="listitem">Housecall Pro Super Pro</span>
+                    <span className={styles.trustBadge} role="listitem">BBB Accredited</span>
+                </div>
+                <nav className={styles.footerSocials} aria-label="Social links">
+                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Facebook</a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Instagram</a>
+                    <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>TikTok</a>
+                    <a href="https://www.yelp.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Yelp</a>
+                    <a href="https://nextdoor.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Nextdoor</a>
+                    <a href="https://www.bbb.org/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>BBB</a>
+                </nav>
+            </div>
             <div className={styles.footerStrip}>
                 <div className={styles.footerStripInner}>
                     <div className={styles.footerStripInnerContentLeft}>

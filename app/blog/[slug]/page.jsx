@@ -1,9 +1,8 @@
 import { client } from "../../../sanity/lib/client";
 import { urlFor } from "../../../sanity/sanityImageUrl";
 import Image from "next/image";
-import Link from "next/link";
 import Footer from "../../components/Footer";
-import { FaArrowRight, FaSquare } from "react-icons/fa";
+import { FaSquare } from "react-icons/fa";
 import NavServer from "../../components/Nav/NavServer";
 import styles from "./styles.module.css";
 import { PortableText } from "next-sanity";
@@ -12,18 +11,9 @@ import BookBtn from "../../components/BookBtn";
 import CallBtn from "../../components/CallBtn";
 import CategoryForm from "../../components/CategoryForm";
 import BlogPostsCarousel from "./BlogPostsCarousel";
+import BlogPostSchemaJsonLd from "../../components/BlogPostSchemaJsonLd";
 import { notFound } from "next/navigation";
-
-const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][0]{
-    _id,
-    title,
-    slug,
-    excerpt,
-    content,
-    keywords,
-    image,
-    date
-}`;
+import { getBlogPostBySlug, buildBlogPostMetadata } from "../blogPostQueries";
 
 const ALL_BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
     _id,
@@ -33,10 +23,17 @@ const ALL_BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
     image
 }`;
 
+export async function generateMetadata({ params }) {
+    const { slug } = await params;
+    const data = await getBlogPostBySlug(slug);
+    if (!data) return { title: "Blog" };
+    return buildBlogPostMetadata(data);
+}
+
 export default async function BlogPostPage({ params }) {
     const { slug } = await params;
     const [data, allPostsRaw] = await Promise.all([
-        client.fetch(BLOG_POST_QUERY, { slug }),
+        getBlogPostBySlug(slug),
         client.fetch(ALL_BLOG_POSTS_QUERY),
     ]);
     if (!data) notFound();
@@ -49,6 +46,7 @@ export default async function BlogPostPage({ params }) {
     const ptComponents = getPortableTextComponents(styles);
     return (
         <div>
+            <BlogPostSchemaJsonLd schema={data.schema} />
             <NavServer />
             <div className={styles.parallaxStrip}>
                     <div className={styles.parallaxStripContent}>

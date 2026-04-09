@@ -77,7 +77,7 @@ export default async function ServicePage({ params }) {
           alt="Hero"
           width={500}
           height={300}
-          className="w-[50%] h-[300px] object-cover absolute top-0 right-0"
+          className="w-[50%] h-[400px] object-cover absolute top-0 right-0"
         />
         <div className={styles.heroContent}>
           <div className={styles.heroContentInner}>

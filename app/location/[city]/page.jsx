@@ -1,30 +1,50 @@
 import HomeHero from "../../components/HomeHero";
-import ServiceMenuHome from "../../components/ServiceMenuHome";
 import StatCont from "../../components/StatCont";
-import InfoContHome from "../../components/InfoContHome";
+import HomeProblemStrip from "../../components/HomeProblemStrip";
+import HomeWhyChoose from "../../components/HomeWhyChoose";
+import HomeReviewSnippets from "../../components/HomeReviewSnippets";
+import HomeServiceCategories from "../../components/HomeServiceCategories";
+import HomeProLinks from "../../components/HomeProLinks";
+import HomeMembership from "../../components/HomeMembership";
+import HomeTotalProtectionPlan from "../../components/HomeTotalProtectionPlan";
+import HomeFinancingSection from "../../components/HomeFinancingSection";
 import GoogleCarousel from "../../components/GoogleCarousel";
 import HomeForm from "../../components/HomeForm";
-import FinanceCont from "../../components/FinanceCont";
+import HomeFinalCTA from "../../components/HomeFinalCTA";
+import HomeFAQ from "../../components/HomeFAQ";
 import ParallaxStrip from "../../components/ParallaxStrip";
 import LocationsCont from "../../components/LocationsCont";
 import Footer from "../../components/Footer";
 import NavServer from "../../components/Nav/NavServer";
-export default async function CityPage({ params }) {
-    const { city } = await params;
+import StickyMobileCall from "../../components/StickyMobileCall";
+import SeoFaqPageJsonLd from "../../components/SeoFaqPageJsonLd";
 
-    return (
-        <div>
-            <NavServer city={city} />
-            <HomeHero city={city} />
-            {/* <ServiceMenuHome city={city} /> */}
-            <StatCont />
-            <InfoContHome />
-            <GoogleCarousel />
-            <HomeForm city={city} />
-            <FinanceCont city={city} />
-            <ParallaxStrip />
-            <LocationsCont city={city} />
-            <Footer />
-        </div>
-    );
+/** Section order and components mirror `app/page.js`. Pass `city` where supported. */
+export default async function CityPage({ params }) {
+  const { city } = await params;
+
+  return (
+    <div className="pb-20 md:pb-0">
+      
+      <NavServer city={city} />
+      <HomeHero city={city} />
+      <StatCont />
+      <HomeProblemStrip />
+      <HomeWhyChoose />
+      <HomeReviewSnippets />
+      <HomeServiceCategories city={city} />
+      <HomeProLinks />
+      <HomeMembership city={city} />
+      <HomeTotalProtectionPlan city={city} />
+      {/* <HomeFinancingSection city={city} /> */}
+      <GoogleCarousel />
+      <HomeForm city={city} />
+      <HomeFinalCTA />
+      <HomeFAQ />
+      <ParallaxStrip />
+      <LocationsCont city={city} />
+      <Footer />
+      <StickyMobileCall />
+    </div>
+  );
 }

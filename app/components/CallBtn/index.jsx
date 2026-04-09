@@ -17,7 +17,7 @@ function formatPhoneDisplay(number) {
     return `(${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`;
 }
 
-export default function CallBtn() {
+export default function CallBtn({ label }) {
     const [callButton, setCallButton] = useState(null);
     useEffect(() => {
         const fetchCallButton = async () => {
@@ -29,7 +29,7 @@ export default function CallBtn() {
     return (
         callButton && (
             <Link href={`tel:${callButton?.number}`} className={styles.callBtn}>
-                {formatPhoneDisplay(callButton?.number)}
+                {label ?? formatPhoneDisplay(callButton?.number)}
             </Link>
         )
     );

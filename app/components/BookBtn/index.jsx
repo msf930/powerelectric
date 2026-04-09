@@ -10,7 +10,7 @@ const BOOK_BUTTON_QUERY = `*[_type == "bookButton"][0]{
     link
 }`;
 
-export default function BookBtn() {
+export default function BookBtn({ label = "Book Now" }) {
     const [bookButton, setBookButton] = useState(null);
     useEffect(() => {
         const fetchBookButton = async () => {
@@ -21,7 +21,7 @@ export default function BookBtn() {
     }, []);
     return (
         bookButton && (
-        <Link href={bookButton?.link} className={styles.bookBtn}>Book Now</Link>
+        <Link href={bookButton?.link} className={styles.bookBtn}>{label}</Link>
         )
     );
 }

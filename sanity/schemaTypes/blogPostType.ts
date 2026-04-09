@@ -21,7 +21,11 @@ export const blogPostType = defineType({
         slugify: (input: string) =>
           input
             .toLowerCase()
-            .replace(/\s+/g, '-')
+            .normalize('NFD')
+            .replace(/\p{M}/gu, '')
+            .replace(/[''`´]/g, '')
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '')
             .slice(0, 96),
       },
       validation: (rule) => rule.required(),
@@ -38,6 +42,12 @@ export const blogPostType = defineType({
       
     }),
     defineField({
+      name: 'category',
+      type: 'reference',
+      to: [{type: 'blogCatagory'}],
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'image',
       type: 'image',
       validation: (rule) => rule.required(),
@@ -51,6 +61,10 @@ export const blogPostType = defineType({
       name: 'content',
       type: 'array',
       of: [{type: 'block'}]
+    }),
+    defineField({
+      name: 'schema',
+      type: 'text'
     })
   ],
   orderings: [

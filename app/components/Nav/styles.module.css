@@ -71,6 +71,7 @@
 
     .menuItem {
         position: relative;
+        white-space: nowrap;
     }
 
     .dropdownTrigger {

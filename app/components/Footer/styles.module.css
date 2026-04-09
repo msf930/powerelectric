@@ -441,3 +441,68 @@
     width: 100%;
   }
 }
+.footerMeta {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  font-family: var(--font-montserrat-sans), "Montserrat", sans-serif;
+}
+
+.footerTrustBadges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+}
+
+.trustBadge {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary-dark, #0d4210);
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.footerSocials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.25rem;
+}
+
+.footerSocialLink {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary, #1b8722);
+  text-decoration: underline;
+}
+
+.footerSocialLink:hover {
+  text-decoration: none;
+  color: var(--primary-dark, #0d4210);
+}
+
+@media (min-width: 768px) {
+  .footerMeta {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 2rem 1.5rem;
+  }
+
+  .footerTrustBadges {
+    justify-content: flex-start;
+  }
+
+  .footerSocials {
+    justify-content: flex-end;
+  }
+}
