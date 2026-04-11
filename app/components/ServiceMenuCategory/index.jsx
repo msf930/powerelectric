@@ -38,11 +38,11 @@ export default function ServiceMenuCategory({ slug, city = "" }) {
     <div className={styles.serviceMenuHome}>
       {serviceCategory?.subCategories?.map((subCategory) => (
         <div key={subCategory._id} className={styles.serviceCategory}>
-            <div className={styles.serviceCategoryIcon}>
+            {/* <div className={styles.serviceCategoryIcon}>
                 <div className="p-8 relative">
                     <Image src={urlFor(subCategory.icon).url()} alt={subCategory.title} fill objectFit="cover"  />
                 </div>
-            </div>
+            </div> */}
           <h2 className={styles.serviceCategoryTitle}>{subCategory.title}</h2>
           {
             subCategory.services.map((service, index) => (

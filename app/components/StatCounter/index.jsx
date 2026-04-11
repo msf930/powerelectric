@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { motion, useInView, useMotionValue, useMotionValueEvent, animate } from "framer-motion";
-
+import styles from "./styles.module.css";
 export default function StatCounter({
   from = 0,
   to,
@@ -28,7 +28,7 @@ export default function StatCounter({
   }, [isInView, to, duration, count]);
 
   return (
-    <motion.span ref={ref}>
+    <motion.span ref={ref} className={styles.statCounter}>
       {display}
     </motion.span>
   );

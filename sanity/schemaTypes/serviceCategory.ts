@@ -24,22 +24,22 @@ export const serviceCategoryType = defineType({
         },
         validation: (rule) => rule.required(),
     }),
-    defineField({
-        name: 'image',
-        type: 'image',
-        validation: (rule) => rule.required(),
-    }),
-    defineField({
-        name: 'icon',
-        type: 'image',
-        validation: (rule) => rule.required(),
-    }),
-    defineField({
-        name: 'subTitle',
-        title: 'Sub Title',
-        type: 'string',
-        validation: (rule) => rule.required(),
-    }),
+    // defineField({
+    //     name: 'image',
+    //     type: 'image',
+    //     validation: (rule) => rule.required(),
+    // }),
+    // defineField({
+    //     name: 'icon',
+    //     type: 'image',
+    //     validation: (rule) => rule.required(),
+    // }),
+    // defineField({
+    //     name: 'subTitle',
+    //     title: 'Sub Title',
+    //     type: 'string',
+    //     validation: (rule) => rule.required(),
+    // }),
     defineField({
         name: 'subCategories',
         title: 'Sub Categories',

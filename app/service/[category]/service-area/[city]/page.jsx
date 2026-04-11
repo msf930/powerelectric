@@ -19,6 +19,7 @@ import ProcessCont from "../../../../components/ProcessCont";
 import FinanceCont from "../../../../components/FinanceCont";
 import CategoryForm from "../../../../components/CategoryForm";
 import NavServer from "../../../../components/Nav/NavServer";
+import HomeHero from "../../../../components/HomeHero";
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $slug][0]{
   _id,
   title,
@@ -46,7 +47,8 @@ export default async function CategoryCityPage({ params }) {
   return (
     <article>
       <NavServer city={city} />
-      <header className={styles.categoryHeader}>
+      <HomeHero />
+      {/* <header className={styles.categoryHeader}>
         <div className={styles.categoryHeaderContent}>
          
           {data.subTitle && <p className={styles.categoryHeaderSubTitle}>{data.subTitle}</p>}
@@ -67,7 +69,7 @@ export default async function CategoryCityPage({ params }) {
             </div>
           </div>
         )}
-      </header>
+      </header> */}
       <ServiceMenuCategory slug={category} city={city} />
       <LocationsCont city={city} />
       <InfoContCategory />

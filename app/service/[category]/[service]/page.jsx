@@ -19,24 +19,9 @@ import { getPortableTextComponents } from "./portableTextComponents";
 import ThirdSectionAccordion from "./ThirdSectionAccordion";
 import FaqAccordion from "./FaqAccordion";
 import NavServer from "../../../components/Nav/NavServer";
-const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]{
-  _id,
-  title,
-  slug,
-  titleHero,
-  imagePrimary { asset->{ _id, url }, alt },
-  imageSecond { asset->{ _id, url }, alt },
-  titlePrimary,
-  descriptionPrimary,
-  bookNowText,
-  bookNowSubtext,
-  titleSecond,
-  descriptionSecond,
-  titleThird,
-  descriptionThird,
-  thirdItems[]->{ _id, title, content },
-  faqItems[]->{ _id, title, content }
-}`;
+import JsonLdSchemaScript from "../../../components/JsonLdSchemaScript";
+import { getServiceBySlug } from "../../serviceQueries";
+import { buildServicePageMetadata } from "../../serviceMetadata";
 
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
   _id,
@@ -48,12 +33,21 @@ const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $categor
   }
 }`;
 
+export async function generateMetadata({ params }) {
+  const { category, service } = await params;
+  const slug = `/${category}/${service}`;
+  const data = await getServiceBySlug(slug);
+  if (!data) return { title: "Service" };
+  const canonicalPath = `/service/${category}/${service}`;
+  return buildServicePageMetadata(data, { canonicalPath });
+}
+
 export default async function ServicePage({ params }) {
   const { category, service } = await params;
   const slug = `/${category}/${service}`;
 
   const [data, categoryData] = await Promise.all([
-    client.fetch(SERVICE_QUERY, { slug }),
+    getServiceBySlug(slug),
     client.fetch(CATEGORY_QUERY, { category }),
   ]);
 
@@ -65,6 +59,7 @@ export default async function ServicePage({ params }) {
 
   return (
     <article className={styles.servicePage}>
+      <JsonLdSchemaScript schema={data.schema} />
       <NavServer />
       <div className={styles.hero}>
         <Image
@@ -135,10 +130,10 @@ export default async function ServicePage({ params }) {
             )}
           </div>
           <div className={styles.secondarySectionImageContainer}>
-            {data.imageSecond?.asset?.url && (
+            {data.imagePrimary?.asset?.url && (
               <Image
-                src={urlFor(data.imageSecond).url()}
-                alt={data.imageSecond?.alt ?? ""}
+                src={urlFor(data.imagePrimary).url()}
+                alt={data.imagePrimary?.alt ?? ""}
                 fill
                 objectFit="cover"
               />
@@ -181,8 +176,7 @@ export default async function ServicePage({ params }) {
       <div className={styles.relatedServicesContainer}>
         <h2>Related Services</h2>
         <div className={styles.relatedServicesGrid}>
-          {categoryData?.subCategories?.flatMap((subCategory) =>
-            (subCategory.services ?? []).slice(0, 3).map((svc, index) => (
+          {data.relatedServices?.map((svc, index) => (
               <div
                 className={styles.relatedServicesItem}
                 key={svc._id + index}
@@ -213,14 +207,14 @@ export default async function ServicePage({ params }) {
                   </div>
                 </div>
               </div>
-            ))
-          )}
+            ))}
+          
         </div>
       </div>
-      <div className={styles.serviceMenuCategoryContainer}>
+      {/* <div className={styles.serviceMenuCategoryContainer}>
         <h2>All {categoryData?.title} Services</h2>
-      </div>
-      <ServiceMenuCategory slug={category} />
+      </div> */}
+      {/* <ServiceMenuCategory slug={category} /> */}
       <Footer />
     </article>
   );

@@ -144,9 +144,8 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                   aria-haspopup="true"
                 >
                   {openDropdown === item._id ? (
-                    <Link href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/service/${item.slug.current}${city ? `/service-area/${city}` : ""}`) : "#"} >
-                      {item.title}
-                    </Link>
+                    item.title
+                    
                   ) : (
                     <h3 className={styles.dropdownCategoryTitle}>
                       {item.title}
@@ -164,7 +163,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                           {subCategory.title}
                         </p>
                         {(subCategory.services ?? []).map((service, index) => (
-                          <Link key={`${service._id}-${index}`} href={service.slug?.current ? (service.slug.current.startsWith("/") ? `service/${service.slug.current}${city ? `/${city}` : ""}` : `/service/${service.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
+                          <Link key={`${service._id}-${index}`} href={service.slug?.current ? (service.slug.current.startsWith("/") ? `/service/${service.slug.current}${city ? `/${city}` : ""}` : `/service/${service.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
                             {service.title}
                           </Link>
                         ))}
@@ -366,7 +365,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
               </button>
               {expandedMobile[item._id] && (
                 <div className={styles.mobileSectionBody}>
-                  <Link
+                  {/* <button
                     href={
                       item.slug?.current
                         ? item.slug.current.startsWith("/")
@@ -378,7 +377,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.title} overview
-                  </Link>
+                  </button> */}
                   {(item.subCategories ?? []).map((subCategory) => (
                     <div key={subCategory._id} className={styles.mobileSubBlock}>
                       <p className={styles.mobileSubTitle}>{subCategory.title}</p>
@@ -388,8 +387,8 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                           href={
                             service.slug?.current
                               ? service.slug.current.startsWith("/")
-                                ? `${service.slug.current}${city ? `/${city}` : ""}`
-                                : `/${service.slug.current}${city ? `/${city}` : ""}`
+                                ? `service/${service.slug.current}${city ? `/${city}` : ""}`
+                                : `/service/${service.slug.current}${city ? `/${city}` : ""}`
                               : "#"
                           }
                           className={styles.mobileLink}

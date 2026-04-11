@@ -14,7 +14,7 @@ import BlogPostsCarousel from "./BlogPostsCarousel";
 import BlogPostSchemaJsonLd from "../../components/BlogPostSchemaJsonLd";
 import { notFound } from "next/navigation";
 import { getBlogPostBySlug, buildBlogPostMetadata } from "../blogPostQueries";
-
+import Link from "next/link";
 const ALL_BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
     _id,
     title,
@@ -23,12 +23,8 @@ const ALL_BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
     image
 }`;
 
-export async function generateMetadata({ params }) {
-    const { slug } = await params;
-    const data = await getBlogPostBySlug(slug);
-    if (!data) return { title: "Blog" };
-    return buildBlogPostMetadata(data);
-}
+
+
 
 export default async function BlogPostPage({ params }) {
     const { slug } = await params;
@@ -49,18 +45,18 @@ export default async function BlogPostPage({ params }) {
             <BlogPostSchemaJsonLd schema={data.schema} />
             <NavServer />
             <div className={styles.parallaxStrip}>
-                    <div className={styles.parallaxStripContent}>
+                <div className={styles.parallaxStripContent}>
                     <div className={styles.parallaxStripKeywordsContainer}>
-                                   
-                                    {data.keywords && data.keywords.map((keyword, index) => (
-                                        <div key={index}>
-                                            <p className={styles.parallaxStripKeywords}>{keyword}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                        <h1>{data.title}</h1></div>
-                    <div className={styles.parallaxStripImage} aria-hidden />
-                </div>
+
+                        {data.keywords && data.keywords.map((keyword, index) => (
+                            <div key={index}>
+                                <p className={styles.parallaxStripKeywords}>{keyword}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <h1>{data.title}</h1></div>
+                <div className={styles.parallaxStripImage} aria-hidden />
+            </div>
             <div className={styles.blogPostPageInner}>
                 <div className={styles.blogPostPageContent}>
                     <div className={styles.blogPostHero}>
@@ -95,6 +91,43 @@ export default async function BlogPostPage({ params }) {
                     <CallBtn />
                 </div>
                 <BlogPostsCarousel posts={carouselPosts} />
+                <div className={styles.relatedServicesContainer}>
+                {data.relatedServices?.length > 0 && <h2>Related Services</h2> }
+                    <div className={styles.relatedServicesGrid}>
+                        {data.relatedServices?.map((svc, index) => (
+                            <div
+                                className={styles.relatedServicesItem}
+                                key={svc._id + index}
+                            >
+                                <div className={styles.relatedServicesItemImageContainer}>
+                                    {svc.imagePrimary?.asset?.url && (
+                                        <Link href={`${svc.slug.current}`} >
+
+                                            <Image
+                                                src={urlFor(svc.imagePrimary).url()}
+                                                alt={svc.imagePrimary?.alt ?? ""}
+                                                fill
+                                                objectFit="cover"
+                                            />
+                                        </Link>
+                                    )}
+                                </div>
+                                <div className={styles.relatedServicesItemTextContainer}>
+                                    <Link href={`${svc.slug.current}`} >
+                                        <h3>{svc.bookNowText}</h3>
+                                    </Link>
+                                    <Link href={`${svc.slug.current}`} >
+                                        <p>{svc.bookNowSubtext}</p>
+                                    </Link>
+                                    <div className={styles.relatedServicesItemButtonContainer}>
+                                        <BookBtn />
+                                        <CallBtn />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
                 <CategoryForm />
             </div>
 

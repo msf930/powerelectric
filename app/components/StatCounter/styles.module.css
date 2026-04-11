@@ -1,0 +1,12 @@
+.statCounter {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    white-space: wrap;
+    gap: 5px;
+    font-size: 35px;
+    font-weight: 600;
+    color: white;
+}

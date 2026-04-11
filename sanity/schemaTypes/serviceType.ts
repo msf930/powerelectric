@@ -136,6 +136,17 @@ export const serviceType = defineType({
             type: 'array',
             of: [{type: 'reference', to: [{type: 'serviceItem'}]}]
         }),
+        defineField({
+            name: 'schema',
+            title: 'Schema',
+            type: 'text',
+        }),
+        defineField({
+            name: 'relatedServices',
+            title: 'Related Services',
+            type: 'array',
+            of: [{type: 'reference', to: [{type: 'service'}]}]
+        }),
 
     ],
 });

@@ -34,7 +34,7 @@ export default function HomeHero({ city }) {
           alt=""
           width={500}
           height={450}
-          className="w-[50%] h-[450px] object-cover absolute top-0 right-0"
+          className="w-[50%] h-[500px] object-cover absolute top-0 right-0"
         />
       </div>
       <div className={styles.heroContent}>

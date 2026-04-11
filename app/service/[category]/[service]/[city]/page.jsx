@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
-import styles from "./styles.module.css";
+import styles from "../styles.module.css";
 import GoogleBadge from "../../../../components/GoogleBadge";
 import BookBtn from "../../../../components/BookBtn";
 import CallBtn from "../../../../components/CallBtn";
@@ -19,24 +19,9 @@ import { getPortableTextComponents } from "./portableTextComponents";
 import ThirdSectionAccordion from "./ThirdSectionAccordion";
 import FaqAccordion from "./FaqAccordion";
 import NavServer from "../../../../components/Nav/NavServer";
-const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]{
-  _id,
-  title,
-  slug,
-  titleHero,
-  imagePrimary { asset->{ _id, url }, alt },
-  imageSecond { asset->{ _id, url }, alt },
-  titlePrimary,
-  descriptionPrimary,
-  bookNowText,
-  bookNowSubtext,
-  titleSecond,
-  descriptionSecond,
-  titleThird,
-  descriptionThird,
-  thirdItems[]->{ _id, title, content },
-  faqItems[]->{ _id, title, content }
-}`;
+import JsonLdSchemaScript from "../../../../components/JsonLdSchemaScript";
+import { getServiceBySlug } from "../../../serviceQueries";
+import { buildServicePageMetadata } from "../../../serviceMetadata";
 
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
   _id,
@@ -48,12 +33,22 @@ const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $categor
   }
 }`;
 
+export async function generateMetadata({ params }) {
+  const { category, service, city } = await params;
+  const slug = `/${category}/${service}`;
+  const data = await getServiceBySlug(slug);
+  if (!data) return { title: "Service" };
+  const canonicalPath = `/service/${category}/${service}/${city}`;
+  const cityDisplayName = city ? String(city).replace(/-/g, " ") : null;
+  return buildServicePageMetadata(data, { canonicalPath, cityDisplayName });
+}
+
 export default async function ServicePage({ params }) {
   const { category, service, city } = await params;
   const slug = `/${category}/${service}`;
 
   const [data, categoryData] = await Promise.all([
-    client.fetch(SERVICE_QUERY, { slug }),
+    getServiceBySlug(slug),
     client.fetch(CATEGORY_QUERY, { category }),
   ]);
 
@@ -65,6 +60,7 @@ export default async function ServicePage({ params }) {
 
   return (
     <article className={styles.servicePage}>
+      <JsonLdSchemaScript schema={data.schema} />
       <NavServer city={city} />
       <div className={styles.hero}>
         <Image
@@ -216,10 +212,10 @@ export default async function ServicePage({ params }) {
           )}
         </div>
       </div>
-      <div className={styles.serviceMenuCategoryContainer}>
+      {/* <div className={styles.serviceMenuCategoryContainer}>
         <h2>All {categoryData?.title} Services</h2>
-      </div>
-      <ServiceMenuCategory slug={category} city={city} />
+      </div> */}
+      {/* <ServiceMenuCategory slug={category} city={city} /> */}
       <Footer />
     </article>
   );

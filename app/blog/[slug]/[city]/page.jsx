@@ -14,7 +14,7 @@ import BlogPostsCarousel from "./BlogPostsCarousel";
 import BlogPostSchemaJsonLd from "../../../components/BlogPostSchemaJsonLd";
 import { notFound } from "next/navigation";
 import { getBlogPostBySlug, buildBlogPostMetadata } from "../../blogPostQueries";
-
+import Link from "next/link";
 const ALL_BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
     _id,
     title,
@@ -95,6 +95,43 @@ export default async function BlogPostPage({ params }) {
                     <CallBtn />
                 </div>
                 <BlogPostsCarousel posts={carouselPosts} city={city} />
+                <div className={styles.relatedServicesContainer}>
+                {data.relatedServices?.length > 0 && <h2>Related Services</h2> }
+                    <div className={styles.relatedServicesGrid}>
+                        {data.relatedServices?.map((svc, index) => (
+                            <div
+                                className={styles.relatedServicesItem}
+                                key={svc._id + index}
+                            >
+                                <div className={styles.relatedServicesItemImageContainer}>
+                                    {svc.imagePrimary?.asset?.url && (
+                                        <Link href={`${svc.slug.current}`} >
+
+                                            <Image
+                                                src={urlFor(svc.imagePrimary).url()}
+                                                alt={svc.imagePrimary?.alt ?? ""}
+                                                fill
+                                                objectFit="cover"
+                                            />
+                                        </Link>
+                                    )}
+                                </div>
+                                <div className={styles.relatedServicesItemTextContainer}>
+                                    <Link href={`${svc.slug.current}`} >
+                                        <h3>{svc.bookNowText}</h3>
+                                    </Link>
+                                    <Link href={`${svc.slug.current}`} >
+                                        <p>{svc.bookNowSubtext}</p>
+                                    </Link>
+                                    <div className={styles.relatedServicesItemButtonContainer}>
+                                        <BookBtn />
+                                        <CallBtn />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
                 <CategoryForm />
             </div>
 

@@ -65,6 +65,11 @@ export const blogPostType = defineType({
     defineField({
       name: 'schema',
       type: 'text'
+    }),
+    defineField({
+      name: 'relatedServices',
+      type: 'array',
+      of: [{type: 'reference', to: [{type: 'service'}]}]
     })
   ],
   orderings: [

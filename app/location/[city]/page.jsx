@@ -18,7 +18,7 @@ import Footer from "../../components/Footer";
 import NavServer from "../../components/Nav/NavServer";
 import StickyMobileCall from "../../components/StickyMobileCall";
 import SeoFaqPageJsonLd from "../../components/SeoFaqPageJsonLd";
-
+import TopLinks from "../../components/TopLinks";
 /** Section order and components mirror `app/page.js`. Pass `city` where supported. */
 export default async function CityPage({ params }) {
   const { city } = await params;
@@ -28,6 +28,7 @@ export default async function CityPage({ params }) {
       
       <NavServer city={city} />
       <HomeHero city={city} />
+      <TopLinks />
       <StatCont />
       <HomeProblemStrip />
       <HomeWhyChoose />

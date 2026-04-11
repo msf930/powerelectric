@@ -10,11 +10,11 @@ export const serviceSubCategoryType = defineType({
         type: 'string',
         validation: (rule) => rule.required(),
     }),
-    defineField({
-        name: 'icon',
-        type: 'image',
-        validation: (rule) => rule.required(),
-    }),
+    // defineField({
+    //     name: 'icon',
+    //     type: 'image',
+    //     validation: (rule) => rule.required(),
+    // }),
     defineField({
         name: 'services',
         title: 'Services',

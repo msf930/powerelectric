@@ -18,6 +18,7 @@ import Footer from "./components/Footer";
 import NavServer from "./components/Nav/NavServer";
 import StickyMobileCall from "./components/StickyMobileCall";
 import SeoFaqPageJsonLd from "./components/SeoFaqPageJsonLd";
+import TopLinks from "./components/TopLinks";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       
       <NavServer />
       <HomeHero />
+      <TopLinks />
       <StatCont />
       <HomeProblemStrip />
       <HomeWhyChoose />

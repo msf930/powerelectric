@@ -18,7 +18,8 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
         _id,
         title,
         slug
-    }
+    },
+    relatedServices[]->{ _id, title, slug, imagePrimary { asset->{ _id, url } },bookNowText,bookNowSubtext }
 }`;
 
 export const getBlogPostBySlug = cache(async (slug) => {
@@ -75,10 +76,10 @@ export function excerptToMaxWords(text, maxWords = 20) {
     return `${words.slice(0, maxWords).join(" ")}…`;
 }
 
-const LD_JSON_SCRIPT_OPEN = /^<script\s+type\s*=\s*["']application\/ld\+json["']\s*>/i;
-const LD_JSON_SCRIPT_CLOSE = /<\/script>\s*$/i;
+export const LD_JSON_SCRIPT_OPEN = /^<script\s+type\s*=\s*["']application\/ld\+json["']\s*>/i;
+export const LD_JSON_SCRIPT_CLOSE = /<\/script>\s*$/i;
 
-/** Parse Sanity `blogPost.schema` (JSON-LD JSON string). Returns null if empty or invalid. */
+/** Parse JSON-LD text: strips ld+json script wrappers if present, then JSON.parse. */
 export function parseBlogPostSchema(schemaText) {
     if (schemaText == null || typeof schemaText !== "string") return null;
     let json = schemaText.trim();
