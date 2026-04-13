@@ -57,7 +57,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
           <Image
             src="/PESLogo.png"
             alt="Power Electrical Services"
-            width={250}
+            width={200}
             height={250}
             className={styles.logo}
             priority

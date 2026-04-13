@@ -49,12 +49,12 @@
     }
 
     .menu {
-        width: auto;
+        width: 100%;
         display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        margin-left: 200px;
-        gap: 0.25rem;
+        align-items: center;
+        justify-content: center;
+        margin-left: 150px;
+        gap: 0.1rem;
         list-style: none;
 
     }

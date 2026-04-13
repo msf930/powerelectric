@@ -4,7 +4,7 @@ import quoteItems from "./quoteItems.json";
 import Link from "next/link";
 import { useEffect, useMemo, useState, useCallback } from "react";
 import { FaTimes } from "react-icons/fa";
-
+import { HCaptcha } from '@hcaptcha/react-hcaptcha';
 /** Set in `.env.local` when your API is ready: `NEXT_PUBLIC_PANEL_CALC_SUBMIT_URL=https://...` */
 const PANEL_CALC_SUBMIT_URL =
   typeof process.env.NEXT_PUBLIC_PANEL_CALC_SUBMIT_URL === "string"
@@ -170,14 +170,21 @@ function PanelSizeCalculatorForm() {
       setSubmitting(false);
     }
   }
+  const onHCaptchaChange = (token) => {
+    setValue("h-captcha-response", token);
+};
 
   return (
     <div className={styles.panelCalc}>
       <form
         className={styles.panelCalcForm}
-        onSubmit={handleFormSubmit}
+        // onSubmit={handleFormSubmit}
         aria-label="Electrical service size calculator"
+        action="https://api.web3forms.com/submit" 
+        method="POST"
       >
+        <input type="hidden" name="access_key" value="78b559a9-35cc-4bde-bb30-7fcacfc54cdf" />
+        {/* <input type="hidden" name="access_key" value="d6ffcb9a-65d9-4a10-85a8-51ed76bcd533" /> */}
         <fieldset className={styles.panelCalcFieldset}>
           <legend className={styles.panelCalcLegend}>Home size</legend>
           <label htmlFor="panel-calc-sqft" className={styles.panelCalcLabelBlock}>
@@ -325,6 +332,14 @@ function PanelSizeCalculatorForm() {
               {submitError}
             </p>
           ) : null}
+          <div className={styles.hCaptchaCont}>
+                        <HCaptcha
+                            sitekey="ecd6157a-0260-427b-996c-8e3c9c564fbb"
+                            reCaptchaCompat={false}
+                            onVerify={onHCaptchaChange}
+                            theme="light"
+                        />
+                    </div>
           <button
             type="submit"
             className={styles.panelCalcSubmitBtn}

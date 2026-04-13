@@ -40,29 +40,29 @@ const BLOCKS = [
     slugFallback: "heating",
     match: (cat) => /heating|furnace|heat pump/i.test(cat.title || ""),
   },
-  {
-    title: "Indoor Air Quality (IAQ)",
-    list: [
-      "Air Purifiers & UV Systems",
-      "Filtration Upgrades",
-      "Humidity Control",
-      "Ventilation Solutions",
-    ],
-    slugFallback: "indoor-air-quality",
-    match: (cat) =>
-      /air quality|iaq|indoor air|humid/i.test(cat.title || ""),
-  },
-  {
-    title: "Holiday Lighting",
-    list: [
-      "Custom Lighting Design",
-      "Safe, Professional Installation",
-      "Timers & Clean Setup",
-      "Post-Season Removal",
-    ],
-    slugFallback: "holiday-lighting",
-    match: (cat) => /holiday|christmas/i.test(cat.title || ""),
-  },
+  // {
+  //   title: "Indoor Air Quality (IAQ)",
+  //   list: [
+  //     "Air Purifiers & UV Systems",
+  //     "Filtration Upgrades",
+  //     "Humidity Control",
+  //     "Ventilation Solutions",
+  //   ],
+  //   slugFallback: "indoor-air-quality",
+  //   match: (cat) =>
+  //     /air quality|iaq|indoor air|humid/i.test(cat.title || ""),
+  // },
+  // {
+  //   title: "Holiday Lighting",
+  //   list: [
+  //     "Custom Lighting Design",
+  //     "Safe, Professional Installation",
+  //     "Timers & Clean Setup",
+  //     "Post-Season Removal",
+  //   ],
+  //   slugFallback: "holiday-lighting",
+  //   match: (cat) => /holiday|christmas/i.test(cat.title || ""),
+  // },
 ];
 
 function categoryHref(slug, city) {
