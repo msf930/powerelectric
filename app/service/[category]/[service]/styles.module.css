@@ -170,7 +170,7 @@
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
     color: var(--primary-dark, #1b8722);
-    
+    text-align: center;
   }
   .primarySectionInfoTextContainer p{
     font-size: 19px;
@@ -199,8 +199,8 @@
   .portableTextH3 { font-size: 1.25rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
   .portableTextH4 { font-size: 1.125rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
   .portableTextP { margin-bottom: 0.75rem; font-size: 19px; font-family: 'Montserrat', sans-serif;}
-  .portableTextUl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: disc; }
-  .portableTextOl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: decimal; }
+  .portableTextUl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style-type: disc; }
+  .portableTextOl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style-type: decimal; }
   .portableTextLi { margin-bottom: 0.25rem; }
   .portableTextStrong { font-weight: 700; }
   .portableTextEm { font-style: italic; }
@@ -789,8 +789,8 @@
     .portableTextH3 { font-size: 1.25rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
     .portableTextH4 { font-size: 1.125rem; font-weight: 600; margin: 0.75rem 0 0.5rem; }
     .portableTextP { margin-bottom: 0.75rem; font-size: 19px; font-family: 'Montserrat', sans-serif;}
-    .portableTextUl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: disc; }
-    .portableTextOl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style: decimal; }
+    .portableTextUl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style-type: disc; }
+    .portableTextOl { margin: 0.5rem 0 1rem; padding-left: 1.5rem; list-style-type: decimal; }
     .portableTextLi { margin-bottom: 0.25rem; }
     .portableTextStrong { font-weight: 700; }
     .portableTextEm { font-style: italic; }

@@ -19,9 +19,9 @@ import { getPortableTextComponents } from "./portableTextComponents";
 import ThirdSectionAccordion from "./ThirdSectionAccordion";
 import FaqAccordion from "./FaqAccordion";
 import NavServer from "../../../components/Nav/NavServer";
-import JsonLdSchemaScript from "../../../components/JsonLdSchemaScript";
 import { getServiceBySlug } from "../../serviceQueries";
 import { buildServicePageMetadata } from "../../serviceMetadata";
+import ServiceProtectionPlanCta from "../../../components/ServiceProtectionPlanCta";
 
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
   _id,
@@ -32,7 +32,46 @@ const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $categor
     "services": services[]->{ _id, title, slug, imagePrimary { asset->{ _id, url } },bookNowText,bookNowSubtext }
   }
 }`;
+export const LD_JSON_SCRIPT_OPEN = /^<script\s+type\s*=\s*["']application\/ld\+json["']\s*>/i;
+export const LD_JSON_SCRIPT_CLOSE = /<\/script>\s*$/i;
 
+/** Parse JSON-LD text: strips ld+json script wrappers if present, then JSON.parse. */
+export function parseServiceSchema(schemaText) {
+  if (schemaText == null || typeof schemaText !== "string") return null;
+  let json = schemaText.trim();
+  if (!json) return null;
+  if (LD_JSON_SCRIPT_OPEN.test(json)) {
+    json = json.replace(LD_JSON_SCRIPT_OPEN, "").trimStart();
+  }
+  if (LD_JSON_SCRIPT_CLOSE.test(json)) {
+    json = json.replace(LD_JSON_SCRIPT_CLOSE, "").trimEnd();
+  }
+  json = json.trim();
+  if (!json) return null;
+  try {
+    return JSON.parse(json);
+  } catch {
+    return null;
+  }
+}
+export function serializeServiceSchemaForLd(schemaText) {
+  const parsed = parseServiceSchema(schemaText);
+  if (parsed == null) return null;
+  return JSON.stringify(parsed);
+}
+export function ServiceJsonLdSchemaScript({ schema }) {
+  const json = serializeServiceSchemaForLd(schema);
+  if (!json) return null;
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: json,
+      }}
+    />
+
+  );
+}
 export async function generateMetadata({ params }) {
   const { category, service } = await params;
   const slug = `/${category}/${service}`;
@@ -54,12 +93,13 @@ export default async function ServicePage({ params }) {
   if (!data) {
     notFound();
   }
-
   const ptComponents = getPortableTextComponents(styles);
 
+  
   return (
     <article className={styles.servicePage}>
-      <JsonLdSchemaScript schema={data.schema} />
+      {/* <ServiceJsonLdSchemaScript schema={data.schema} /> */}
+     
       <NavServer />
       <div className={styles.hero}>
         <Image
@@ -174,47 +214,50 @@ export default async function ServicePage({ params }) {
       <FaqAccordion faqItems={data.faqItems} serviceTitle={data.title} />
 
       <div className={styles.relatedServicesContainer}>
-        <h2>Related Services</h2>
+        {data.relatedServices && (
+          <h2>Related Services</h2>
+        )}
         <div className={styles.relatedServicesGrid}>
           {data.relatedServices?.map((svc, index) => (
-              <div
-                className={styles.relatedServicesItem}
-                key={svc._id + index}
-              >
-                <div className={styles.relatedServicesItemImageContainer}>
-                  {svc.imagePrimary?.asset?.url && (
-                    <Link href={`${svc.slug.current}`} >
+            <div
+              className={styles.relatedServicesItem}
+              key={svc._id + index}
+            >
+              <div className={styles.relatedServicesItemImageContainer}>
+                {svc.imagePrimary?.asset?.url && (
+                  <Link href={`${svc.slug.current}`} >
 
-                      <Image
-                        src={urlFor(svc.imagePrimary).url()}
-                        alt={svc.imagePrimary?.alt ?? ""}
-                        fill
-                        objectFit="cover"
-                      />
-                    </Link>
-                  )}
-                </div>
-                <div className={styles.relatedServicesItemTextContainer}>
-                  <Link href={`${svc.slug.current}`} >
-                    <h3>{svc.bookNowText}</h3>
+                    <Image
+                      src={urlFor(svc.imagePrimary).url()}
+                      alt={svc.imagePrimary?.alt ?? ""}
+                      fill
+                      objectFit="cover"
+                    />
                   </Link>
-                  <Link href={`${svc.slug.current}`} >
-                    <p>{svc.bookNowSubtext}</p>
-                  </Link>
-                  <div className={styles.relatedServicesItemButtonContainer}>
-                    <BookBtn />
-                    <CallBtn />
-                  </div>
+                )}
+              </div>
+              <div className={styles.relatedServicesItemTextContainer}>
+                <Link href={`${svc.slug.current}`} >
+                  <h3>{svc.title}</h3>
+                </Link>
+                <Link href={`${svc.slug.current}`} >
+                  <p>{svc.bookNowSubtext}</p>
+                </Link>
+                <div className={styles.relatedServicesItemButtonContainer}>
+                  <BookBtn />
+                  <CallBtn />
                 </div>
               </div>
-            ))}
-          
+            </div>
+          ))}
+
         </div>
       </div>
       {/* <div className={styles.serviceMenuCategoryContainer}>
         <h2>All {categoryData?.title} Services</h2>
       </div> */}
       {/* <ServiceMenuCategory slug={category} /> */}
+      <ServiceProtectionPlanCta />
       <Footer />
     </article>
   );

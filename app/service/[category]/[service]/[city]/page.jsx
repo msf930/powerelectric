@@ -22,6 +22,7 @@ import NavServer from "../../../../components/Nav/NavServer";
 import JsonLdSchemaScript from "../../../../components/JsonLdSchemaScript";
 import { getServiceBySlug } from "../../../serviceQueries";
 import { buildServicePageMetadata } from "../../../serviceMetadata";
+import ServiceProtectionPlanCta from "../../../../components/ServiceProtectionPlanCta";
 
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
   _id,
@@ -175,32 +176,34 @@ export default async function ServicePage({ params }) {
       <FaqAccordion faqItems={data.faqItems} serviceTitle={data.title} />
 
       <div className={styles.relatedServicesContainer}>
+      {data.relatedServices && (
         <h2>Related Services</h2>
+      )}
         <div className={styles.relatedServicesGrid}>
-          {categoryData?.subCategories?.flatMap((subCategory) =>
-            (subCategory.services ?? []).slice(0, 3).map((svc, index) => (
+          {data.relatedServices?.map((svc, index) => (
               <div
                 className={styles.relatedServicesItem}
                 key={svc._id + index}
               >
                 <div className={styles.relatedServicesItemImageContainer}>
                   {svc.imagePrimary?.asset?.url && (
-                    <Link href={`${svc.slug.current}/${city && `${city}`}`} >
-                    <Image
-                      src={urlFor(svc.imagePrimary).url()}
-                      alt={svc.imagePrimary?.alt ?? ""}
-                      fill
-                      objectFit="cover"
-                    />
+                    <Link href={`${svc.slug.current}`} >
+
+                      <Image
+                        src={urlFor(svc.imagePrimary).url()}
+                        alt={svc.imagePrimary?.alt ?? ""}
+                        fill
+                        objectFit="cover"
+                      />
                     </Link>
                   )}
                 </div>
                 <div className={styles.relatedServicesItemTextContainer}>
-                <Link href={`${svc.slug.current}/${city && `${city}`}`} >
-                  <h3>{svc.bookNowText}</h3>
+                  <Link href={`${svc.slug.current}`} >
+                    <h3>{svc.title}</h3>
                   </Link>
-                  <Link href={`${svc.slug.current}/${city && `${city}`}`} >
-                  <p>{svc.bookNowSubtext}</p>
+                  <Link href={`${svc.slug.current}`} >
+                    <p>{svc.bookNowSubtext}</p>
                   </Link>
                   <div className={styles.relatedServicesItemButtonContainer}>
                     <BookBtn />
@@ -208,14 +211,15 @@ export default async function ServicePage({ params }) {
                   </div>
                 </div>
               </div>
-            ))
-          )}
+            ))}
+          
         </div>
       </div>
       {/* <div className={styles.serviceMenuCategoryContainer}>
         <h2>All {categoryData?.title} Services</h2>
       </div> */}
       {/* <ServiceMenuCategory slug={category} city={city} /> */}
+      <ServiceProtectionPlanCta city={city} />
       <Footer />
     </article>
   );

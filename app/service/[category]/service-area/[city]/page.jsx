@@ -20,6 +20,7 @@ import FinanceCont from "../../../../components/FinanceCont";
 import CategoryForm from "../../../../components/CategoryForm";
 import NavServer from "../../../../components/Nav/NavServer";
 import HomeHero from "../../../../components/HomeHero";
+import ServiceProtectionPlanCta from "../../../../components/ServiceProtectionPlanCta";
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $slug][0]{
   _id,
   title,
@@ -78,6 +79,7 @@ export default async function CategoryCityPage({ params }) {
       <ProcessCont category={data.title} />
       <FinanceCont city={city} />
       <CategoryForm />
+      <ServiceProtectionPlanCta city={city} />
       <Footer />
     </article>
   );
