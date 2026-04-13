@@ -21,6 +21,7 @@ function pickServiceLikeNode(parsed) {
         "Product",
         "BlogPosting",
         "Article",
+        "FAQPage",
     ]);
     for (const node of candidates) {
         if (!node || typeof node !== "object") continue;

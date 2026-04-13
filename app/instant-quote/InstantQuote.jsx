@@ -75,7 +75,7 @@ function PanelSizeCalculatorForm() {
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [pricingModalOpen, setPricingModalOpen] = useState(false);
-
+  const [hcaptchaSolved, setHCaptchaSolved] = useState(false);
   const toggleAppliance = (key) => {
     setAppliances((prev) => ({ ...prev, [key]: !prev[key] }));
   };
@@ -172,6 +172,7 @@ function PanelSizeCalculatorForm() {
   }
   const onHCaptchaChange = (token) => {
     setValue("h-captcha-response", token);
+    setHCaptchaSolved(true);
 };
 
   return (
@@ -183,8 +184,7 @@ function PanelSizeCalculatorForm() {
         action="https://api.web3forms.com/submit" 
         method="POST"
       >
-        <input type="hidden" name="access_key" value="78b559a9-35cc-4bde-bb30-7fcacfc54cdf" />
-        {/* <input type="hidden" name="access_key" value="d6ffcb9a-65d9-4a10-85a8-51ed76bcd533" /> */}
+        <input type="hidden" name="access_key" value="d6ffcb9a-65d9-4a10-85a8-51ed76bcd533" />
         <fieldset className={styles.panelCalcFieldset}>
           <legend className={styles.panelCalcLegend}>Home size</legend>
           <label htmlFor="panel-calc-sqft" className={styles.panelCalcLabelBlock}>
@@ -210,6 +210,7 @@ function PanelSizeCalculatorForm() {
             <input
               type="checkbox"
               checked={utilityUnderground}
+              name="utilityUnderground"
               onChange={(e) => setUtilityUnderground(e.target.checked)}
             />
             <span>Underground utility service (unchecked = overhead)</span>
@@ -227,6 +228,7 @@ function PanelSizeCalculatorForm() {
                 <input
                   type="checkbox"
                   checked={appliances[key]}
+                  name={label}
                   onChange={() => toggleAppliance(key)}
                 />
                 <span>{label}</span>
@@ -334,7 +336,7 @@ function PanelSizeCalculatorForm() {
           ) : null}
           <div className={styles.hCaptchaCont}>
                         <HCaptcha
-                            sitekey="ecd6157a-0260-427b-996c-8e3c9c564fbb"
+                            sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
                             reCaptchaCompat={false}
                             onVerify={onHCaptchaChange}
                             theme="light"
@@ -342,8 +344,9 @@ function PanelSizeCalculatorForm() {
                     </div>
           <button
             type="submit"
+            onSubmit={handleFormSubmit}
             className={styles.panelCalcSubmitBtn}
-            disabled={submitting || !result}
+            disabled={submitting || !result || hcaptchaSolved}
           >
             {submitting ? "Sending…" : "Submit & see service options"}
           </button>

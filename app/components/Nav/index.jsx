@@ -348,7 +348,8 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             Contractor
           </button>
         </div>
-        <div className={styles.mobileScroll}>
+        {/* <div className={styles.mobileScroll}> */}
+        <div>
           {dropdownItems.map((item, index) => (
             <div key={`${item._id}-${index}`} className={styles.mobileSection}>
               <button
