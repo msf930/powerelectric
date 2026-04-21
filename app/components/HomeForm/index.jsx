@@ -120,7 +120,7 @@ export default function HomeForm({ city = "" }) {
                                 >
                                     {service?.imagePrimary && (
                                         <div className={styles.homeFormCarouselImageCont}>
-                                            <Link href={`${service.slug.current}/${city && `${city}`}`} >
+                                            <Link href={`service/${service.slug.current}/${city && `${city}`}`} >
 
                                             <Image
                                                 src={urlFor(service.imagePrimary).url()}
@@ -140,7 +140,7 @@ export default function HomeForm({ city = "" }) {
                                         </div>
                                     )}
                                     <div className={styles.homeFormCarouselImageButtonCont}>
-                                        <Link href={`${service.slug.current}/${city && `${city}`}`} className={styles.homeFormCarouselServiceButton}>View Service</Link>
+                                        <Link href={`service/${service.slug.current}/${city && `${city}`}`} className={styles.homeFormCarouselServiceButton}>View Service</Link>
                                         <BookBtn />
                                     </div>
                                 </div>

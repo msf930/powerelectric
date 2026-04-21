@@ -14,6 +14,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
   const pathname = usePathname();
   const router = useRouter();
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [activeServiceSubCategoryId, setActiveServiceSubCategoryId] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedMobile, setExpandedMobile] = useState({});
 
@@ -49,6 +50,17 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
   }
 
   const lowerCity = city.toLowerCase();
+  const serviceSubCategories = dropdownItems.flatMap((item) => item.subCategories ?? []);
+  const activeServiceSubCategory = serviceSubCategories.find((subCategory) => {
+    if (!activeServiceSubCategoryId) return false;
+    return String(subCategory._id ?? subCategory.title) === activeServiceSubCategoryId;
+  }) ?? serviceSubCategories[0];
+  const openServicesDropdown = () => {
+    setOpenDropdown("services");
+    if (!activeServiceSubCategoryId && serviceSubCategories.length > 0) {
+      setActiveServiceSubCategoryId(String(serviceSubCategories[0]._id ?? serviceSubCategories[0].title));
+    }
+  };
   
   return (
     <>
@@ -128,51 +140,58 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                   Contractor
                 </button>
               </li>
-            {dropdownItems.map((item, index) => (
-              <li
-                key={`${item._id}-${index}`}
-                className={styles.menuItem}
-                onMouseEnter={() => setOpenDropdown(item._id)}
-                onMouseLeave={() => setOpenDropdown(null)}
-                onClick={() => setOpenDropdown(item._id)}
+            <li
+              className={styles.menuItem}
+              onMouseEnter={openServicesDropdown}
+              onMouseLeave={() => setOpenDropdown(null)}
+              onClick={openServicesDropdown}
+            >
+              <button
+                type="button"
+                className={styles.dropdownTrigger}
+                aria-expanded={openDropdown === "services"}
+                aria-haspopup="true"
               >
-
-                <button
-                  type="button"
-                  className={styles.dropdownTrigger}
-                  aria-expanded={openDropdown === item._id}
-                  aria-haspopup="true"
-                >
-                  {openDropdown === item._id ? (
-                    item.title
-                    
-                  ) : (
-                    <h3 className={styles.dropdownCategoryTitle}>
-                      {item.title}
-                    </h3>
-                  )}
-
-
-                  <GoTriangleDown className={styles.dropdownArrow} aria-hidden />
-                </button>
-                {openDropdown === item._id && (
-                  <ul className={styles.dropdown} role="menu">
-                    {(item.subCategories ?? []).map((subCategory) => (
-                      <li key={subCategory._id} role="none">
-                        <p className={styles.dropdownSubCategoryTitle}>
-                          {subCategory.title}
-                        </p>
-                        {(subCategory.services ?? []).map((service, index) => (
-                          <Link key={`${service._id}-${index}`} href={service.slug?.current ? (service.slug.current.startsWith("/") ? `/service/${service.slug.current}${city ? `/${city}` : ""}` : `/service/${service.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
-                            {service.title}
-                          </Link>
-                        ))}
-                      </li>
-                    ))}
-                  </ul>
+                {openDropdown === "services" ? "Services" : (
+                  <h3 className={styles.dropdownCategoryTitle}>
+                    Services
+                  </h3>
                 )}
-              </li>
-            ))}
+                <GoTriangleDown className={styles.dropdownArrow} aria-hidden />
+              </button>
+              {openDropdown === "services" && (
+                <ul className={styles.dropdown} role="menu">
+                  <li className={styles.servicesDropdownColumns} role="none">
+                    <div className={styles.servicesDropdownSubCategories}>
+                      {serviceSubCategories.map((subCategory) => {
+                        const subCategoryId = String(subCategory._id ?? subCategory.title);
+                        const isActive = activeServiceSubCategory && String(activeServiceSubCategory._id ?? activeServiceSubCategory.title) === subCategoryId;
+                        return (
+                          <button
+                            key={subCategoryId}
+                            type="button"
+                            className={`${styles.servicesDropdownSubCategoryButton} ${isActive ? styles.servicesDropdownSubCategoryButtonActive : ""}`}
+                            onClick={() => setActiveServiceSubCategoryId(subCategoryId)}
+                          >
+                            {subCategory.title}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <div className={styles.servicesDropdownServices}>
+                      <p className={styles.dropdownSubCategoryTitle}>
+                        {activeServiceSubCategory?.title}
+                      </p>
+                      {(activeServiceSubCategory?.services ?? []).map((service, serviceIndex) => (
+                        <Link key={`${service._id}-${serviceIndex}`} href={service.slug?.current ? (service.slug.current.startsWith("/") ? `/service/${service.slug.current}${city ? `/${city}` : ""}` : `/service/${service.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
+                          {service.title}
+                        </Link>
+                      ))}
+                    </div>
+                  </li>
+                </ul>
+              )}
+            </li>
           </ul>
           <ul className={styles.menuAbout}>
             <li

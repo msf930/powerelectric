@@ -279,7 +279,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     width: 40vw;
     height: 50vh;
   }
@@ -330,9 +330,10 @@
   }
   .thirdSectionItemButton{
     display: flex;
+    flex: 1;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: stretch;
     font-size: 19px;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
@@ -342,7 +343,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: left;
-    width: 100%;
+    width: stretch;
     text-align: left;
     border-bottom: 1px solid black;
     white-space: no-wrap;
@@ -935,7 +936,7 @@
       cursor: pointer;
       transition: all 0.3s ease;
       text-align: left;
-      width: 90%;
+      width: stretch;
       text-align: left;
       border-bottom: 1px solid black;
     }
