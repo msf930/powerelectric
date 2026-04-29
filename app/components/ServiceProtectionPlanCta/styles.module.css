@@ -1,5 +1,9 @@
 .section {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 2.5rem 1.25rem 3rem;
   background: linear-gradient(180deg, #f8faf8 0%, #eef5ef 100%);
   border-top: 1px solid rgba(27, 135, 34, 0.15);
@@ -29,7 +33,16 @@
   line-height: 1.55;
   margin: 0 0 1.25rem;
 }
-
+.subleadContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 1rem;
+  /* padding-left: 1.35rem; */
+  font-size: 19px;
+  font-family: "Montserrat", sans-serif;
+}
 .sublead {
   font-size: 1.05rem;
   font-weight: 700;
@@ -49,12 +62,16 @@
 }
 
 .ctaLine {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   margin: 0;
   font-size: 1.05rem;
 }
 
 .ctaLink {
-  display: inline-block;
+ 
   margin-top: 0.25rem;
   padding: 0.65rem 1.35rem;
   font-weight: 700;

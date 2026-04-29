@@ -118,10 +118,10 @@ export default function RealEstatePage() {
             <h2>We Help You Close Not Complicate</h2>
             <p className={styles.prose}>We understand:</p>
             <ul className={styles.bulletList}>
-              <li>Option periods are tight</li>
-              <li>Small issues can kill deals</li>
-              <li>Buyers get nervous fast</li>
-              <li>Time is everything</li>
+              <li>● Option periods are tight</li>
+              <li>● Small issues can kill deals</li>
+              <li>● Buyers get nervous fast</li>
+              <li>● Time is everything</li>
             </ul>
             <p className={styles.prose}>
               When inspection issues come up, you need a trusted inspection
@@ -182,7 +182,7 @@ export default function RealEstatePage() {
       <section className={`${styles.extraSection} ${styles.extraSectionAlt}`}>
         <div className={styles.extraSectionInner}>
           <h2>Why Realtors Choose Us</h2>
-          <ul className={styles.bulletList}>
+          <ul className={styles.bulletListCenter}>
             <li>● 20+ Years of Experience</li>
             <li>● Serving the Denver Metro Area Since 2005</li>
             <li>● Family-Owned &amp; Operated</li>
@@ -222,7 +222,7 @@ export default function RealEstatePage() {
       <section className={`${styles.extraSection} ${styles.extraSectionAlt}`}>
         <div className={styles.extraSectionInner}>
           <h2>Common Inspection Issues We Fix</h2>
-          <ul className={styles.bulletList}>
+          <ul className={styles.bulletListCenter}>
             <li>Double-tapped breakers</li>
             <li>Outdated or unsafe panels</li>
             <li>HVAC systems not up to code</li>
@@ -249,7 +249,7 @@ export default function RealEstatePage() {
           <p className={styles.prose} style={{ textAlign: "center" }}>
             We provide real estate inspection repairs across:
           </p>
-          <ul className={styles.bulletList} style={{ maxWidth: "28rem", margin: "0 auto 1rem" }}>
+          <ul className={styles.bulletListCenter} style={{ maxWidth: "28rem", margin: "0 auto 1rem" }}>
             <li>Thornton</li>
             <li>Northglenn</li>
             <li>Westminster</li>

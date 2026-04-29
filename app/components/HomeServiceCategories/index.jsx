@@ -2,7 +2,7 @@ import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
 import styles from "./styles.module.css";
 
-const CATEGORY_QUERY = `*[_type == "serviceCategory"]{ _id, title, "slug": slug.current }`;
+const CATEGORY_QUERY = `*[_type == "allServices"]{ allServices[]->{ _id, title, slug, subCategories[]->{ _id, title, slug, services[]->{ _id, title, slug } } } }`;
 
 const BLOCKS = [
   {
@@ -76,22 +76,18 @@ export default async function HomeServiceCategories({ city = "" }) {
   let categories = [];
   try {
     categories = await client.fetch(CATEGORY_QUERY);
+    console.log(categories);
   } catch {
     categories = [];
   }
 
   const used = new Set();
-  const rows = BLOCKS.map((block) => {
-    const cat = categories.find(
-      (c) => !used.has(c._id) && block.match(c)
-    );
-    const slug = (cat?.slug || block.slugFallback).replace(/^\//, "");
-    if (cat) used.add(cat._id);
+  const rows = categories[0].allServices.map((block) => {
     return {
-      key: block.slugFallback,
-      title: block.title,
-      list: block.list,
-      href: categoryHref(slug, city),
+      key: block.slug.current,
+      title: block.subCategories[0].title,
+      list: block.subCategories[0].services.map((service) => ({ title: service.title, slug: service.slug.current })),
+      href: categoryHref(block.slug.current, city)
     };
   });
 
@@ -107,7 +103,9 @@ export default async function HomeServiceCategories({ city = "" }) {
               <h3 className={styles.cardTitle}>{row.title}</h3>
               <ul className={styles.list}>
                 {row.list.map((item) => (
-                  <li key={item}>{item}</li>
+                  <li key={item}>
+                    <Link href={`/service/${item.slug}${city ? `/${city}` : ''}`}>{item.title}</Link>
+                  </li>
                 ))}
               </ul>
               <Link href={row.href} className={styles.cta}>

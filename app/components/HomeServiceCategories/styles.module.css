@@ -21,6 +21,16 @@
 .grid {
   display: grid;
   gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  justify-content: stretch;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+  padding: 1.25rem;
+  background: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);  
 }
 
 .card {
@@ -30,6 +40,9 @@
   background: #fafafa;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   gap: 0.75rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -48,10 +61,21 @@
   line-height: 1.5;
   color: #444;
 }
-
+.list li {
+  margin: 0;
+  padding: 0;
+  font-size: 0.98rem;
+  line-height: 1.5;
+  color: #444;
+}
+.list li:hover {
+  color: var(--primary, #1b8722);
+}
 .cta {
-  align-self: flex-start;
-  display: inline-block;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+  display: flex;
   margin-top: 0.25rem;
   padding: 0.55rem 1.15rem;
   font-size: 0.95rem;
@@ -76,6 +100,6 @@
 
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }

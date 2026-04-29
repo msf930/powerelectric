@@ -98,8 +98,8 @@ export default function RootLayout({ children }) {
             }}
           />
         
-        
         {children}
+        <Script strategy="afterInteractive" src="https://connect.podium.com/widget.js#ORG_TOKEN=ca9d015d-d28a-4e9d-a4f1-e875bf1b580b" id="podium-widget" data-organization-api-token="ca9d015d-d28a-4e9d-a4f1-e875bf1b580b"/>
       </body>
     </html>
   );

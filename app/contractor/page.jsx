@@ -131,10 +131,10 @@ export default async function ContractorPage() {
             <h2>Built for Contractors Who Need Reliability</h2>
             <p className={styles.prose}>We understand what you’re dealing with:</p>
             <ul className={styles.bulletList}>
-              <li>Missed timelines slowing down production</li>
-              <li>Subcontractors not showing up</li>
-              <li>Poor communication causing delays</li>
-              <li>Rework costing time and money</li>
+              <li>● Missed timelines slowing down production</li>
+              <li>● Subcontractors not showing up</li>
+              <li>● Poor communication causing delays</li>
+              <li>● Rework costing time and money</li>
             </ul>
             <p className={styles.prose}>
               When you need a reliable electrical contractor for job site
@@ -251,13 +251,13 @@ export default async function ContractorPage() {
       <section className={`${styles.extraSection} ${styles.extraSectionAlt}`}>
         <div className={styles.extraSectionInner}>
           <h2>Why Contractors Choose Us</h2>
-          <ul className={styles.bulletList}>
-            <li>● 20+ Years of Experience</li>
-            <li>● Serving the Denver Metro Area Since 2005</li>
-            <li>● Family-Owned &amp; Operated</li>
-            <li>● Reliable Scheduling — We Show Up</li>
-            <li>● Clear Communication</li>
-            <li>● Electrical + HVAC = One Team</li>
+          <ul className={styles.bulletListCenter}>
+            <li> 20+ Years of Experience</li>
+            <li> Serving the Denver Metro Area Since 2005</li>
+            <li> Family-Owned &amp; Operated</li>
+            <li> Reliable Scheduling — We Show Up</li>
+            <li> Clear Communication</li>
+            <li> Electrical + HVAC = One Team</li>
           </ul>
           <p className={styles.prose} style={{ textAlign: "center" }}>
             👉 We make your job easier — not harder.
@@ -321,7 +321,7 @@ export default async function ContractorPage() {
             We provide contractor electrical and HVAC support across:
           </p>
           <ul
-            className={styles.bulletList}
+            className={styles.bulletListCenter}
             style={{ maxWidth: "28rem", margin: "0 auto 1rem" }}
           >
             <li>Thornton</li>

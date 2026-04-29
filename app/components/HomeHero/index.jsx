@@ -4,7 +4,7 @@ import GoogleBadge from "../GoogleBadge";
 import Link from "next/link";
 import BookBtn from "../BookBtn";
 import CallBtn from "../CallBtn";
-
+import homeHeroImage from "../../../public/homeHero.jpg";
 function getHeroLinks(city) {
   const service = (category, serviceSlug) =>
     city
@@ -16,7 +16,7 @@ function getHeroLinks(city) {
       : `/service/${categorySlug}`;
 
   return {
-    noPower: service("electrical", "electrical-repair"),
+    noPower: category("electrical"),
     noHeat: category("heating"),
     noCooling: category("cooling"),
   };
@@ -30,7 +30,7 @@ export default function HomeHero({ city }) {
     <div className={styles.hero}>
       <div className={styles.heroImage}>
         <Image
-          src="/homeHero.jpg"
+          src={homeHeroImage}
           alt=""
           width={500}
           height={450}
@@ -55,17 +55,17 @@ export default function HomeHero({ city }) {
           <ul className={styles.quickLinks} aria-label="Common problems">
             <li>
               <Link href={links.noPower} className={styles.quickLink}>
-                👉 No power
+                No power
               </Link>
             </li>
             <li>
               <Link href={links.noHeat} className={styles.quickLink}>
-                👉 No heat
+                No heat
               </Link>
             </li>
             <li>
               <Link href={links.noCooling} className={styles.quickLink}>
-                👉 No cooling
+                No cooling
               </Link>
             </li>
           </ul>

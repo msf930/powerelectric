@@ -20,17 +20,19 @@ export default function ServiceProtectionPlanCta({ city }) {
         <p className={styles.lead}>
           Many electrical problems start small and turn into bigger issues over time.
         </p>
-        <p className={styles.sublead}>
-          <span className={styles.emoji} aria-hidden>
-            👉{" "}
-          </span>
-          Our Total Home Protection Plan helps you:
-        </p>
-        <ul className={styles.list}>
-          <li>Catch issues early</li>
-          <li>Reduce unexpected repairs</li>
-          <li>Keep your system running safely</li>
-        </ul>
+        <div className={styles.subleadContainer}>
+          <p className={styles.sublead}>
+            <span className={styles.emoji} aria-hidden>
+              👉{" "}
+            </span>
+            Our Total Home Protection Plan helps you:
+          </p>
+          <ul className={styles.list}>
+            <li>Catch issues early</li>
+            <li>Reduce unexpected repairs</li>
+            <li>Keep your system running safely</li>
+          </ul>
+        </div>
         <p className={styles.ctaLine}>
           <span className={styles.emoji} aria-hidden>
             👉{" "}
