@@ -12,7 +12,10 @@ export default function HomeProLinks() {
           <Link href={rePath} className={styles.card}>
             <span className={styles.label}>Real Estate Pros</span>
             <span className={styles.sub}>
-              Inspection repairs &amp; deadline-friendly scheduling
+              Inspection findings resolved quickly so your transaction doesn&apos;t stall.
+            </span>
+            <span className={styles.sub}>
+              Fast turnaround, clear documentation, and one call for electrical and HVAC repairs.
             </span>
             <span className={styles.arrow} aria-hidden>
               →
@@ -21,7 +24,17 @@ export default function HomeProLinks() {
           <Link href={contractorPath} className={styles.card}>
             <span className={styles.label}>Contractor Services</span>
             <span className={styles.sub}>
-              Job site electrical &amp; HVAC support
+              2,047 contractor projects completed.
+            </span>
+            <span className={styles.sub}>
+              We show up, communicate clearly, and never leave a job site worse than we found it.
+
+
+            </span>
+            <span className={styles.sub}>
+              Electrical and HVAC under one roof.
+
+
             </span>
             <span className={styles.arrow} aria-hidden>
               →

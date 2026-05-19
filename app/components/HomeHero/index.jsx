@@ -33,18 +33,19 @@ export default function HomeHero({ city }) {
           src={homeHeroImage}
           alt=""
           width={500}
-          height={450}
-          className="w-[50%] h-[500px] object-cover absolute top-0 right-0"
+          height={600}
+          className="w-[50%] h-[600px] object-cover absolute top-0 right-0"
         />
       </div>
       <div className={styles.heroContent}>
         <div className={styles.heroContentInner}>
           <h1 className={styles.heroTitle}>
-            One Call. Complete Home Comfort &amp; Power Solutions
+            Your Heat Is Out. Your Power Is Down. We&apos;re One Call Away.
           </h1>
           <p className={styles.heroDescription}>
-            We handle electrical, heating, cooling, and air quality — so
-            homeowners don&apos;t need multiple companies.
+            Power Electrical, Heating & Cooling Services is one of the few Denver metro companies handling electrical, HVAC, and indoor air quality under one roof.
+            No runaround. No waiting on two different companies. Just fast, honest work from a family-owned team backed by 20+ years in the trade.
+            Serving Thornton, Brighton, Denver, Northglenn, Westminster, Broomfield, Commerce City, Arvada, Erie, and the surrounding Denver metro area.
           </p>
           {cityLabel ? (
             <p className={styles.heroDescription}>
@@ -71,7 +72,7 @@ export default function HomeHero({ city }) {
           </ul>
 
           <p className={styles.heroTagline}>
-            You need one team that can handle it all.
+          One call handles it all.
           </p>
 
           <div className={styles.heroButtonContainer}>

@@ -1,3 +1,73 @@
+.siteHeader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 100%;
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.headerSpacer {
+    height: var(--offer-banner-height, 40px);
+    flex-shrink: 0;
+}
+
+.offerBanner {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: linear-gradient(
+        to right,
+        var(--primary-dark, #0d4210),
+        var(--primary, #1b8722)
+    );
+    color: #ffffff;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.offerBannerInner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    min-height: var(--offer-banner-height, 40px);
+    padding: 0.5rem 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.offerBannerHighlight {
+    color: var(--secondary, #d0e907);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+.offerBannerSep {
+    opacity: 0.65;
+    flex-shrink: 0;
+}
+
+.offerBannerLink {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    flex-shrink: 0;
+}
+
+.offerBannerLink:hover {
+    color: var(--secondary, #d0e907);
+}
+
 @media (min-width: 768px) {
     .desktopNav {
         display: contents;
@@ -20,13 +90,7 @@
         padding: 0.75rem 1.5rem;
         height: 100px;
         position: relative;
-        z-index: 100;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100vw;
-        z-index: 100;
+        width: 100%;
         gap: 1rem;
     }
 
@@ -502,22 +566,49 @@
 }
 
 @media (max-width: 768px) {
+    .headerSpacer {
+        height: 5.75rem;
+    }
+
+    .offerBannerInner {
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 0.35rem 0.5rem;
+        min-height: 0;
+        padding: 0.5rem 0.65rem;
+        font-size: 0.6875rem;
+        line-height: 1.35;
+        text-align: center;
+        white-space: normal;
+        overflow-x: hidden;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .offerBannerSep {
+        display: none;
+    }
+
+    .offerBannerHighlight,
+    .offerBannerLink {
+        flex-shrink: 1;
+        min-width: 0;
+    }
+
+    .offerBannerLink {
+        word-break: break-word;
+    }
+
     .nav {
         display: flex;
         align-items: center;
         justify-content: space-between;
         background: #ffffff;
         padding: 0.75rem 1.5rem;
-        width: 100vw;
+        width: 100%;
         height: 80px;
         position: relative;
-        z-index: 100;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        
-        z-index: 100;
         gap: 1rem;
     }
 

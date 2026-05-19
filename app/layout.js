@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
+import OfferPopup from "./components/OfferPopup";
 import "./globals.css";
-
+import StickyMobileCall from "./components/StickyMobileCall";
 const geistSans = Geist({
   variable: "--font-montserrat-sans",
   subsets: ["latin"],
@@ -99,6 +100,8 @@ export default function RootLayout({ children }) {
           />
         
         {children}
+        <StickyMobileCall />
+        <OfferPopup />
         <Script strategy="afterInteractive" src="https://connect.podium.com/widget.js#ORG_TOKEN=ca9d015d-d28a-4e9d-a4f1-e875bf1b580b" id="podium-widget" data-organization-api-token="ca9d015d-d28a-4e9d-a4f1-e875bf1b580b"/>
       </body>
     </html>

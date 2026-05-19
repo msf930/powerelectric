@@ -75,3 +75,16 @@
   line-height: 1.55;
   color: #444;
 }
+
+.contactLink {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary, #1b8722);
+  text-decoration: underline;
+}
+
+.contactLink:hover {
+  color: var(--primary-dark, #1b8722);
+} 

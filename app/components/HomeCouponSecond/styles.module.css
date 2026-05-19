@@ -1,0 +1,132 @@
+.section {
+  width: 100%;
+  padding: 2rem 1.25rem;
+  background: linear-gradient(
+    90deg,
+    var(--primary-dark, #0d4210) 0%,
+    var(--primary, #1b8722) 100%
+  );
+  font-family: var(--font-montserrat-sans), "Montserrat", sans-serif;
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.65rem;
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.25;
+  color: #ffffff;
+}
+
+.titleLead {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.titleSep {
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.titleOffer {
+  color: var(--secondary, #d0e907);
+}
+
+.mention {
+  margin: 0 0 0.35rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.welcome {
+  margin: 0 0 1.25rem;
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.primaryCta,
+.secondaryCta,
+.phoneCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.primaryCta {
+  flex: 1 1 140px;
+  max-width: 220px;
+  color: var(--primary-dark, #0d4210);
+  background: var(--secondary, #d0e907);
+  border: 2px solid var(--secondary, #d0e907);
+}
+
+.primaryCta:hover {
+  filter: brightness(1.05);
+}
+
+.secondaryCta {
+  flex: 1 1 150px;
+  max-width: 220px;
+  color: #ffffff;
+  background: transparent;
+  border: 2px solid #ffffff;
+}
+
+.secondaryCta:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.phoneCta {
+  flex: 1 1 180px;
+  max-width: 240px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+.phoneCta:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 2.25rem 2rem;
+  }
+
+  .actions {
+    flex-wrap: nowrap;
+  }
+
+  .primaryCta,
+  .secondaryCta,
+  .phoneCta {
+    flex: 0 1 auto;
+    max-width: none;
+  }
+}

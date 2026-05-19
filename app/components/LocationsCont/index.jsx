@@ -38,6 +38,10 @@ const LOCATIONS_QUERY = `*[_type == "locations"]{
     County,
     cities
 }`;
+
+const SERVICE_AREAS_NEW = ["Thornton", "Brighton", "Denver", "Northglenn", "Westminster", "Broomfield", "Commerce City", "Arvada", "Erie", "Aurora", "Lakewood", "Wheat Ridge", "Centennial", "Littleton", "Englewood", "Greenwood Village", "Highlands Ranch", "Golden"]
+
+
 export default function LocationsCont({ city = "" }) {
     const pathname = usePathname();
     const mapRef = useRef(null);
@@ -50,13 +54,13 @@ export default function LocationsCont({ city = "" }) {
         setSelectedLocation(location);
         setLocationVisible(true);
     };
-    useEffect(() => {
-        const fetchLocations = async () => {
-            const data = await client.fetch(LOCATIONS_QUERY);
-            setLocations(data);
-        };
-        fetchLocations();
-    }, []);
+    // useEffect(() => {
+    //     const fetchLocations = async () => {
+    //         const data = await client.fetch(LOCATIONS_QUERY);
+    //         setLocations(data);
+    //     };
+    //     fetchLocations();
+    // }, []);
 
     // When navigating client-side, Script may already be loaded so onLoad won't fire again
     useEffect(() => {
@@ -131,7 +135,7 @@ export default function LocationsCont({ city = "" }) {
                 <Link className={styles.locationsContAddressLink} href="https://maps.app.goo.gl/Lw2x8JKXuSi5YrMq9" target="_blank"> <FaMapMarkerAlt /> 5650 N Washington St. Unit C-6
                 Denver, CO 80216</Link>
             </div>
-            <div className={styles.locationsContInfo}>
+            {/* <div className={styles.locationsContInfo}>
                 <h2 className={styles.locationsContTitle}>Areas we Serve</h2>
                 <div className={styles.locationsContList}>
                     {locations.map((location) => (
@@ -145,6 +149,45 @@ export default function LocationsCont({ city = "" }) {
                         </div>
                     ))}
                 </div>
+                <div className={styles.locationsContBookButtonCont}>
+                    <BookBtn />
+                    <CallBtn />
+                </div>
+                <div className={`${locationVisible ? styles.locationsContItemContent : styles.locationsContItemContentHidden}`}>
+
+                    {locationVisible && selectedLocation && (
+                        <div className={styles.locationsContItemContentInner }>
+                            <button className={styles.locationsContItemContentButton} onClick={() => setLocationVisible(false)}>Close</button>
+                            <h3 className={styles.locationsContItemContentTitle}>{selectedLocation?.County}</h3>
+                            <p>Select Location to see available services</p>
+                            <ul className={styles.locationsContItemContentList}>
+                                {selectedLocation.cities.map((city) => (
+                                    <Link href={`/location/${city.replace(/\s+/g, "-") || ""}`} className={styles.locationsContItemContentItem} key={city}>
+                                        <FaMapMarkerAlt />
+                                        {city}
+                                    </Link>
+                                ))}
+                            </ul>
+                            <Link href={`/service-areas/${city && `${city}`}`} className={styles.locationsContItemContentLink}>See All Locations</Link>
+                        </div>
+                    )}
+                </div>
+            </div> */}
+            <div className={styles.locationsContInfo}>
+                <h2 className={styles.locationsContTitle}>Areas we Serve</h2>
+                <div className={styles.locationsContList}>
+                    {SERVICE_AREAS_NEW.map((location) => (
+                        <Link
+                            key={location}
+                            href={`/location/${location.replace(/\s+/g, "-") || ""}`}
+                            className={styles.locationsContItemContentItem}
+                        >
+                            <FaMapMarkerAlt aria-hidden />
+                            {location}
+                        </Link>
+                    ))}
+                </div>
+                <Link href={`/service-areas/${city && `${city}`}`} className={styles.locationsContItemContentLink}>See All Locations</Link>
                 <div className={styles.locationsContBookButtonCont}>
                     <BookBtn />
                     <CallBtn />

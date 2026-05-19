@@ -62,8 +62,11 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
     }
   };
   
+  const instantQuoteHref = `/instant-quote${city ? `/${city}` : ""}`;
+
   return (
     <>
+      <header className={styles.siteHeader}>
       <nav className={styles.nav}>
         <Link href={`/${city ? `location/${city}` : ""}`} className={styles.logoLink} aria-label="Home">
           <Image
@@ -289,6 +292,39 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
           <HiMenu className={styles.hamburgerIcon} aria-hidden />
         </button>
       </nav>
+
+      <div
+        className={styles.offerBanner}
+        role="region"
+        aria-label="Limited time offer"
+      >
+        <div className={styles.offerBannerInner}>
+          <span className={styles.offerBannerHighlight}>LIMITED OFFER</span>
+          <span className={styles.offerBannerSep} aria-hidden>
+            |
+          </span>
+          <span>$35 Off Any Service</span>
+          <span className={styles.offerBannerSep} aria-hidden>
+            |
+          </span>
+          <span>New &amp; Existing Customers Welcome</span>
+          <span className={styles.offerBannerSep} aria-hidden>
+            |
+          </span>
+          <Link href={instantQuoteHref} className={styles.offerBannerLink}>
+            Claim This Offer
+          </Link>
+          <span className={styles.offerBannerSep} aria-hidden>
+            |
+          </span>
+          <Link href="tel:+17202722562" className={styles.offerBannerLink}>
+            Call (720) 272-2562
+          </Link>
+        </div>
+      </div>
+      </header>
+
+      <div className={styles.headerSpacer} aria-hidden />
 
       <div
         className={`${styles.mobileBackdrop} ${mobileMenuOpen ? styles.mobileOpen : ""}`}

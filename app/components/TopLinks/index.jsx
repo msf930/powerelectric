@@ -1,36 +1,66 @@
 import Link from "next/link";
-import { client } from "../../../sanity/lib/client";
 import styles from "./styles.module.css";
 
-/** Matches sanity/schemaTypes/homePage.ts — one linkTitle + link per document. */
-const HOME_TOP_LINKS_QUERY = `*[_type == "homePage"] | order(_updatedAt desc) {
-  _id,
-  linkTitle,
-  link
-}`;
+const TOP_LINKS = [
+  {
+    label: "Electrical Repair",
+    description: "Fast Diagnostics + Same-Day Service",
+    href: "/service/electrical/electrical-repair",
+  },
+  {
+    label: "Panel Upgrades",
+    description: "Safe, Code-Compliant Upgrades",
+    href: "/service/electrical/panel-upgrades",
+  },
+  {
+    label: "EV Charger Installation",
+    description: "Level 2 Charger + Same-Day Evaluations",
+    href: "/service/electrical/ev-charger-installation",
+  },
+  {
+    label: "Heating Services",
+    description: "Furnace, Heat Pump & More",
+    href: "/service/heating",
+  },
+  {
+    label: "Furnace Repair",
+    description: "Fast, Reliable Heat Restored",
+    href: "/service/heating/furnace-repair",
+  },
+  {
+    label: "Cooling Services",
+    description: "AC, Mini Split & More",
+    href: "/service/cooling",
+  },
+  {
+    label: "AC Maintenance",
+    description: "Inspections, Tune-Ups & Cleaning",
+    href: "/service/cooling/ac-maintenance",
+  },
+  {
+    label: "Membership Plans",
+    description: "Starting at $14/Month",
+    href: "/membership",
+  },
+];
 
-export default async function TopLinks() {
-  const rows = await client.fetch(HOME_TOP_LINKS_QUERY);
-  const links = (rows ?? []).filter(
-    (row) =>
-      row?.linkTitle &&
-      typeof row.link === "string" &&
-      row.link.trim() !== ""
-  );
-
-  if (links.length === 0) return null;
-
+export default function TopLinks() {
   return (
-    <section className={styles.section} aria-label="Quick links">
-      <h2 className={styles.sectionTitle}>Quick Links</h2>
+    <section className={styles.section} aria-labelledby="top-links-heading">
       <div className={styles.inner}>
-        <nav className={styles.nav}>
-          {rows?.map((item) => (
-            <Link key={item._id} href={item.link ? item.link.trim() : ``} className={styles.button}>
-              {String(item.linkTitle).trim()}
-            </Link>
+        <h2 id="top-links-heading" className={styles.sectionTitle}>
+          What Do You Need Help With?
+        </h2>
+        <ul className={styles.list}>
+          {TOP_LINKS.map((item) => (
+            <li key={item.label} className={styles.item}>
+              <Link href={item.href} className={styles.link}>
+                <span className={styles.label}>{item.label}:</span>{" "}
+                <span className={styles.description}>{item.description}</span>
+              </Link>
+            </li>
           ))}
-        </nav>
+        </ul>
       </div>
     </section>
   );
