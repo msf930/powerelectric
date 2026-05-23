@@ -19,7 +19,9 @@ export const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]{
   thirdItems[]->{ _id, title, content },
   faqItems[]->{ _id, title, content },
   schema,
-  relatedServices[]->{ _id, title, slug, imagePrimary { asset->{ _id, url } },bookNowText,bookNowSubtext }
+  relatedServices[]->{ _id, title, slug, imagePrimary { asset->{ _id, url } },bookNowText,bookNowSubtext },
+  closingCTATitle,
+  closingCTASubtext
 }`;
 
 export const getServiceBySlug = cache(async (slug) => {

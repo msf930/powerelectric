@@ -10,6 +10,30 @@ import { HiMenu, HiX } from "react-icons/hi";
 import BookBtn from "../BookBtn";
 import CallBtn from "../CallBtn";
 import { useRouter } from "next/navigation";
+
+const HOLIDAY_LIGHTING_ID = "holiday-lighting";
+
+const HOLIDAY_LIGHTING_CATEGORY = {
+  _id: HOLIDAY_LIGHTING_ID,
+  title: "Holiday Lighting",
+  services: [
+    {
+      _id: "christmas-light-installation",
+      title: "Christmas Light Installation Services",
+      slug: { current: "holiday-lighting" },
+    },
+  ],
+};
+
+function serviceLinkHref(slug, city) {
+  if (!slug) return "#";
+  const path = slug.startsWith("/") ? slug.slice(1) : slug;
+  if (path === HOLIDAY_LIGHTING_ID) {
+    return `/holidayLighting${city ? `/${city}` : ""}`;
+  }
+  return `/service/${path}${city ? `/${city}` : ""}`;
+}
+
 export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = [], cityItems = [] }) {
   const pathname = usePathname();
   const router = useRouter();
@@ -51,49 +75,55 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
 
   const lowerCity = city.toLowerCase();
   const serviceSubCategories = dropdownItems.flatMap((item) => item.subCategories ?? []);
-  const activeServiceSubCategory = serviceSubCategories.find((subCategory) => {
-    if (!activeServiceSubCategoryId) return false;
-    return String(subCategory._id ?? subCategory.title) === activeServiceSubCategoryId;
-  }) ?? serviceSubCategories[0];
+  const activeServiceSubCategory =
+    activeServiceSubCategoryId === HOLIDAY_LIGHTING_ID
+      ? HOLIDAY_LIGHTING_CATEGORY
+      : serviceSubCategories.find((subCategory) => {
+        if (!activeServiceSubCategoryId) return false;
+        return (
+          String(subCategory._id ?? subCategory.title) ===
+          activeServiceSubCategoryId
+        );
+      }) ?? serviceSubCategories[0];
   const openServicesDropdown = () => {
     setOpenDropdown("services");
     if (!activeServiceSubCategoryId && serviceSubCategories.length > 0) {
       setActiveServiceSubCategoryId(String(serviceSubCategories[0]._id ?? serviceSubCategories[0].title));
     }
   };
-  
+
   const instantQuoteHref = `/instant-quote${city ? `/${city}` : ""}`;
 
   return (
     <>
       <header className={styles.siteHeader}>
-      <nav className={styles.nav}>
-        <Link href={`/${city ? `location/${city}` : ""}`} className={styles.logoLink} aria-label="Home">
-          <Image
-            src="/PESLogo.png"
-            alt="Power Electrical Services"
-            width={200}
-            height={250}
-            className={styles.logo}
-            priority
-          />
-          <Image
-            src="/PESLogo.png"
-            alt="Power Electrical Services"
-            width={100}
-            height={50}
-            className={styles.logoMobile}
-            priority
-          />
-        </Link>
+        <nav className={styles.nav}>
+          <Link href={`/${city ? `location/${city}` : ""}`} className={styles.logoLink} aria-label="Home">
+            <Image
+              src="/PESLogo.png"
+              alt="Power Electrical Services"
+              width={200}
+              height={250}
+              className={styles.logo}
+              priority
+            />
+            <Image
+              src="/PESLogo.png"
+              alt="Power Electrical Services"
+              width={100}
+              height={50}
+              className={styles.logoMobile}
+              priority
+            />
+          </Link>
 
-        <div className={styles.desktopNav}>
-          <ul className={styles.menu}>
-          <li
-               className={styles.menuItem}
+          <div className={styles.desktopNav}>
+            <ul className={styles.menu}>
+              <li
+                className={styles.menuItem}
                 onMouseEnter={() => setOpenDropdown("electrician")}
-               onMouseLeave={() => setOpenDropdown(null)}
-               onClick={() => setOpenDropdown("electrician")}
+                onMouseLeave={() => setOpenDropdown(null)}
+                onClick={() => setOpenDropdown("electrician")}
               >
 
                 <button
@@ -117,211 +147,227 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                   </ul>
                 )}
               </li>
-          <li
-               className={styles.menuItem}
-                
+              <li
+                className={styles.menuItem}
+
               >
 
-                <button
-                  type="button"
+                <Link
+                  href={`/real-estate-inspection-repairs-denver${city ? `/${city}` : ""}`}
                   className={styles.dropdownTrigger}
                   aria-expanded={openDropdown === "electrician"}
                   aria-haspopup="true"
-                  onClick={() => router.push("/real-estate-inspection-repairs-denver")}
                 >
                   Real Estate Pro
-                  
-                </button>
-              
+
+                </Link>
+
               </li>
-          <li className={styles.menuItem}>
+              <li className={styles.menuItem}>
+                <Link
+                  type="button"
+                  className={styles.dropdownTrigger}
+                  href={`/contractor${city ? `/${city}` : ""}`}
+                >
+                  Contractor
+                </Link>
+              </li>
+              <li
+                className={styles.menuItem}
+                onMouseEnter={openServicesDropdown}
+                onMouseLeave={() => setOpenDropdown(null)}
+                onClick={openServicesDropdown}
+              >
                 <button
                   type="button"
                   className={styles.dropdownTrigger}
-                  onClick={() => router.push("/contractor")}
+                  aria-expanded={openDropdown === "services"}
+                  aria-haspopup="true"
                 >
-                  Contractor
+                  {openDropdown === "services" ? "Services" : (
+                    <h3 className={styles.dropdownCategoryTitle}>
+                      Services
+                    </h3>
+                  )}
+                  <GoTriangleDown className={styles.dropdownArrow} aria-hidden />
                 </button>
-              </li>
-            <li
-              className={styles.menuItem}
-              onMouseEnter={openServicesDropdown}
-              onMouseLeave={() => setOpenDropdown(null)}
-              onClick={openServicesDropdown}
-            >
-              <button
-                type="button"
-                className={styles.dropdownTrigger}
-                aria-expanded={openDropdown === "services"}
-                aria-haspopup="true"
-              >
-                {openDropdown === "services" ? "Services" : (
-                  <h3 className={styles.dropdownCategoryTitle}>
-                    Services
-                  </h3>
-                )}
-                <GoTriangleDown className={styles.dropdownArrow} aria-hidden />
-              </button>
-              {openDropdown === "services" && (
-                <ul className={styles.dropdown} role="menu">
-                  <li className={styles.servicesDropdownColumns} role="none">
-                    <div className={styles.servicesDropdownSubCategories}>
-                      {serviceSubCategories.map((subCategory) => {
-                        const subCategoryId = String(subCategory._id ?? subCategory.title);
-                        const isActive = activeServiceSubCategory && String(activeServiceSubCategory._id ?? activeServiceSubCategory.title) === subCategoryId;
-                        return (
-                          <button
-                            key={subCategoryId}
-                            type="button"
-                            className={`${styles.servicesDropdownSubCategoryButton} ${isActive ? styles.servicesDropdownSubCategoryButtonActive : ""}`}
-                            onClick={() => setActiveServiceSubCategoryId(subCategoryId)}
+                {openDropdown === "services" && (
+                  <ul className={styles.dropdown} role="menu">
+                    <li className={styles.servicesDropdownColumns} role="none">
+                      <div className={styles.servicesDropdownSubCategories}>
+                        {serviceSubCategories.map((subCategory) => {
+                          const subCategoryId = String(subCategory._id ?? subCategory.title);
+                          const isActive = activeServiceSubCategoryId === subCategoryId;
+                          return (
+                            <button
+                              key={subCategoryId}
+                              type="button"
+                              className={`${styles.servicesDropdownSubCategoryButton} ${isActive ? styles.servicesDropdownSubCategoryButtonActive : ""}`}
+                              onClick={() => setActiveServiceSubCategoryId(subCategoryId)}
+                            >
+                              {subCategory.title}
+                            </button>
+                          );
+                        })}
+                        <button
+                          key={HOLIDAY_LIGHTING_ID}
+                          type="button"
+                          className={`${styles.servicesDropdownSubCategoryButton} ${activeServiceSubCategoryId === HOLIDAY_LIGHTING_ID ? styles.servicesDropdownSubCategoryButtonActive : ""}`}
+                          onClick={() => setActiveServiceSubCategoryId(HOLIDAY_LIGHTING_ID)}
+                        >
+                          {HOLIDAY_LIGHTING_CATEGORY.title}
+                        </button>
+                      </div>
+                      <div className={styles.servicesDropdownServices}>
+                        <p className={styles.dropdownSubCategoryTitle}>
+                          {activeServiceSubCategory?.title}
+                        </p>
+                        {(activeServiceSubCategory?.services ?? []).map((service, serviceIndex) => (
+                          <Link
+                            key={`${service._id}-${serviceIndex}`}
+                            href={serviceLinkHref(service.slug?.current, city)}
+                            className={styles.dropdownLink}
+                            role="menuitem"
                           >
-                            {subCategory.title}
-                          </button>
-                        );
-                      })}
-                    </div>
-                    <div className={styles.servicesDropdownServices}>
-                      <p className={styles.dropdownSubCategoryTitle}>
-                        {activeServiceSubCategory?.title}
-                      </p>
-                      {(activeServiceSubCategory?.services ?? []).map((service, serviceIndex) => (
-                        <Link key={`${service._id}-${serviceIndex}`} href={service.slug?.current ? (service.slug.current.startsWith("/") ? `/service/${service.slug.current}${city ? `/${city}` : ""}` : `/service/${service.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
-                          {service.title}
-                        </Link>
-                      ))}
-                    </div>
-                  </li>
-                </ul>
-              )}
-            </li>
-          </ul>
-          <ul className={styles.menuAbout}>
-            <li
-              key="about"
-              className={styles.menuItem}
-              onMouseEnter={() => setOpenDropdown("about")}
-              onMouseLeave={() => setOpenDropdown(null)}
-              onClick={() => setOpenDropdown("about")}
-            >
+                            {service.title}
+                          </Link>
+                        ))}
+                      </div>
+                    </li>
 
-              <button
-                type="button"
-                className={styles.dropdownTrigger}
-                aria-expanded={openDropdown === "about"}
-                aria-haspopup="true"
-              >
-                {openDropdown === "about" ? (
-                  <Link href={`/about${city ? `/${city}` : ""}`} >
-                    About Us
-                  </Link>
-                ) : (
-                  <h3 className={styles.dropdownCategoryTitle}>
-                    About Us
-                  </h3>
+                  </ul>
                 )}
+              </li>
+            </ul>
+            <ul className={styles.menuAbout}>
+              <li
+                key="about"
+                className={styles.menuItem}
+                onMouseEnter={() => setOpenDropdown("about")}
+                onMouseLeave={() => setOpenDropdown(null)}
+                onClick={() => setOpenDropdown("about")}
+              >
 
-                <GoTriangleDown className={styles.dropdownArrow} aria-hidden />
-              </button>
-              {openDropdown === "about" && (
-                <ul className={styles.dropdown} role="menu">
-                  <li key="company" role="none">
-                    <p className={styles.dropdownSubCategoryTitle}>
-                      Company
-                    </p>
-                    <Link key="contact" href={`/contact${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
-                      Contact Us
+                <button
+                  type="button"
+                  className={styles.dropdownTrigger}
+                  aria-expanded={openDropdown === "about"}
+                  aria-haspopup="true"
+                >
+                  {openDropdown === "about" ? (
+                    <Link href={`/about${city ? `/${city}` : ""}`} >
+                      About Us
                     </Link>
-                    <Link key="instant-quote" href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
-                      Instant Quote
-                    </Link>
-                    <Link key="service-areas" href={`/service-areas${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
-                      Service Areas
-                    </Link>
-                    <Link key="blog" href={`/blog${city ? `/location/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
-                      Blog
-                    </Link>
-                  </li>
-                  <li key="financing" role="none">
-                    <p className={styles.dropdownSubCategoryTitle}>
-                      Financing
-                    </p>
-                    <Link key="membership" href={`/membership${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
-                      Membership
-                    </Link>
-                    <Link key="financing" href={`/financing${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
-                      Financing
-                    </Link>
-
-                  </li>
-                  {aboutMoreItems && (
-                    <li key="more" role="none">
-                    <p className={styles.dropdownSubCategoryTitle}>
-                      More
-                    </p>
-                    { aboutMoreItems.map((item) => (
-                      <Link key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/about/more/${item.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
-                        {item.title}
-                      </Link>
-                    ))}
-                  </li>
+                  ) : (
+                    <h3 className={styles.dropdownCategoryTitle}>
+                      About Us
+                    </h3>
                   )}
 
+                  <GoTriangleDown className={styles.dropdownArrow} aria-hidden />
+                </button>
+                {openDropdown === "about" && (
+                  <ul className={styles.dropdown} role="menu">
+                    <li key="company" role="none">
+                      <p className={styles.dropdownSubCategoryTitle}>
+                        Company
+                      </p>
+                      <Link key="about-us" href={`/about${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        About Us
+                      </Link>
+                      <Link key="contact" href={`/contact${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Contact Us
+                      </Link>
+                      <Link key="instant-quote" href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Instant Quote
+                      </Link>
+                      <Link key="service-areas" href={`/service-areas${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Service Areas
+                      </Link>
+                      <Link key="blog" href={`/blog${city ? `/location/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Blog
+                      </Link>
+                    </li>
+                    <li key="financing" role="none">
+                      <p className={styles.dropdownSubCategoryTitle}>
+                        Financing
+                      </p>
+                      <Link key="membership" href={`/membership${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Membership
+                      </Link>
+                      <Link key="financing" href={`/financing${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Financing
+                      </Link>
 
-                </ul>
-              )}
-            </li>
+                    </li>
+                    {aboutMoreItems && (
+                      <li key="more" role="none">
+                        <p className={styles.dropdownSubCategoryTitle}>
+                          More
+                        </p>
+                        {aboutMoreItems.map((item) => (
+                          <Link key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/about/more/${item.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
+                            {item.title}
+                          </Link>
+                        ))}
+                      </li>
+                    )}
 
-          </ul>
 
-          <Link href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.aboutButtonBook}>
-            Instant Quote
-          </Link>
-          <BookBtn />
-          <CallBtn />
-        </div>
+                  </ul>
+                )}
+              </li>
 
-        <button
-          type="button"
-          className={styles.hamburger}
-          onClick={() => setMobileMenuOpen(true)}
-          aria-expanded={mobileMenuOpen}
-          aria-controls="mobile-nav-panel"
-          aria-label={mobileMenuOpen ? "Menu open" : "Open menu"}
+            </ul>
+
+            <Link href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.aboutButtonBook}>
+              Instant Quote
+            </Link>
+            <BookBtn />
+            <CallBtn />
+          </div>
+
+          <button
+            type="button"
+            className={styles.hamburger}
+            onClick={() => setMobileMenuOpen(true)}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-panel"
+            aria-label={mobileMenuOpen ? "Menu open" : "Open menu"}
+          >
+            <HiMenu className={styles.hamburgerIcon} aria-hidden />
+          </button>
+        </nav>
+
+        <div
+          className={styles.offerBanner}
+          role="region"
+          aria-label="Limited time offer"
         >
-          <HiMenu className={styles.hamburgerIcon} aria-hidden />
-        </button>
-      </nav>
-
-      <div
-        className={styles.offerBanner}
-        role="region"
-        aria-label="Limited time offer"
-      >
-        <div className={styles.offerBannerInner}>
-          <span className={styles.offerBannerHighlight}>LIMITED OFFER</span>
-          <span className={styles.offerBannerSep} aria-hidden>
-            |
-          </span>
-          <span>$35 Off Any Service</span>
-          <span className={styles.offerBannerSep} aria-hidden>
-            |
-          </span>
-          <span>New &amp; Existing Customers Welcome</span>
-          <span className={styles.offerBannerSep} aria-hidden>
-            |
-          </span>
-          <Link href={instantQuoteHref} className={styles.offerBannerLink}>
-            Claim This Offer
-          </Link>
-          <span className={styles.offerBannerSep} aria-hidden>
-            |
-          </span>
-          <Link href="tel:+17202722562" className={styles.offerBannerLink}>
-            Call (720) 272-2562
-          </Link>
+          <div className={styles.offerBannerInner}>
+            <span className={styles.offerBannerHighlight}>LIMITED OFFER</span>
+            <span className={styles.offerBannerSep} aria-hidden>
+              |
+            </span>
+            <span>$35 Off Any Service</span>
+            <span className={styles.offerBannerSep} aria-hidden>
+              |
+            </span>
+            <span>New &amp; Existing Customers Welcome</span>
+            <span className={styles.offerBannerSep} aria-hidden>
+              |
+            </span>
+            <Link href={instantQuoteHref} className={styles.offerBannerLink}>
+              Claim This Offer
+            </Link>
+            <span className={styles.offerBannerSep} aria-hidden>
+              |
+            </span>
+            <Link href="tel:+17202722562" className={styles.offerBannerLink}>
+              Call (720) 272-2562
+            </Link>
+          </div>
         </div>
-      </div>
       </header>
 
       <div className={styles.headerSpacer} aria-hidden />
@@ -369,9 +415,9 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
           >
             Electrician Services
             <GoTriangleDown
-                  className={`${styles.mobileChevron} ${expandedMobile.electrician ? styles.mobileChevronOpen : ""}`}
-                  aria-hidden
-                />
+              className={`${styles.mobileChevron} ${expandedMobile.electrician ? styles.mobileChevronOpen : ""}`}
+              aria-hidden
+            />
           </button>
           {expandedMobile.electrician && (
             <div className={styles.mobileSectionBody}>
@@ -390,9 +436,9 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             onClick={() => router.push("/real-estate-inspection-repairs-denver")}
           >
             Real Estate Pro
-           
+
           </button>
-         
+
         </div>
         <div className={styles.mobileSection}>
           <button
@@ -464,6 +510,40 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             <button
               type="button"
               className={styles.mobileSectionToggle}
+              onClick={() => toggleMobileSection(HOLIDAY_LIGHTING_ID)}
+              aria-expanded={!!expandedMobile[HOLIDAY_LIGHTING_ID]}
+            >
+              {HOLIDAY_LIGHTING_CATEGORY.title}
+              <GoTriangleDown
+                className={`${styles.mobileChevron} ${expandedMobile[HOLIDAY_LIGHTING_ID] ? styles.mobileChevronOpen : ""}`}
+                aria-hidden
+              />
+            </button>
+            {expandedMobile[HOLIDAY_LIGHTING_ID] && (
+              <div className={styles.mobileSectionBody}>
+                <div className={styles.mobileSubBlock}>
+                  <p className={styles.mobileSubTitle}>
+                    {HOLIDAY_LIGHTING_CATEGORY.title}
+                  </p>
+                  {HOLIDAY_LIGHTING_CATEGORY.services.map((service, index) => (
+                    <Link
+                      key={`${service._id}-${index}`}
+                      href="/holidayLighting"
+                      className={styles.mobileLink}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          <div className={styles.mobileSection}>
+            <button
+              type="button"
+              className={styles.mobileSectionToggle}
               onClick={() => toggleMobileSection("about")}
               aria-expanded={!!expandedMobile.about}
             >
@@ -527,25 +607,25 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                   </Link>
                 </div>
                 {aboutMoreItems && (
-                <div className={styles.mobileSubBlock}>
-                  <p className={styles.mobileSubTitle}>More</p>
-                  {aboutMoreItems.map((moreItem) => (
-                    <Link
-                      key={moreItem._id}
-                      href={
-                        moreItem.slug?.current
-                          ? moreItem.slug.current.startsWith("/")
-                            ? moreItem.slug.current
-                            : `/about/more/${moreItem.slug.current}${city ? `/${city}` : ""}`
-                          : "#"
-                      }
-                      className={styles.mobileLink}
-                      onClick={() => setMobileMenuOpen(false)}
-                    >
-                      {moreItem.title}
-                    </Link>
-                  ))}
-                </div>
+                  <div className={styles.mobileSubBlock}>
+                    <p className={styles.mobileSubTitle}>More</p>
+                    {aboutMoreItems.map((moreItem) => (
+                      <Link
+                        key={moreItem._id}
+                        href={
+                          moreItem.slug?.current
+                            ? moreItem.slug.current.startsWith("/")
+                              ? moreItem.slug.current
+                              : `/about/more/${moreItem.slug.current}${city ? `/${city}` : ""}`
+                            : "#"
+                        }
+                        className={styles.mobileLink}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {moreItem.title}
+                      </Link>
+                    ))}
+                  </div>
                 )}
               </div>
             )}

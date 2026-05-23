@@ -73,7 +73,7 @@ export default async function ServicePage({ params }) {
         />
         <div className={styles.heroContent}>
           <div className={styles.heroContentInner}>
-            <h1 className={styles.heroTitle}>{data.titleHero} {city ? `in ${city.replace(/-/g, " ")}` : ""}</h1>
+            <h1 className={styles.heroTitle}>{data.titleHero}</h1>
             <div className={styles.heroButtonContainer}>
               <BookBtn />
               <CallBtn />
@@ -219,7 +219,7 @@ export default async function ServicePage({ params }) {
         <h2>All {categoryData?.title} Services</h2>
       </div> */}
       {/* <ServiceMenuCategory slug={category} city={city} /> */}
-      <ServiceProtectionPlanCta city={city} />
+      <ServiceProtectionPlanCta title={data.closingCTATitle} subtext={data.closingCTASubtext} />
       <Footer />
     </article>
   );

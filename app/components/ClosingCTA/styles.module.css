@@ -16,11 +16,26 @@
 }
 
 .title {
-  margin: 0 0 1.25rem;
+  margin: 0 0 0.75rem;
   font-size: clamp(1.5rem, 4vw, 1.875rem);
   font-weight: 800;
-  color: #ffffff;
   line-height: 1.25;
+  color: #ffffff;
+}
+
+.subtext {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .actions {
@@ -29,7 +44,6 @@
   justify-content: center;
   align-items: center;
   gap: 0.75rem 1rem;
-  margin-bottom: 1.25rem;
 }
 
 .sep {
@@ -43,7 +57,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.35rem 0.65rem;
-  margin: 0 0 1.25rem;
+  margin: 0;
   font-size: clamp(0.875rem, 2.5vw, 1rem);
   font-weight: 600;
   line-height: 1.45;
@@ -58,6 +72,30 @@
 
 .offerLink:hover {
   color: #ffffff;
+}
+
+.line,
+.address {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #ffffff;
+}
+
+.link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.link:hover {
+  color: var(--secondary, #d0e907);
+}
+
+.book {
+  display: flex;
+  justify-content: center;
 }
 
 .tagline {

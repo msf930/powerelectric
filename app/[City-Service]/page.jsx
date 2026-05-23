@@ -18,6 +18,7 @@ import Footer from "../components/Footer";
 import { getPortableTextComponents } from "./portableTextComponents";
 import ThirdSectionAccordion from "./ThirdSectionAccordion";
 import FaqAccordion from "./FaqAccordion";
+import ClosingCTA from "../components/ClosingCTA";
 import NavServer from "../components/Nav/NavServer";
 const SERVICE_QUERY = `*[_type == "newServicePage" && slug.current == $slug][0]{
   _id,
@@ -35,7 +36,9 @@ const SERVICE_QUERY = `*[_type == "newServicePage" && slug.current == $slug][0]{
   titleThird,
   descriptionThird,
   thirdItems[]->{ _id, title, content },
-  faqItems[]->{ _id, title, content }
+  faqItems[]->{ _id, title, content },
+  closingCTATitle,
+  closingCTASubtext
 }`;
 
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
@@ -152,7 +155,7 @@ export default async function ServicePage({ params }) {
         </div>
       </section>
 
-      <ServiceForm serviceName={fullCity + " " + service.charAt(0).toUpperCase() + service.slice(1).toLowerCase()} />
+      <ServiceForm serviceName={cityService} />
 
       <section className={styles.thirdSection}>
         <div className={styles.thirdSectionInnerContainer}>
@@ -178,53 +181,16 @@ export default async function ServicePage({ params }) {
           </div>
         </div>
       </section>
-      <GoogleCarousel />
       <FinanceCont city={cityName} />
       <LocationCont city={cityName} />
       <FaqAccordion faqItems={data.faqItems} serviceTitle={cityName + " " + service.charAt(0).toUpperCase() + service.slice(1).toLowerCase()} />
+      <GoogleCarousel />
 
-      {/* <div className={styles.relatedServicesContainer}>
-        <h2>Related Services</h2>
-        <div className={styles.relatedServicesGrid}>
-          {categoryData?.subCategories?.flatMap((subCategory) =>
-            (subCategory.services ?? []).slice(0, 3).map((svc, index) => (
-              <div
-                className={styles.relatedServicesItem}
-                key={svc._id + index}
-              >
-                <div className={styles.relatedServicesItemImageContainer}>
-                  {svc.imagePrimary?.asset?.url && (
-                    <Link href={`${svc.slug.current}/${citySlug && `${citySlug}`}`} >
-                    <Image
-                      src={urlFor(svc.imagePrimary).url()}
-                      alt={svc.imagePrimary?.alt ?? ""}
-                      fill
-                      objectFit="cover"
-                    />
-                    </Link>
-                  )}
-                </div>
-                <div className={styles.relatedServicesItemTextContainer}>
-                <Link href={`${svc.slug.current}/${citySlug && `${citySlug}`}`} >
-                  <h3>{svc.bookNowText}</h3>
-                  </Link>
-                  <Link href={`${svc.slug.current}/${citySlug && `${citySlug}`}`} >
-                  <p>{svc.bookNowSubtext}</p>
-                  </Link>
-                  <div className={styles.relatedServicesItemButtonContainer}>
-                    <BookBtn />
-                    <CallBtn />
-                  </div>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-      </div> */}
-      {/* <div className={styles.serviceMenuCategoryContainer}>
-        <h2>All {categoryData?.title} Services</h2>
-      </div> */}
-      {/* <ServiceMenuCategory slug={category} city={citySlug} /> */}
+      <ClosingCTA
+        title={data.closingCTATitle}
+        subtext={data.closingCTASubtext}
+      />
+
       <Footer />
     </article>
   );

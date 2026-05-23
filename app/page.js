@@ -49,7 +49,10 @@ export default function Home() {
       <ParallaxStrip />
       <LocationsCont />
       <Footer />
-      <ClosingCTA />
+      <ClosingCTA title="Need Service Today?"
+        subtext="" 
+        showCouponOffer={true}
+        />
     </div>
   );
 }

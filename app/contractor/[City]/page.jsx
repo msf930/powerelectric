@@ -1,18 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./styles.module.css";
-import GoogleBadge from "../components/GoogleBadge";
-import BookBtn from "../components/BookBtn";
-import CallBtn from "../components/CallBtn";
-import ServiceForm from "../components/ServiceForm";
-import GoogleCarousel from "../components/GoogleCarousel";
-import LocationCont from "../components/LocationsCont";
-import Footer from "../components/Footer";
-import NavServer from "../components/Nav/NavServer";
+import GoogleBadge from "../../components/GoogleBadge";
+import BookBtn from "../../components/BookBtn";
+import CallBtn from "../../components/CallBtn";
+import ServiceForm from "../../components/ServiceForm";
+import GoogleCarousel from "../../components/GoogleCarousel";
+import LocationCont from "../../components/LocationsCont";
+import Footer from "../../components/Footer";
+import NavServer from "../../components/Nav/NavServer";
 import { getContractorLinks } from "./resolveServiceLinks";
 
 const CITY_NAME = "Denver";
-const CITY_SLUG = "Denver";
 const HERO_IMAGE = "/homeHero.jpg";
 const SECONDARY_IMAGE = "/statsBG.jpg";
 const PHONE_DISPLAY = "(720) 272-2562";
@@ -25,12 +24,13 @@ export const metadata = {
     "Dependable electrical and HVAC subcontractor support for contractors in the Denver Metro. On-time scheduling, clear communication, and code-compliant work. Call (720) 272-2562.",
 };
 
-export default async function ContractorPage() {
-  const L = await getContractorLinks(CITY_SLUG);
+export default async function ContractorPage({params}) {
+  const { city } = await params;
+  const L = await getContractorLinks(city);
 
   return (
     <article className={styles.servicePage}>
-      <NavServer city={CITY_SLUG} />
+      <NavServer city={city} />
       <div className={styles.hero}>
         <Image
           src={HERO_IMAGE}

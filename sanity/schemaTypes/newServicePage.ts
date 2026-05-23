@@ -90,6 +90,17 @@ export const newServicePageType = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'yourProcessTitle',
+            title: 'Your Process title',
+            type: 'string',
+        }),
+        defineField({
+            name: 'yourProcessDescription',
+            title: 'Your Process description',
+            type: 'array',
+            of: [{ type: 'block' }],
+        }),
+        defineField({
             name: 'titleThird',
             title: 'Third Section Title',
             type: 'string',
@@ -114,6 +125,17 @@ export const newServicePageType = defineType({
             type: 'array',
             of: [{type: 'reference', to: [{type: 'serviceItem'}]}]
         }),
+        defineField({
+            name: 'closingCTATitle',
+            title: 'Closing CTA Title',
+            type: 'string',
+        }),
+        defineField({
+            name: 'closingCTASubtext',
+            title: 'Closing CTA Subtext',
+            type: 'string',
+        })
+            
 
     ],
 });

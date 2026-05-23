@@ -1,55 +1,75 @@
 "use client";
+
 import styles from "./styles.module.css";
 import { HCaptcha } from "@hcaptcha/react-hcaptcha";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { client } from "../../../sanity/lib/client";
-import { urlFor } from "../../../sanity/sanityImageUrl";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import BookBtn from "../BookBtn";
-const CAROUSEL_INTERVAL_MS = 4000;
+import { PortableText } from "@portabletext/react";
 
 const CONTACT_QUERY = `*[_type == "contact"][0]{
-    _id,
-    accessString,
-    image { asset->{ _id, url } },
-   
+  _id,
+  accessString
 }`;
-export default function CategoryForm({ serviceName }) {
+
+const SERVICE_QUERY = `*[_type == "newServicePage" && slug.current == $slug][0]{
+  _id,
+  yourProcessTitle,
+  yourProcessDescription
+}`;
+
+export default function ServiceForm({ serviceName }) {
+    const captchaRef = useRef(null);
+    const [contactData, setContactData] = useState(null);
+    const [data, setData] = useState(null);
 
     const onHCaptchaChange = (token) => {
-        setValue("h-captcha-response", token);
+        if (captchaRef.current) {
+            captchaRef.current.value = token ?? "";
+        }
     };
-    const [contactData, setContactData] = useState(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const data = await client.fetch(CONTACT_QUERY);
-            setContactData(data);
-            
+        const fetchContact = async () => {
+            const contact = await client.fetch(CONTACT_QUERY);
+            setContactData(contact);
         };
-        fetchData();
+        fetchContact();
     }, []);
 
-    const serviceItems = contactData?.serviceItems ?? [];
     useEffect(() => {
-        if (serviceItems.length <= 1) return;
-        const id = setInterval(
-            () => setCarouselIndex((i) => (i + 1) % serviceItems.length),
-            CAROUSEL_INTERVAL_MS
-        );
-        return () => clearInterval(id);
-    }, [serviceItems.length]);
+        if (!serviceName) {
+            setData(null);
+            return;
+        }
+
+        const fetchService = async () => {
+            const service = await client.fetch(SERVICE_QUERY, { slug: serviceName });
+            setData(service);
+        };
+        fetchService();
+    }, [serviceName]);
+
     return (
         <div className={styles.homeFormContOuter}>
-
             <div className={styles.homeFormCont}>
-
-                <form action="https://api.web3forms.com/submit" method="POST" className={styles.homeFormContForm}>
+                <form
+                    action="https://api.web3forms.com/submit"
+                    method="POST"
+                    className={styles.homeFormContForm}
+                >
                     <div className={styles.homeFormContInner}>
                         <h2 className={styles.homeFormContTitle}>Get In Touch</h2>
-                        <input type="hidden" name="access_key" value={contactData?.accessString ?? ""} />
+                        <input
+                            type="hidden"
+                            name="access_key"
+                            value={contactData?.accessString ?? ""}
+                        />
+                        <input
+                            ref={captchaRef}
+                            type="hidden"
+                            name="h-captcha-response"
+                            defaultValue=""
+                        />
                         <div className={styles.homeFormContInputCont}>
                             <p className={styles.homeFormContInputContLabel}>Name *</p>
                             <input type="text" required name="name" />
@@ -61,7 +81,7 @@ export default function CategoryForm({ serviceName }) {
                             </div>
                             <div className={styles.homeFormContInputCont}>
                                 <p className={styles.homeFormContInputContLabel}>Phone *</p>
-                                <input type="phone" required name="phone" />
+                                <input type="tel" required name="phone" />
                             </div>
                         </div>
                         <div className={styles.homeFormContInputCont}>
@@ -70,12 +90,23 @@ export default function CategoryForm({ serviceName }) {
                         </div>
                         <div className={styles.homeFormContInputContRow}>
                             <div className={styles.homeFormContInputCont}>
-                                <p className={styles.homeFormContInputContLabel}>How Did You Hear About Us?</p>
+                                <p className={styles.homeFormContInputContLabel}>
+                                    How Did You Hear About Us?
+                                </p>
                                 <input type="text" name="howDidYouHearAboutUs" />
                             </div>
                             <div className={styles.homeFormContCheckCont}>
-                                <input type="checkbox" id="previousClient" name="previousClient" />
-                                <p className={styles.homeFormContCheckContLabel}>I am a previous client</p>
+                                <input
+                                    type="checkbox"
+                                    id="previousClient"
+                                    name="previousClient"
+                                />
+                                <label
+                                    htmlFor="previousClient"
+                                    className={styles.homeFormContCheckContLabel}
+                                >
+                                    I am a previous client
+                                </label>
                             </div>
                         </div>
                         <div className={styles.hCaptchaCont}>
@@ -86,12 +117,28 @@ export default function CategoryForm({ serviceName }) {
                                 theme="light"
                             />
                         </div>
-                        <button className={styles.homeFormContSubmitButton} type="submit">Submit</button>
+                        <button className={styles.homeFormContSubmitButton} type="submit">
+                            Submit
+                        </button>
                     </div>
                 </form>
-                <div className={styles.homeFormInfoContainer}>
-                    <h2 className={styles.homeFormInfoTitle}>Your {serviceName} Process</h2>
-                    <div className={styles.homeFormInfoListContainer}>
+                {(data?.yourProcessTitle || data?.yourProcessDescription) ? (
+                    <div className={styles.homeFormInfoContainer}>
+                        {data.yourProcessTitle ? (
+                            <h2 className={styles.homeFormInfoTitle}>
+                                {data.yourProcessTitle}
+                            </h2>
+                        ) : null}
+                        {data.yourProcessDescription ? (
+                            <PortableText value={data.yourProcessDescription} />
+                        ) : null}
+                    </div>
+                ) :
+                    <div className={styles.homeFormInfoContainer}>
+
+                        <h2 className={styles.homeFormInfoTitle}>
+                            Your Service Process
+                        </h2>
                         <ul className={styles.homeFormInfoList}>
                             <li>Rapid emergency response within hours</li>
                             <li>Comprehensive system diagnosis and assessment</li>
@@ -101,9 +148,10 @@ export default function CategoryForm({ serviceName }) {
                             <li>Professional cleanup and maintenance recommendations</li>
                             <li>Follow up service to ensure continued operation</li>
                         </ul>
+
                     </div>
-                </div>
+                }
             </div>
-        </div >
-    )
+        </div>
+    );
 }

@@ -257,7 +257,7 @@ export default async function ServicePage({ params }) {
         <h2>All {categoryData?.title} Services</h2>
       </div> */}
       {/* <ServiceMenuCategory slug={category} /> */}
-      <ServiceProtectionPlanCta />
+      <ServiceProtectionPlanCta title={data.closingCTATitle} subtext={data.closingCTASubtext} />
       <Footer />
     </article>
   );

@@ -103,7 +103,7 @@ export default async function HomeServiceCategories({ city = "" }) {
               <h3 className={styles.cardTitle}>{row.title}</h3>
               <ul className={styles.list}>
                 {row.list.map((item) => (
-                  <li key={item}>
+                  <li key={`${row.key}-${item.slug ?? item.title}`}>
                     <Link href={`/service/${item.slug}${city ? `/${city}` : ''}`}>{item.title}</Link>
                   </li>
                 ))}

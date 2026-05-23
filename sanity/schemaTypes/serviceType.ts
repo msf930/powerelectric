@@ -62,6 +62,12 @@ export const serviceType = defineType({
             validation: (rule) => rule.required(),
         }),
         defineField({
+            name: 'heroDescription',
+            title: 'Hero Description',
+            type: 'array',
+            of: [{ type: 'block' }]
+        }),
+        defineField({
             name: 'imagePrimary',
             title: 'Primary Image',
             type: 'image',
@@ -147,6 +153,18 @@ export const serviceType = defineType({
             type: 'array',
             of: [{type: 'reference', to: [{type: 'service'}]}]
         }),
+        defineField({
+            name: 'closingCTATitle',
+            title: 'Closing CTA Title',
+            type: 'string',
+        }),
+        defineField({
+            name: 'closingCTASubtext',
+            title: 'Closing CTA Subtext',
+            type: 'array',
+            of: [{ type: 'block' }],
+        }),
+      
 
     ],
 });

@@ -1,12 +1,10 @@
-import Link from "next/link";
-import styles from "./styles.module.css";
 
-/**
- * Bottom CTA on service pages — links to membership (optionally city-local).
- * @param {{ city?: string }} props
- */
-export default function ServiceProtectionPlanCta({ city }) {
-  const href = city ? `/membership/${city}` : "/membership";
+import styles from "./styles.module.css";
+import { PortableText } from "next-sanity";
+import BookBtn from "../BookBtn";
+import CallBtn from "../CallBtn";
+
+export default function ServiceProtectionPlanCta({ title, subtext }) {
 
   return (
     <section className={styles.section} aria-labelledby="protection-plan-cta-heading">
@@ -15,31 +13,17 @@ export default function ServiceProtectionPlanCta({ city }) {
           <span className={styles.emoji} aria-hidden>
             🔄{" "}
           </span>
-          Want to Prevent This From Happening Again?
+          {title}
         </h2>
         <p className={styles.lead}>
-          Many electrical problems start small and turn into bigger issues over time.
+          <PortableText value={subtext} />
         </p>
-        <div className={styles.subleadContainer}>
-          <p className={styles.sublead}>
-            <span className={styles.emoji} aria-hidden>
-              👉{" "}
-            </span>
-            Our Total Home Protection Plan helps you:
-          </p>
-          <ul className={styles.list}>
-            <li>Catch issues early</li>
-            <li>Reduce unexpected repairs</li>
-            <li>Keep your system running safely</li>
-          </ul>
-        </div>
         <p className={styles.ctaLine}>
           <span className={styles.emoji} aria-hidden>
-            👉{" "}
+            
           </span>
-          <Link href={href} className={styles.ctaLink}>
-            View Maintenance Plans
-          </Link>
+          <BookBtn />
+          <CallBtn />
         </p>
       </div>
     </section>
