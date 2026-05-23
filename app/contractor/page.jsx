@@ -30,7 +30,7 @@ export default async function ContractorPage() {
 
   return (
     <article className={styles.servicePage}>
-      <NavServer city={CITY_SLUG} />
+      <NavServer/>
       <div className={styles.hero}>
         <Image
           src={HERO_IMAGE}

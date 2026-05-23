@@ -15,16 +15,13 @@ export default function ServiceProtectionPlanCta({ title, subtext }) {
           </span>
           {title}
         </h2>
-        <p className={styles.lead}>
+        <div className={styles.lead}>
           <PortableText value={subtext} />
-        </p>
-        <p className={styles.ctaLine}>
-          <span className={styles.emoji} aria-hidden>
-            
-          </span>
+        </div>
+        <div className={styles.ctaLine}>
           <BookBtn />
           <CallBtn />
-        </p>
+        </div>
       </div>
     </section>
   );

@@ -65,11 +65,11 @@ export const metadata = {
     "Fast electrical & HVAC inspection repairs in the Denver Metro area. Fix inspection issues quickly, keep deals on track, and close without delays. Call today.",
 };
 
-export default async function RealEstatePage({params}) {
-  const { city } = await params;
+export default function RealEstatePage() {
+  
   return (
     <article className={styles.servicePage}>
-      <NavServer city={city} />
+      <NavServer  />
       <div className={styles.hero}>
         <Image
           src={HERO_IMAGE}
