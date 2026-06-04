@@ -10,7 +10,13 @@
       padding-top: 6.25rem;
     }
   }
-  
+  @media (max-width: 768px) {
+    .page {
+      
+      margin-top: -25px;
+    }
+  }
+
   .hero {
     position: relative;
     width: 100%;

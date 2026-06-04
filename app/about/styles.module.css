@@ -25,6 +25,11 @@
   padding: 3rem 1.25rem;
 }
 
+@media (max-width: 768px) {
+  .hero {
+    margin-top: -25px;
+  }
+}
 .heroInner {
   width: min(92vw, 900px);
   text-align: center;

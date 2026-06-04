@@ -6,6 +6,7 @@ export const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]{
   title,
   slug,
   titleHero,
+  heroDescription,
   imagePrimary { asset->{ _id, url }, alt },
   imageSecond { asset->{ _id, url }, alt },
   titlePrimary,

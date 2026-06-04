@@ -75,8 +75,8 @@ export default async function RealEstatePage({params}) {
           src={HERO_IMAGE}
           alt=""
           width={500}
-          height={650}
-          className="w-[50%] h-[650px] object-cover absolute top-0 right-0"
+          height={700}
+          className="w-[50%] h-[700px] object-cover absolute top-0 right-0"
           priority
         />
         <div className={styles.heroContent}>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PortableText } from "next-sanity";
 import styles from "./styles.module.css";
+import styles2 from "./stylesCopy.module.css";
 import GoogleBadge from "../../../components/GoogleBadge";
 import BookBtn from "../../../components/BookBtn";
 import CallBtn from "../../../components/CallBtn";
@@ -22,6 +23,8 @@ import NavServer from "../../../components/Nav/NavServer";
 import { getServiceBySlug } from "../../serviceQueries";
 import { buildServicePageMetadata } from "../../serviceMetadata";
 import ServiceProtectionPlanCta from "../../../components/ServiceProtectionPlanCta";
+import { color } from "framer-motion";
+import { getPortableTextComponentsCopy } from "./portableTextComponentsCopy";
 
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
   _id,
@@ -94,6 +97,7 @@ export default async function ServicePage({ params }) {
     notFound();
   }
   const ptComponents = getPortableTextComponents(styles);
+  const ptComponents2 = getPortableTextComponentsCopy(styles2);
 
   
   return (
@@ -106,12 +110,18 @@ export default async function ServicePage({ params }) {
           src={urlFor(data.imagePrimary).width(1200).height(600).url()}
           alt="Hero"
           width={500}
-          height={300}
-          className="w-[50%] h-[300px] object-cover absolute top-0 right-0"
+          height={700}
+          className="w-[50%] h-[700px] object-cover absolute top-0 right-0"
         />
         <div className={styles.heroContent}>
           <div className={styles.heroContentInner}>
             <h1 className={styles.heroTitle}>{data.titleHero}</h1>
+            {data.heroDescription && (
+              <PortableText
+                value={data.heroDescription}
+                components={ptComponents2}
+              />
+            )}
             <div className={styles.heroButtonContainer}>
               <BookBtn />
               <CallBtn />
@@ -129,6 +139,8 @@ export default async function ServicePage({ params }) {
               <PortableText
                 value={data.descriptionPrimary}
                 components={ptComponents}
+              
+                
               />
             )}
           </div>

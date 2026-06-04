@@ -567,7 +567,7 @@
 
 @media (max-width: 768px) {
     .headerSpacer {
-        height: 5.75rem;
+        height: 90px
     }
 
     .offerBannerInner {

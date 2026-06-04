@@ -238,8 +238,85 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                   </ul>
                 )}
               </li>
+              <li
+                key="about"
+                className={styles.menuItem}
+                onMouseEnter={() => setOpenDropdown("about")}
+                onMouseLeave={() => setOpenDropdown(null)}
+                onClick={() => setOpenDropdown("about")}
+              >
+
+                <button
+                  type="button"
+                  className={styles.dropdownTrigger}
+                  aria-expanded={openDropdown === "about"}
+                  aria-haspopup="true"
+                >
+                  {openDropdown === "about" ? (
+                    <Link href={`/about${city ? `/${city}` : ""}`} >
+                      About Us
+                    </Link>
+                  ) : (
+                    <h3 className={styles.dropdownCategoryTitle}>
+                      About Us
+                    </h3>
+                  )}
+
+                  <GoTriangleDown className={styles.dropdownArrow} aria-hidden />
+                </button>
+                {openDropdown === "about" && (
+                  <ul className={styles.dropdown} role="menu">
+                    <li key="company" role="none">
+                      <p className={styles.dropdownSubCategoryTitle}>
+                        Company
+                      </p>
+                      <Link key="about-us" href={`/about${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        About Us
+                      </Link>
+                      <Link key="contact" href={`/contact${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Contact Us
+                      </Link>
+                      <Link key="instant-quote" href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Instant Quote
+                      </Link>
+                      <Link key="service-areas" href={`/service-areas${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Service Areas
+                      </Link>
+                      <Link key="blog" href={`/blog${city ? `/location/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Blog
+                      </Link>
+                    </li>
+                    <li key="financing" role="none">
+                      <p className={styles.dropdownSubCategoryTitle}>
+                        Financing
+                      </p>
+                      <Link key="membership" href={`/membership${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Membership
+                      </Link>
+                      <Link key="financing" href={`/financing${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                        Financing
+                      </Link>
+
+                    </li>
+                    {aboutMoreItems && (
+                      <li key="more" role="none">
+                        <p className={styles.dropdownSubCategoryTitle}>
+                          More
+                        </p>
+                        {aboutMoreItems.map((item) => (
+                          <Link key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/about/more/${item.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
+                            {item.title}
+                          </Link>
+                        ))}
+                      </li>
+                    )}
+
+
+                  </ul>
+                )}
+              </li>
             </ul>
-            <ul className={styles.menuAbout}>
+            {/* <ul className={styles.menuAbout}>
               <li
                 key="about"
                 className={styles.menuItem}
@@ -318,7 +395,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                 )}
               </li>
 
-            </ul>
+            </ul> */}
 
             <Link href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.aboutButtonBook}>
               Instant Quote
@@ -393,6 +470,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             <HiX className={styles.mobileCloseIcon} aria-hidden />
           </button>
         </div>
+        <div className={styles.mobileScroll}>
         <div className={styles.mobileSection}>
           <button
             type="button"
@@ -449,7 +527,6 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             Contractor
           </button>
         </div>
-        {/* <div className={styles.mobileScroll}> */}
         <div>
           {dropdownItems.map((item, index) => (
             <div key={`${item._id}-${index}`} className={styles.mobileSection}>
@@ -489,7 +566,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                           href={
                             service.slug?.current
                               ? service.slug.current.startsWith("/")
-                                ? `service/${service.slug.current}${city ? `/${city}` : ""}`
+                                ? `/service/${service.slug.current}${city ? `/${city}` : ""}`
                                 : `/service/${service.slug.current}${city ? `/${city}` : ""}`
                               : "#"
                           }
@@ -630,6 +707,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
               </div>
             )}
           </div>
+        </div>
         </div>
 
         <div className={styles.mobileActions}>

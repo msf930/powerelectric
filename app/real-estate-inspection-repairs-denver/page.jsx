@@ -71,14 +71,17 @@ export default function RealEstatePage() {
     <article className={styles.servicePage}>
       <NavServer  />
       <div className={styles.hero}>
+        <div className={styles.heroImageContainer}> 
         <Image
           src={HERO_IMAGE}
           alt=""
-          width={500}
-          height={650}
-          className="w-[50%] h-[650px] object-cover absolute top-0 right-0"
+          
+          
           priority
+          fill
+          objectFit="cover"
         />
+        </div>
         <div className={styles.heroContent}>
           <div className={styles.heroContentInner}>
             <p className={styles.heroEyebrow}>
