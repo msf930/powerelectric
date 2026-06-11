@@ -433,7 +433,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     text-align: left;
-    width: 80%;
+    width: 50vw;
     text-align: left;
     border-bottom: 1px solid black;
   }

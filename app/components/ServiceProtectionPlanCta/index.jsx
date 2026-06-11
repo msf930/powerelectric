@@ -11,7 +11,7 @@ export default function ServiceProtectionPlanCta({ title, subtext }) {
       <div className={styles.inner}>
         <h2 id="protection-plan-cta-heading" className={styles.heading}>
           <span className={styles.emoji} aria-hidden>
-            🔄{" "}
+            
           </span>
           {title}
         </h2>

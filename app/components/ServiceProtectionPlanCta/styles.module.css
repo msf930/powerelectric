@@ -68,6 +68,7 @@
   align-items: center;
   margin: 0;
   font-size: 1.05rem;
+  gap: 10px;
 }
 
 .ctaLink {

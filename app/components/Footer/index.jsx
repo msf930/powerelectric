@@ -101,12 +101,12 @@ export default function Footer() {
                     <span className={styles.trustBadge} role="listitem">BBB Accredited</span>
                 </div>
                 <nav className={styles.footerSocials} aria-label="Social links">
-                    <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Facebook</a>
-                    <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Instagram</a>
-                    <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>TikTok</a>
+                    <a href="https://www.facebook.com/Powereletricalservices/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Facebook</a>
+                    <a href="https://www.instagram.com/power_electrical_hvac_services/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Instagram</a>
+                    <a href="https://www.tiktok.com/@powerelectricalhvac" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>TikTok</a>
                     <a href="https://www.yelp.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Yelp</a>
                     <a href="https://nextdoor.com/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>Nextdoor</a>
-                    <a href="https://www.bbb.org/" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>BBB</a>
+                    <a href="https://www.bbb.org/us/co/denver/profile/electrical-contractors/power-electrical-services-1296-1000125617" target="_blank" rel="noopener noreferrer" className={styles.footerSocialLink}>BBB</a>
                 </nav>
             </div>
             <div className={styles.footerStrip}>

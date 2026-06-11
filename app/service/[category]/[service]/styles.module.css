@@ -100,7 +100,7 @@
     justify-content: flex-start;
     align-items: center;
     width: 60vw;
-    height: 100%;
+    height: 60px;
     gap: 10px;
   }
 
@@ -336,6 +336,7 @@
     align-items: stretch;
     font-size: 19px;
     font-weight: 700;
+    width: 50vw;
     font-family: 'Montserrat', sans-serif;
     color: black;
     background: none;
