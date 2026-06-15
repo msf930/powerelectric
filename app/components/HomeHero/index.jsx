@@ -22,7 +22,7 @@ function getHeroLinks(city) {
   };
 }
 
-export default function HomeHero({ city }) {
+export default function HomeHero({ city, widget, bookLink, callNumber }) {
   const cityLabel = city ? city.replace(/-/g, " ") : "";
   const links = getHeroLinks(city);
 
@@ -76,10 +76,10 @@ export default function HomeHero({ city }) {
           </p>
 
           <div className={styles.heroButtonContainer}>
-            <CallBtn label="Call Now" />
-            <BookBtn label="Book Service" />
+            <CallBtn label="Call Now" number={callNumber} />
+            <BookBtn label="Book Service" link={bookLink} />
           </div>
-          <GoogleBadge />
+          <GoogleBadge widget={widget} />
         </div>
       </div>
     </div>

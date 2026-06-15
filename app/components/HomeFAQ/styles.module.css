@@ -47,10 +47,19 @@
   border: none;
   cursor: pointer;
   font-family: inherit;
+  list-style: none;
+}
+
+.question::-webkit-details-marker {
+  display: none;
 }
 
 .question:hover {
   background: #f9f9f9;
+}
+
+.item[open] .chevron {
+  transform: rotate(45deg);
 }
 
 .chevron {
@@ -63,10 +72,6 @@
 .answer {
   padding: 0 1.15rem 1rem;
   border-top: 1px solid #eee;
-}
-
-.answerHidden {
-  display: none;
 }
 
 .answerText {

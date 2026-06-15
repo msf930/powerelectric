@@ -34,7 +34,7 @@ function serviceLinkHref(slug, city) {
   return `/service/${path}${city ? `/${city}` : ""}`;
 }
 
-export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = [], cityItems = [] }) {
+export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = [], cityItems = [], bookLink = null, callNumber = null }) {
   const pathname = usePathname();
   const router = useRouter();
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -400,8 +400,8 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             <Link href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.aboutButtonBook}>
               Instant Quote
             </Link>
-            <BookBtn />
-            <CallBtn />
+            <BookBtn link={bookLink} />
+            <CallBtn number={callNumber} />
           </div>
 
           <button
@@ -719,8 +719,8 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             Instant Quote
           </Link>
           <div className={styles.mobileBtnRow}>
-            <BookBtn />
-            <CallBtn />
+            <BookBtn link={bookLink} />
+            <CallBtn number={callNumber} />
           </div>
         </div>
       </aside>

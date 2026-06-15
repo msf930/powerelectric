@@ -1,4 +1,5 @@
 import { client } from "../../../sanity/lib/client";
+import { getSiteButtons } from "../../../lib/siteData";
 import Nav from "./index.jsx";
 
 const NAV_QUERY = `*[_type == "allServices"]{
@@ -26,7 +27,7 @@ const ABOUT_MORE_QUERY = `*[_type == "aboutMore"][0]{
     title,
     slug,
   }
-}`; 
+}`;
 
 const CITY_QUERY = `*[_type == "newServices"][0]{
   _id,
@@ -36,20 +37,38 @@ const CITY_QUERY = `*[_type == "newServices"][0]{
     slug,
   }
 }`;
-export default async function NavServer( { city } ) {
-  const [data] = await Promise.all([
+
+export default async function NavServer({
+  city,
+  bookLink: bookLinkProp,
+  callNumber: callNumberProp,
+}) {
+  const [data, aboutMoreData, cityData, buttons] = await Promise.all([
     client.fetch(NAV_QUERY),
-  ]);
-  const [aboutMoreData] = await Promise.all([
     client.fetch(ABOUT_MORE_QUERY),
+    client.fetch(CITY_QUERY),
+    bookLinkProp && callNumberProp
+      ? Promise.resolve({
+          bookLink: bookLinkProp,
+          callNumber: callNumberProp,
+        })
+      : getSiteButtons(),
   ]);
-  const [cityData] = await Promise.all([
-      client.fetch(CITY_QUERY),
-  ]);
-  
 
   const dropdownItems = data?.[0]?.allServices ?? [];
   const aboutMoreItems = aboutMoreData?.pages;
   const cityItems = cityData?.newServices;
-  return <Nav dropdownItems={dropdownItems} city={city} aboutMoreItems={aboutMoreItems} cityItems={cityItems} />
+  const bookLink = bookLinkProp ?? buttons?.bookLink ?? null;
+  const callNumber = callNumberProp ?? buttons?.callNumber ?? null;
+
+  return (
+    <Nav
+      dropdownItems={dropdownItems}
+      city={city}
+      aboutMoreItems={aboutMoreItems}
+      cityItems={cityItems}
+      bookLink={bookLink}
+      callNumber={callNumber}
+    />
+  );
 }

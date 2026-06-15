@@ -1,3 +1,5 @@
+import dynamic from "next/dynamic";
+import { getHomePageData } from "../lib/siteData";
 import HomeHero from "./components/HomeHero";
 import HomeCouponSection from "./components/HomeCouponSection";
 import StatCont from "./components/StatCont";
@@ -9,50 +11,64 @@ import HomeServiceCategories from "./components/HomeServiceCategories";
 import HomeProLinks from "./components/HomeProLinks";
 import HomeMembership from "./components/HomeMembership";
 import HomeTotalProtectionPlan from "./components/HomeTotalProtectionPlan";
-import HomeFinancingSection from "./components/HomeFinancingSection";
-import GoogleCarousel from "./components/GoogleCarousel";
 import HomeCouponThird from "./components/HomeCouponThird";
-import HomeForm from "./components/HomeForm";
 import HomeFinalCTA from "./components/HomeFinalCTA";
 import HomeFAQ from "./components/HomeFAQ";
 import ParallaxStrip from "./components/ParallaxStrip";
-import LocationsCont from "./components/LocationsCont";
 import Footer from "./components/Footer";
 import ClosingCTA from "./components/ClosingCTA";
 import NavServer from "./components/Nav/NavServer";
-import StickyMobileCall from "./components/StickyMobileCall";
-import SeoFaqPageJsonLd from "./components/SeoFaqPageJsonLd";
 import TopLinks from "./components/TopLinks";
 
-export default function Home() {
+const GoogleCarousel = dynamic(() => import("./components/GoogleCarousel"));
+const HomeForm = dynamic(() => import("./components/HomeForm"));
+const LocationsCont = dynamic(() => import("./components/LocationsCont"));
+
+export default async function Home() {
+  const {
+    bookLink,
+    callNumber,
+    stats,
+    contact,
+    widget,
+    carouselReviews,
+    reviewSnippets,
+  } = await getHomePageData();
+
   return (
-    <div className="pb-10 md:pb-0"> 
-      <NavServer />
-      <HomeHero />
+    <div className="pb-10 md:pb-0">
+      <NavServer bookLink={bookLink} callNumber={callNumber} />
+      <HomeHero
+        widget={widget}
+        bookLink={bookLink}
+        callNumber={callNumber}
+      />
       <HomeCouponSection />
       <TopLinks />
-      <StatCont />
+      <StatCont stats={stats} />
       <HomeProblemStrip />
       <HomeWhyChoose />
       <HomeCouponSecond />
-      <HomeReviewSnippets />
+      <HomeReviewSnippets snippets={reviewSnippets} />
       <HomeServiceCategories />
       <HomeProLinks />
       <HomeMembership />
       <HomeTotalProtectionPlan />
-      {/* <HomeFinancingSection /> */}
-      <GoogleCarousel />
+      <GoogleCarousel widget={widget} reviews={carouselReviews} />
       <HomeCouponThird />
-      <HomeForm />
+      <HomeForm contactData={contact} bookLink={bookLink} />
       <HomeFinalCTA />
       <HomeFAQ />
       <ParallaxStrip />
-      <LocationsCont />
-      <Footer />
-      <ClosingCTA title="Need Service Today?"
-        subtext="" 
+      <LocationsCont bookLink={bookLink} callNumber={callNumber} />
+      <Footer bookLink={bookLink} callNumber={callNumber} />
+      <ClosingCTA
+        title="Need Service Today?"
+        subtext=""
         showCouponOffer={true}
-        />
+        bookLink={bookLink}
+        callNumber={callNumber}
+      />
     </div>
   );
 }

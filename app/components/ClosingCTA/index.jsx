@@ -12,6 +12,8 @@ export default function ClosingCTA({
   title,
   subtext,
   showCouponOffer = false,
+  bookLink = null,
+  callNumber = null,
 }) {
   const headingId = "closing-cta-heading";
   const resolvedTitle =
@@ -31,11 +33,11 @@ export default function ClosingCTA({
           {showCouponOffer ? (
             <>
               <div className={styles.actions}>
-                <CallBtn label="Call Now" />
+                <CallBtn label="Call Now" number={callNumber} />
                 <span className={styles.sep} aria-hidden>
                   |
                 </span>
-                <BookBtn label="Book Service" />
+                <BookBtn label="Book Service" link={bookLink} />
               </div>
               <p className={styles.offer}>
                 <Link href="/instant-quote" className={styles.offerLink}>
@@ -55,7 +57,7 @@ export default function ClosingCTA({
                 </Link>
               </p>
               <div className={styles.book}>
-                <BookBtn label="Book Service Today" />
+                <BookBtn label="Book Service Today" link={bookLink} />
               </div>
             </>
           )}

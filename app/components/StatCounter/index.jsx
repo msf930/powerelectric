@@ -1,35 +1,47 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useMotionValue, useMotionValueEvent, animate } from "framer-motion";
 import styles from "./styles.module.css";
-export default function StatCounter({
-  from = 0,
-  to,
-  duration = 2,
-}) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const count = useMotionValue(from);
-  const [display, setDisplay] = useState(from);
 
-  useMotionValueEvent(count, "change", (latest) => {
-    setDisplay(Math.round(latest));
-  });
+export default function StatCounter({ from = 0, to, duration = 2 }) {
+  const ref = useRef(null);
+  const [display, setDisplay] = useState(from);
+  const hasAnimated = useRef(false);
 
   useEffect(() => {
-    if (isInView) {
-      const controls = animate(count, to, {
-        duration,
-        ease: "easeOut",
-      });
-      return controls.stop;
-    }
-  }, [isInView, to, duration, count]);
+    const node = ref.current;
+    if (!node || hasAnimated.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || hasAnimated.current) return;
+        hasAnimated.current = true;
+        observer.disconnect();
+
+        const start = performance.now();
+        const delta = to - from;
+
+        const tick = (now) => {
+          const progress = Math.min((now - start) / (duration * 1000), 1);
+          const eased = 1 - (1 - progress) ** 3;
+          setDisplay(Math.round(from + delta * eased));
+          if (progress < 1) {
+            requestAnimationFrame(tick);
+          }
+        };
+
+        requestAnimationFrame(tick);
+      },
+      { threshold: 0.2 }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [from, to, duration]);
 
   return (
-    <motion.span ref={ref} className={styles.statCounter}>
+    <span ref={ref} className={styles.statCounter}>
       {display}
-    </motion.span>
+    </span>
   );
 }
