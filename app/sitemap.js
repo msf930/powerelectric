@@ -32,7 +32,7 @@ const CITY_PATH_PREFIXES = [
 ];
 
 const SITEMAP_DATA_QUERY = `{
-  "cities": *[_type == "newServices"][0].newServices[]->{
+  "cities": *[_type == "locations"]->{
     "slug": slug.current,
     "_updatedAt": _updatedAt
   },
