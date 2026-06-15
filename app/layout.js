@@ -17,6 +17,8 @@ const geistMono = Geist_Mono({
 const siteDescription =
   "Trustworthy, professional, kind electricians serving residential and commercial customers, wiring new electric systems and repairing existing ones.";
 
+const GA_MEASUREMENT_ID = "G-7TMYKNHR2T";
+
 export const metadata = {
   title: "Power Electrical Services",
   description: siteDescription,
@@ -111,6 +113,23 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLd),
+          }}
+        />
+
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_MEASUREMENT_ID}');
+            `,
           }}
         />
 

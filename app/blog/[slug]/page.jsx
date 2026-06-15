@@ -15,6 +15,7 @@ import BlogPostSchemaJsonLd from "../../components/BlogPostSchemaJsonLd";
 import { notFound } from "next/navigation";
 import { getBlogPostBySlug, buildBlogPostMetadata } from "../blogPostQueries";
 import Link from "next/link";
+import { servicePageHref } from "../../../lib/servicePaths";
 const ALL_BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
     _id,
     title,
@@ -101,7 +102,7 @@ export default async function BlogPostPage({ params }) {
                             >
                                 <div className={styles.relatedServicesItemImageContainer}>
                                     {svc.imagePrimary?.asset?.url && (
-                                        <Link href={`${svc.slug.current}`} >
+                                        <Link href={servicePageHref(svc.slug.current)} >
 
                                             <Image
                                                 src={urlFor(svc.imagePrimary).url()}
@@ -113,10 +114,10 @@ export default async function BlogPostPage({ params }) {
                                     )}
                                 </div>
                                 <div className={styles.relatedServicesItemTextContainer}>
-                                    <Link href={`${svc.slug.current}`} >
+                                    <Link href={servicePageHref(svc.slug.current)} >
                                         <h3>{svc.bookNowText}</h3>
                                     </Link>
-                                    <Link href={`${svc.slug.current}`} >
+                                    <Link href={servicePageHref(svc.slug.current)} >
                                         <p>{svc.bookNowSubtext}</p>
                                     </Link>
                                     <div className={styles.relatedServicesItemButtonContainer}>

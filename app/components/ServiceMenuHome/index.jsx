@@ -4,6 +4,7 @@ import { client } from "../../../sanity/lib/client";
 import { urlFor } from "../../../sanity/sanityImageUrl";
 
 import Link from "next/link";
+import { serviceCategoryHref, servicePageHref } from "../../../lib/servicePaths";
 
 import Image from "next/image";
 
@@ -43,12 +44,12 @@ export default async function ServiceMenuHome({city}) {
                     <Image src={urlFor(serviceCategory.icon).url()} alt={serviceCategory.title} fill objectFit="cover"  />
                 </div>
             </div>
-          <Link href={`${serviceCategory.slug.current && city ? `/${serviceCategory.slug.current}/service-area/${city}` : `${serviceCategory.slug.current}`}`} className={styles.serviceCategoryTitle}>{serviceCategory.title}</Link>
+          <Link href={serviceCategoryHref(serviceCategory.slug.current, city)} className={styles.serviceCategoryTitle}>{serviceCategory.title}</Link>
           {serviceCategory.subCategories.map((subCategory) => (
             subCategory.services.map((service, index) => (
               <div key={`${service._id}-${index}`}>
                 <div className={styles.serviceText}>
-                  <Link href={`${service.slug.current && city ? `${service.slug.current}/${city}` : `${service.slug.current}`}`} className={styles.serviceTitle}>{service.title}</Link>
+                  <Link href={servicePageHref(service.slug.current, city)} className={styles.serviceTitle}>{service.title}</Link>
                   </div>
                 </div>  
               ))

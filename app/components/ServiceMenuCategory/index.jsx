@@ -5,6 +5,7 @@ import { urlFor } from "../../../sanity/sanityImageUrl";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { servicePageHref } from "../../../lib/servicePaths";
 
 import Image from "next/image";
 export default function ServiceMenuCategory({ slug, city = "" }) {
@@ -48,7 +49,7 @@ export default function ServiceMenuCategory({ slug, city = "" }) {
             subCategory.services.map((service, index) => (
               <div key={`${service._id}-${index}`}>
                 <div className={styles.serviceText}>
-                  <Link href={`${service.slug.current ?? ''}${city ? `/${city}` : ''}`} className={styles.serviceTitle}>{service.title}</Link>
+                  <Link href={servicePageHref(service.slug.current, city)} className={styles.serviceTitle}>{service.title}</Link>
                   </div>
                 </div>  
               ))

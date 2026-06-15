@@ -1,4 +1,5 @@
 import { client } from "../sanity/lib/client";
+import { normalizeSlugPath } from "../lib/servicePaths";
 
 const SITE_URL = "https://www.powerelectricalservices.net";
 
@@ -117,10 +118,11 @@ export default async function sitemap() {
 
   for (const category of data.categories || []) {
     if (!category?.slug) continue;
-    add(`/service/${category.slug}`, category._updatedAt, 0.75);
+    const categorySlug = normalizeSlugPath(category.slug);
+    add(`/service/${categorySlug}`, category._updatedAt, 0.75);
     for (const city of cities) {
       add(
-        `/service/${category.slug}/service-area/${city.slug}`,
+        `/service/${categorySlug}/service-area/${city.slug}`,
         category._updatedAt || city._updatedAt,
         0.6
       );

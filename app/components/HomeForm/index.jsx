@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import BookBtn from "../BookBtn";
 import LazyHCaptcha from "../LazyHCaptcha";
+import { servicePageHref } from "../../../lib/servicePaths";
 
 const CAROUSEL_INTERVAL_MS = 4000;
 
@@ -102,7 +103,7 @@ export default function HomeForm({
                 >
                   {service?.imagePrimary && (
                     <div className={styles.homeFormCarouselImageCont}>
-                      <Link href={`service/${service.slug.current}/${city && `${city}`}`}>
+                      <Link href={servicePageHref(service.slug.current, city)}>
                         <Image
                           src={urlFor(service.imagePrimary).url()}
                           alt={service.title ?? ""}
@@ -117,7 +118,7 @@ export default function HomeForm({
                   {service.bookNowText && (
                     <div className={styles.homeFormCarouselImageButtonCont}>
                       <Link
-                        href={`${service.slug.current}/${city && `${city}`}`}
+                        href={servicePageHref(service.slug.current, city)}
                         className={styles.homeFormCarouselServiceTitle}
                       >
                         {service.bookNowText}
@@ -126,7 +127,7 @@ export default function HomeForm({
                   )}
                   <div className={styles.homeFormCarouselImageButtonCont}>
                     <Link
-                      href={`service/${service.slug.current}/${city && `${city}`}`}
+                      href={servicePageHref(service.slug.current, city)}
                       className={styles.homeFormCarouselServiceButton}
                     >
                       View Service

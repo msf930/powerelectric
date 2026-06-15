@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { client } from "../../../sanity/lib/client";
 import styles from "./styles.module.css";
+import { serviceCategoryHref, servicePageHref } from "../../../lib/servicePaths";
 
 const CATEGORY_QUERY = `*[_type == "allServices"]{ allServices[]->{ _id, title, slug, subCategories[]->{ _id, title, slug, services[]->{ _id, title, slug } } } }`;
 
@@ -66,10 +67,7 @@ const BLOCKS = [
 ];
 
 function categoryHref(slug, city) {
-  const s = (slug || "").replace(/^\//, "");
-  if (!s) return "/";
-  if (city) return `/service/${s}/service-area/${city}`;
-  return `/service/${s}`;
+  return serviceCategoryHref(slug, city);
 }
 
 export default async function HomeServiceCategories({ city = "" }) {
@@ -104,7 +102,7 @@ export default async function HomeServiceCategories({ city = "" }) {
               <ul className={styles.list}>
                 {row.list.map((item) => (
                   <li key={`${row.key}-${item.slug ?? item.title}`}>
-                    <Link href={`/service/${item.slug}${city ? `/${city}` : ''}`}>{item.title}</Link>
+                    <Link href={servicePageHref(item.slug, city)}>{item.title}</Link>
                   </li>
                 ))}
               </ul>

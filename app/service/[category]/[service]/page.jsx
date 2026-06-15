@@ -25,6 +25,7 @@ import { buildServicePageMetadata } from "../../serviceMetadata";
 import ServiceProtectionPlanCta from "../../../components/ServiceProtectionPlanCta";
 import { color } from "framer-motion";
 import { getPortableTextComponentsCopy } from "./portableTextComponentsCopy";
+import { servicePageHref } from "../../../../lib/servicePaths";
 
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
   _id,
@@ -237,7 +238,7 @@ export default async function ServicePage({ params }) {
             >
               <div className={styles.relatedServicesItemImageContainer}>
                 {svc.imagePrimary?.asset?.url && (
-                  <Link href={`${svc.slug.current}`} >
+                  <Link href={servicePageHref(svc.slug.current)} >
 
                     <Image
                       src={urlFor(svc.imagePrimary).url()}
@@ -249,10 +250,10 @@ export default async function ServicePage({ params }) {
                 )}
               </div>
               <div className={styles.relatedServicesItemTextContainer}>
-                <Link href={`${svc.slug.current}`} >
+                <Link href={servicePageHref(svc.slug.current)} >
                   <h3>{svc.title}</h3>
                 </Link>
-                <Link href={`${svc.slug.current}`} >
+                <Link href={servicePageHref(svc.slug.current)} >
                   <p>{svc.bookNowSubtext}</p>
                 </Link>
                 <div className={styles.relatedServicesItemButtonContainer}>

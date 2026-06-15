@@ -10,6 +10,7 @@ import { HiMenu, HiX } from "react-icons/hi";
 import BookBtn from "../BookBtn";
 import CallBtn from "../CallBtn";
 import { useRouter } from "next/navigation";
+import { servicePageHref } from "../../../lib/servicePaths";
 
 const HOLIDAY_LIGHTING_ID = "holiday-lighting";
 
@@ -26,12 +27,7 @@ const HOLIDAY_LIGHTING_CATEGORY = {
 };
 
 function serviceLinkHref(slug, city) {
-  if (!slug) return "#";
-  const path = slug.startsWith("/") ? slug.slice(1) : slug;
-  if (path === HOLIDAY_LIGHTING_ID) {
-    return `/holidayLighting${city ? `/${city}` : ""}`;
-  }
-  return `/service/${path}${city ? `/${city}` : ""}`;
+  return servicePageHref(slug, city);
 }
 
 export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = [], cityItems = [], bookLink = null, callNumber = null }) {
@@ -565,9 +561,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                           key={`${service._id}-${index}`}
                           href={
                             service.slug?.current
-                              ? service.slug.current.startsWith("/")
-                                ? `/service/${service.slug.current}${city ? `/${city}` : ""}`
-                                : `/service/${service.slug.current}${city ? `/${city}` : ""}`
+                              ? serviceLinkHref(service.slug.current, city)
                               : "#"
                           }
                           className={styles.mobileLink}
