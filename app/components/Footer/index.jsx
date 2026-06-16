@@ -104,6 +104,13 @@ export default function Footer({ bookLink = null, callNumber = null }) {
               >
                 <FaMapMarkerAlt /> 5650 N Washington St. Unit C-6 Denver, CO 80216
               </Link>
+              <Link
+                className={styles.locationsContMessage}
+                href="/studio"
+                target="_blank"
+              >
+                Admin
+              </Link>
             </div>
           </div>
           <div className={styles.footerStripInnerContentRight}>
