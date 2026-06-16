@@ -75,10 +75,10 @@ function resolveAbsoluteUrl(maybeUrl, fallbackPath) {
  */
 export function buildServicePageMetadata(data, { canonicalPath, cityDisplayName = null } = {}) {
     if (!data) return {};
-
+    
     const parsed = parseBlogPostSchema(data.schema);
     const fromSchema = extractServiceSchemaMetadataFields(parsed);
-
+    
     const citySuffix = cityDisplayName ? ` in ${cityDisplayName}` : "";
     const fallbackTitle = `${data.titleHero || data.title || "Service"}${citySuffix}`.trim();
 
