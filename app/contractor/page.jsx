@@ -11,6 +11,9 @@ import Footer from "../components/Footer";
 import NavServer from "../components/Nav/NavServer";
 import { getContractorLinks } from "./resolveServiceLinks";
 
+
+export const revalidate = 3600;
+
 const CITY_NAME = "Denver";
 const CITY_SLUG = "Denver";
 const HERO_IMAGE = "/homeHero.jpg";

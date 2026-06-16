@@ -1,5 +1,4 @@
-import { cache } from "react";
-import { client } from "../../sanity/lib/client";
+import { cachedSanityFetch } from "../../lib/cachedSanity";
 
 export const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]{
   _id,
@@ -25,7 +24,7 @@ export const SERVICE_QUERY = `*[_type == "service" && slug.current == $slug][0]{
   closingCTASubtext
 }`;
 
-export const getServiceBySlug = cache(async (slug) => {
-    if (!slug) return null;
-    return client.fetch(SERVICE_QUERY, { slug });
-});
+export function getServiceBySlug(slug) {
+  if (!slug) return null;
+  return cachedSanityFetch(`service-${slug}`, SERVICE_QUERY, { slug });
+}

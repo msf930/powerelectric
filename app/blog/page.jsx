@@ -1,6 +1,6 @@
 import NavServer from "../components/Nav/NavServer";
 import styles from "./styles.module.css";
-import { client } from "../../sanity/lib/client";
+import { cachedSanityFetch } from "../../lib/cachedSanity";
 import { urlFor } from "../../sanity/sanityImageUrl";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,6 +15,8 @@ import {
     excerptToMaxWords,
 } from "./blogPostQueries";
 
+export const revalidate = 3600;
+
 export default async function BlogPage({ searchParams }) {
     const sp = await searchParams;
     const rawPage = sp?.page;
@@ -27,20 +29,27 @@ export default async function BlogPage({ searchParams }) {
         typeof categoryParam === "string" && categoryParam.trim() !== "" ? categoryParam.trim() : null;
     const filterSlug = categorySlug ?? "";
 
-    const blogCategories = await client.fetch(BLOG_CATEGORIES_QUERY);
+    const blogCategories = await cachedSanityFetch(
+        "blog-categories",
+        BLOG_CATEGORIES_QUERY
+    );
 
-    const total = await client.fetch(BLOG_LIST_COUNT_QUERY, { filterSlug });
+    const total = await cachedSanityFetch(
+        `blog-count-${filterSlug}`,
+        BLOG_LIST_COUNT_QUERY,
+        { filterSlug }
+    );
     const totalPages = Math.max(1, Math.ceil(total / BLOG_LIST_PAGE_SIZE) || 1);
     page = Math.min(page, totalPages);
 
     const start = (page - 1) * BLOG_LIST_PAGE_SIZE;
     const end = start + BLOG_LIST_PAGE_SIZE;
 
-    const blogPosts = await client.fetch(BLOG_LIST_POSTS_PAGE_QUERY, {
-        filterSlug,
-        start,
-        end,
-    });
+    const blogPosts = await cachedSanityFetch(
+        `blog-posts-${filterSlug}-${page}`,
+        BLOG_LIST_POSTS_PAGE_QUERY,
+        { filterSlug, start, end }
+    );
 
     return (
         <div>
@@ -77,7 +86,7 @@ export default async function BlogPage({ searchParams }) {
                 <div className={styles.blogPostsContainer}>
                     {blogPosts.map((post) => (
                         <div className={styles.blogPost} key={post._id}>
-                            <Link href={`/blog/${post.slug.current}`}>
+                            <Link prefetch={false} href={`/blog/${post.slug.current}`}>
                                 <Image src={urlFor(post.image).url()} alt={post.title} width={300} height={300} className={styles.blogPostImage} />
                             </Link>
                             <div className={styles.blogPostKeywordsContainer}>
@@ -85,11 +94,11 @@ export default async function BlogPage({ searchParams }) {
                                     <span className={styles.blogPostKeywords} key={index}>{keyword}</span>
                                 ))}
                             </div>
-                            <Link href={`/blog/${post.slug.current}`}>
+                            <Link prefetch={false} href={`/blog/${post.slug.current}`}>
                                 <h2 className={styles.blogPostTitle}>{post.title}</h2>
                             </Link>
                             <p className={styles.blogPostExcerpt}>{excerptToMaxWords(post.excerpt)}</p>
-                            <Link href={`/blog/${post.slug.current}`} className={styles.blogPostLink}>Read More <FaArrowRight /></Link>
+                            <Link prefetch={false} href={`/blog/${post.slug.current}`} className={styles.blogPostLink}>Read More <FaArrowRight /></Link>
                         </div>
                     ))}
                 </div>

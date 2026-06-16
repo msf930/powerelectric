@@ -15,6 +15,9 @@ import NavServer from "../components/Nav/NavServer";
 import ThirdSectionAccordion from "./ThirdSectionAccordion";
 import ClosingCTA from "../components/ClosingCTA";
 
+
+export const revalidate = 3600;
+
 const CITY_NAME = "Denver";
 const CITY_SLUG = "Denver";
 const HERO_IMAGE = "/homeHero.jpg";

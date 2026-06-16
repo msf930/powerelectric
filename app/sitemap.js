@@ -1,7 +1,9 @@
-import { client } from "../sanity/lib/client";
+import { cachedSanityFetch } from "../lib/cachedSanity";
 import { normalizeSlugPath } from "../lib/servicePaths";
 
 const SITE_URL = "https://www.powerelectricalservices.net";
+
+export const revalidate = 3600;
 
 const STATIC_PATHS = [
   { path: "/", priority: 1.0 },
@@ -89,7 +91,7 @@ export default async function sitemap() {
   };
 
   try {
-    data = await client.fetch(SITEMAP_DATA_QUERY);
+    data = await cachedSanityFetch("sitemap-data", SITEMAP_DATA_QUERY);
   } catch {
     // Fall back to static routes if Sanity is unavailable at build time.
   }

@@ -41,6 +41,14 @@ const SERVICE_QUERY = `*[_type == "newServicePage" && slug.current == $slug][0]{
   closingCTASubtext
 }`;
 
+import { generateCityServiceParams } from "../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCityServiceParams();
+}
+
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
   _id,
   title,

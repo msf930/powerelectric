@@ -14,6 +14,8 @@ const LOCATIONS_QUERY = `*[_type == "locations"]{
     County,
     cities
 }`;
+
+export const revalidate = 3600;
 export default async function ServiceAreasPage() {
     const serviceAreas = await client.fetch(LOCATIONS_QUERY);
     return (

@@ -1,5 +1,4 @@
-import { cache } from "react";
-import { client } from "../../sanity/lib/client";
+import { cachedSanityFetch } from "../../lib/cachedSanity";
 import { urlFor } from "../../sanity/sanityImageUrl";
 
 const SITE_URL = "https://www.powerelectricalservices.net";
@@ -22,10 +21,10 @@ export const BLOG_POST_QUERY = `*[_type == "blogPost" && slug.current == $slug][
     relatedServices[]->{ _id, title, slug, imagePrimary { asset->{ _id, url } },bookNowText,bookNowSubtext }
 }`;
 
-export const getBlogPostBySlug = cache(async (slug) => {
+export function getBlogPostBySlug(slug) {
     if (!slug) return null;
-    return client.fetch(BLOG_POST_QUERY, { slug });
-});
+    return cachedSanityFetch(`blog-post-${slug}`, BLOG_POST_QUERY, { slug });
+}
 
 // --- Blog index & /blog/location/[city] listing (paginated, category filter) ---
 

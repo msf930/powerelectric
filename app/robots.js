@@ -1,7 +1,8 @@
 const SITE_URL = "https://www.powerelectricalservices.net";
 
-// Training and data-harvesting AI crawlers. Blocking these does not affect
-// Google Search rankings (Googlebot is separate from Google-Extended).
+export const revalidate = 3600;
+
+// Training and data-harvesting AI crawlers.
 const AI_TRAINING_BOTS = [
   "GPTBot", // OpenAI model training
   "ClaudeBot", // Anthropic model training

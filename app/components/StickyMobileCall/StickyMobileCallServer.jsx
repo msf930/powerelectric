@@ -1,7 +1,7 @@
-import { getSiteButtons } from "../../../lib/siteData";
+import { getLayoutNavData } from "../../../lib/navData";
 import StickyMobileCall from "./index";
 
 export default async function StickyMobileCallServer() {
-  const { callNumber } = await getSiteButtons();
-  return <StickyMobileCall number={callNumber} />;
+  const data = await getLayoutNavData();
+  return <StickyMobileCall number={data?.callNumber} />;
 }

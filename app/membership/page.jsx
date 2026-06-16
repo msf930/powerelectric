@@ -9,6 +9,9 @@ import MembershipAccordion from "./MembershipAccordion";
 import MembershipSignupForm from "./MembershipSignupForm";
 import styles from "./styles.module.css";
 
+
+export const revalidate = 3600;
+
 const COMPARISON_ROWS = [
   ["Monthly Price", "$14/month", "$24/month", "$39/month"],
   ["Priority Scheduling", "✓ Within 24 hrs", "✓ Guaranteed", "✓ Dedicated Line"],

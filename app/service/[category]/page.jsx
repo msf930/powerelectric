@@ -21,6 +21,15 @@ import CategoryForm from "../../components/CategoryForm";
 import NavServer from "../../components/Nav/NavServer";
 import HomeHero from "../../components/HomeHero";
 import ServiceProtectionPlanCta from "../../components/ServiceProtectionPlanCta";
+
+import { generateCategoryParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCategoryParams();
+}
+
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $slug][0]{
   _id,
   title,

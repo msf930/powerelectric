@@ -9,6 +9,15 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import FinanceCont from "../../components/FinanceCont";
 import CategoryForm from "../../components/CategoryForm";
 import NavServer from "../../components/Nav/NavServer";
+
+import { generateCityParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCityParams();
+}
+
 const LOCATIONS_QUERY = `*[_type == "locations"]{
     _id,
     County,

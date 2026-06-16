@@ -12,6 +12,10 @@ import CallBtn from "../CallBtn";
 import { useRouter } from "next/navigation";
 import { servicePageHref } from "../../../lib/servicePaths";
 
+function MenuLink({ prefetch = false, ...props }) {
+  return <Link prefetch={prefetch} {...props} />;
+}
+
 const HOLIDAY_LIGHTING_ID = "holiday-lighting";
 
 const HOLIDAY_LIGHTING_CATEGORY = {
@@ -135,9 +139,9 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                   <ul className={styles.dropdownCityItems} role="menu">
                     {cityItems.map((item) => (
                       <li key={item._id} role="none">
-                        <Link href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/${item.slug.current}`) : "#"} className={styles.dropdownLink} role="menuitem">
+                        <MenuLink href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/${item.slug.current}`) : "#"} className={styles.dropdownLink} role="menuitem">
                           {item.city}
-                        </Link>
+                        </MenuLink>
                       </li>
                     ))}
                   </ul>
@@ -148,7 +152,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
 
               >
 
-                <Link
+                <MenuLink
                   href={`/real-estate-inspection-repairs-denver${city ? `/${city}` : ""}`}
                   className={styles.dropdownTrigger}
                   aria-expanded={openDropdown === "electrician"}
@@ -156,17 +160,17 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                 >
                   Real Estate Pro
 
-                </Link>
+                </MenuLink>
 
               </li>
               <li className={styles.menuItem}>
-                <Link
+                <MenuLink
                   type="button"
                   className={styles.dropdownTrigger}
                   href={`/contractor${city ? `/${city}` : ""}`}
                 >
                   Contractor
-                </Link>
+                </MenuLink>
               </li>
               <li
                 className={styles.menuItem}
@@ -219,14 +223,14 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                           {activeServiceSubCategory?.title}
                         </p>
                         {(activeServiceSubCategory?.services ?? []).map((service, serviceIndex) => (
-                          <Link
+                          <MenuLink
                             key={`${service._id}-${serviceIndex}`}
                             href={serviceLinkHref(service.slug?.current, city)}
                             className={styles.dropdownLink}
                             role="menuitem"
                           >
                             {service.title}
-                          </Link>
+                          </MenuLink>
                         ))}
                       </div>
                     </li>
@@ -249,9 +253,9 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                   aria-haspopup="true"
                 >
                   {openDropdown === "about" ? (
-                    <Link href={`/about${city ? `/${city}` : ""}`} >
+                    <MenuLink href={`/about${city ? `/${city}` : ""}`} >
                       About Us
-                    </Link>
+                    </MenuLink>
                   ) : (
                     <h3 className={styles.dropdownCategoryTitle}>
                       About Us
@@ -266,32 +270,32 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                       <p className={styles.dropdownSubCategoryTitle}>
                         Company
                       </p>
-                      <Link key="about-us" href={`/about${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      <MenuLink key="about-us" href={`/about${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         About Us
-                      </Link>
-                      <Link key="contact" href={`/contact${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="contact" href={`/contact${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Contact Us
-                      </Link>
-                      <Link key="instant-quote" href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="instant-quote" href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Instant Quote
-                      </Link>
-                      <Link key="service-areas" href={`/service-areas${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="service-areas" href={`/service-areas${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Service Areas
-                      </Link>
-                      <Link key="blog" href={`/blog${city ? `/location/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="blog" href={`/blog${city ? `/location/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Blog
-                      </Link>
+                      </MenuLink>
                     </li>
                     <li key="financing" role="none">
                       <p className={styles.dropdownSubCategoryTitle}>
                         Financing
                       </p>
-                      <Link key="membership" href={`/membership${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      <MenuLink key="membership" href={`/membership${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Membership
-                      </Link>
-                      <Link key="financing" href={`/financing${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="financing" href={`/financing${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Financing
-                      </Link>
+                      </MenuLink>
 
                     </li>
                     {aboutMoreItems && (
@@ -300,9 +304,9 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                           More
                         </p>
                         {aboutMoreItems.map((item) => (
-                          <Link key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/about/more/${item.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
+                          <MenuLink key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/about/more/${item.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
                             {item.title}
-                          </Link>
+                          </MenuLink>
                         ))}
                       </li>
                     )}
@@ -328,9 +332,9 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                   aria-haspopup="true"
                 >
                   {openDropdown === "about" ? (
-                    <Link href={`/about${city ? `/${city}` : ""}`} >
+                    <MenuLink href={`/about${city ? `/${city}` : ""}`} >
                       About Us
-                    </Link>
+                    </MenuLink>
                   ) : (
                     <h3 className={styles.dropdownCategoryTitle}>
                       About Us
@@ -345,32 +349,32 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                       <p className={styles.dropdownSubCategoryTitle}>
                         Company
                       </p>
-                      <Link key="about-us" href={`/about${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      <MenuLink key="about-us" href={`/about${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         About Us
-                      </Link>
-                      <Link key="contact" href={`/contact${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="contact" href={`/contact${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Contact Us
-                      </Link>
-                      <Link key="instant-quote" href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="instant-quote" href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Instant Quote
-                      </Link>
-                      <Link key="service-areas" href={`/service-areas${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="service-areas" href={`/service-areas${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Service Areas
-                      </Link>
-                      <Link key="blog" href={`/blog${city ? `/location/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="blog" href={`/blog${city ? `/location/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Blog
-                      </Link>
+                      </MenuLink>
                     </li>
                     <li key="financing" role="none">
                       <p className={styles.dropdownSubCategoryTitle}>
                         Financing
                       </p>
-                      <Link key="membership" href={`/membership${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      <MenuLink key="membership" href={`/membership${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Membership
-                      </Link>
-                      <Link key="financing" href={`/financing${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
+                      </MenuLink>
+                      <MenuLink key="financing" href={`/financing${city ? `/${city}` : ""}`} className={styles.dropdownLink} role="menuitem">
                         Financing
-                      </Link>
+                      </MenuLink>
 
                     </li>
                     {aboutMoreItems && (
@@ -379,9 +383,9 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                           More
                         </p>
                         {aboutMoreItems.map((item) => (
-                          <Link key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/about/more/${item.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
+                          <MenuLink key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/about/more/${item.slug.current}${city ? `/${city}` : ""}`) : "#"} className={styles.dropdownLink} role="menuitem">
                             {item.title}
-                          </Link>
+                          </MenuLink>
                         ))}
                       </li>
                     )}
@@ -393,9 +397,9 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
 
             </ul> */}
 
-            <Link href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.aboutButtonBook}>
+            <MenuLink href={`/instant-quote${city ? `/${city}` : ""}`} className={styles.aboutButtonBook}>
               Instant Quote
-            </Link>
+            </MenuLink>
             <BookBtn link={bookLink} />
             <CallBtn number={callNumber} />
           </div>
@@ -430,15 +434,15 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             <span className={styles.offerBannerSep} aria-hidden>
               |
             </span>
-            <Link href={instantQuoteHref} className={styles.offerBannerLink}>
+            <MenuLink href={instantQuoteHref} className={styles.offerBannerLink}>
               Claim This Offer
-            </Link>
+            </MenuLink>
             <span className={styles.offerBannerSep} aria-hidden>
               |
             </span>
-            <Link href="tel:+17202722562" className={styles.offerBannerLink}>
+            <MenuLink href="tel:+17202722562" className={styles.offerBannerLink}>
               Call (720) 272-2562
-            </Link>
+            </MenuLink>
           </div>
         </div>
       </header>
@@ -496,9 +500,9 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
           {expandedMobile.electrician && (
             <div className={styles.mobileSectionBody}>
               {cityItems.map((item) => (
-                <Link key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/${item.slug.current}`) : "#"} className={styles.mobileLink} onClick={() => setMobileMenuOpen(false)}>
+                <MenuLink key={item._id} href={item.slug?.current ? (item.slug.current.startsWith("/") ? item.slug.current : `/${item.slug.current}`) : "#"} className={styles.mobileLink} onClick={() => setMobileMenuOpen(false)}>
                   {item.city}
-                </Link>
+                </MenuLink>
               ))}
             </div>
           )}
@@ -557,7 +561,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                     <div key={subCategory._id} className={styles.mobileSubBlock}>
                       <p className={styles.mobileSubTitle}>{subCategory.title}</p>
                       {(subCategory.services ?? []).map((service, index) => (
-                        <Link
+                        <MenuLink
                           key={`${service._id}-${index}`}
                           href={
                             service.slug?.current
@@ -568,7 +572,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {service.title}
-                        </Link>
+                        </MenuLink>
                       ))}
                     </div>
                   ))}
@@ -597,14 +601,14 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                     {HOLIDAY_LIGHTING_CATEGORY.title}
                   </p>
                   {HOLIDAY_LIGHTING_CATEGORY.services.map((service, index) => (
-                    <Link
+                    <MenuLink
                       key={`${service._id}-${index}`}
                       href="/holidayLighting"
                       className={styles.mobileLink}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {service.title}
-                    </Link>
+                    </MenuLink>
                   ))}
                 </div>
               </div>
@@ -628,60 +632,60 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
               <div className={styles.mobileSectionBody}>
                 <div className={styles.mobileSubBlock}>
                   <p className={styles.mobileSubTitle}>Company</p>
-                  <Link href={`/about${city ? `/${city}` : ""}`} className={styles.mobileLink} onClick={() => setMobileMenuOpen(false)}>
+                  <MenuLink href={`/about${city ? `/${city}` : ""}`} className={styles.mobileLink} onClick={() => setMobileMenuOpen(false)}>
                     About Us
-                  </Link>
-                  <Link
+                  </MenuLink>
+                  <MenuLink
                     href={`/contact${city ? `/${city}` : ""}`}
                     className={styles.mobileLink}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Contact Us
-                  </Link>
-                  <Link
+                  </MenuLink>
+                  <MenuLink
                     href={`/instant-quote${city ? `/${city}` : ""}`}
                     className={styles.mobileLink}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Instant Quote
-                  </Link>
-                  <Link
+                  </MenuLink>
+                  <MenuLink
                     href={`/service-areas${city ? `/${city}` : ""}`}
                     className={styles.mobileLink}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Service Areas
-                  </Link>
-                  <Link
+                  </MenuLink>
+                  <MenuLink
                     href={`/blog${city ? `/location/${city}` : ""}`}
                     className={styles.mobileLink}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Blog
-                  </Link>
+                  </MenuLink>
                 </div>
                 <div className={styles.mobileSubBlock}>
                   <p className={styles.mobileSubTitle}>Financing</p>
-                  <Link
+                  <MenuLink
                     href={`/membership${city ? `/${city}` : ""}`}
                     className={styles.mobileLink}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Membership
-                  </Link>
-                  <Link
+                  </MenuLink>
+                  <MenuLink
                     href={`/financing${city ? `/${city}` : ""}`}
                     className={styles.mobileLink}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Financing
-                  </Link>
+                  </MenuLink>
                 </div>
                 {aboutMoreItems && (
                   <div className={styles.mobileSubBlock}>
                     <p className={styles.mobileSubTitle}>More</p>
                     {aboutMoreItems.map((moreItem) => (
-                      <Link
+                      <MenuLink
                         key={moreItem._id}
                         href={
                           moreItem.slug?.current
@@ -694,7 +698,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         {moreItem.title}
-                      </Link>
+                      </MenuLink>
                     ))}
                   </div>
                 )}
@@ -705,13 +709,13 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
         </div>
 
         <div className={styles.mobileActions}>
-          <Link
+          <MenuLink
             href={`/instant-quote${city ? `/${city}` : ""}`}
             className={styles.mobileCta}
             onClick={() => setMobileMenuOpen(false)}
           >
             Instant Quote
-          </Link>
+          </MenuLink>
           <div className={styles.mobileBtnRow}>
             <BookBtn link={bookLink} />
             <CallBtn number={callNumber} />

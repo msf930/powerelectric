@@ -16,6 +16,15 @@ import { notFound } from "next/navigation";
 import { getBlogPostBySlug, buildBlogPostMetadata } from "../blogPostQueries";
 import Link from "next/link";
 import { servicePageHref } from "../../../lib/servicePaths";
+
+import { generateBlogParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateBlogParams();
+}
+
 const ALL_BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
     _id,
     title,

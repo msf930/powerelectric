@@ -20,6 +20,15 @@ import StickyMobileCall from "../../components/StickyMobileCall";
 import SeoFaqPageJsonLd from "../../components/SeoFaqPageJsonLd";
 import TopLinks from "../../components/TopLinks";
 /** Section order and components mirror `app/page.js`. Pass `city` where supported. */
+
+import { generateCityParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCityParams();
+}
+
 export default async function CityPage({ params }) {
   const { city } = await params;
 

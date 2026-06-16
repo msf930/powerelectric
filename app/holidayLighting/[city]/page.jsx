@@ -9,6 +9,14 @@ import GoogleCarousel from "../../components/GoogleCarousel";
 import HolidayLightingAccordion from "./HolidayLightingAccordion";
 import styles from "./styles.module.css";
 
+import { generateCityParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCityParams();
+}
+
 const PHONE_DISPLAY = "(720) 272-2562";
 const PHONE_HREF = "tel:+17202722562";
 const MAPS_HREF = "https://maps.app.goo.gl/Lw2x8JKXuSi5YrMq9";

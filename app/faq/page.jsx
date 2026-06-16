@@ -12,6 +12,8 @@ import {
 } from "./faqData";
 import { FAQ_PAGE_JSON_LD } from "../components/SeoFaqPageJsonLd";
 
+export const revalidate = 3600;
+
 export const metadata = {
   title: "Electrical & HVAC FAQs | Power Electrical, Heating & Cooling Services",
   description:

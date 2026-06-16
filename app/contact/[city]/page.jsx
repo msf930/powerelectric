@@ -8,6 +8,14 @@ import ContactFormClient from "./ContactFormClient";
 import ContactMapClient from "./ContactMapClient";
 import NavServer from "../../components/Nav/NavServer";
 
+import { generateCityParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCityParams();
+}
+
 const CONTACT_QUERY = `*[_type == "contact"][0]{
     _id,
     accessString,

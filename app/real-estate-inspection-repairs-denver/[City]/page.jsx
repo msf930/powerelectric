@@ -15,6 +15,14 @@ import NavServer from "../../components/Nav/NavServer";
 import ThirdSectionAccordion from "./ThirdSectionAccordion";
 import ClosingCTA from "../../components/ClosingCTA";
 
+import { generateCapitalizedCityParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCapitalizedCityParams();
+}
+
 const CITY_NAME = "Denver";
 const CITY_SLUG = "Denver";
 const HERO_IMAGE = "/homeHero.jpg";

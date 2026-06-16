@@ -24,6 +24,14 @@ const ALL_BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
     image
 }`;
 
+import { generateBlogCityParams } from "../../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateBlogCityParams();
+}
+
 export async function generateMetadata({ params }) {
     const { slug } = await params;
     const data = await getBlogPostBySlug(slug);

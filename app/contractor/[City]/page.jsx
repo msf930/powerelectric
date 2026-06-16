@@ -11,6 +11,14 @@ import Footer from "../../components/Footer";
 import NavServer from "../../components/Nav/NavServer";
 import { getContractorLinks } from "./resolveServiceLinks";
 
+import { generateCapitalizedCityParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCapitalizedCityParams();
+}
+
 const CITY_NAME = "Denver";
 const HERO_IMAGE = "/homeHero.jpg";
 const SECONDARY_IMAGE = "/statsBG.jpg";

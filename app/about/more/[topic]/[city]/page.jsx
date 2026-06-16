@@ -14,6 +14,15 @@ import GoogleCarousel from "../../../../components/GoogleCarousel";
 import FinanceCont from "../../../../components/FinanceCont";
 import LocationCont from "../../../../components/LocationsCont";
 import Footer from "../../../../components/Footer";
+
+import { generateAboutMoreCityParams } from "../../../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateAboutMoreCityParams();
+}
+
 const ABOUT_MORE_QUERY = `*[_type == "aboutMore"][0]{
   "page": *[_type == "aboutMorePage" && slug.current == $slug][0]{
     _id,

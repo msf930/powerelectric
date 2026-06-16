@@ -27,6 +27,14 @@ import { buildServicePageMetadata } from "../../../serviceMetadata";
 import ServiceProtectionPlanCta from "../../../../components/ServiceProtectionPlanCta";
 import { servicePageHref } from "../../../../../lib/servicePaths";
 
+import { generateServiceCityParams } from "../../../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateServiceCityParams();
+}
+
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
   _id,
   title,

@@ -10,6 +10,14 @@ import ClosingCTA from "../../components/ClosingCTA";
 import FinancingAccordion from "../FinancingAccordion";
 import styles from "./styles.module.css";
 
+import { generateCityParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCityParams();
+}
+
 const MOMNT_WIDGET_URL =
   "https://app.momnt.com/widgets/?merchantId=60aa7462-3380-4077-855b-bf116c4235a3&widget=ConsumerLoanApplicationWizard";
 

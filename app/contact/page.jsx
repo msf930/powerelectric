@@ -18,6 +18,8 @@ const CONTACT_QUERY = `*[_type == "contact"][0]{
         slug
     }
 }`;
+
+export const revalidate = 3600;
 const CALL_BUTTON_QUERY = `*[_type == "callButton"][0]{
     _id,
     number

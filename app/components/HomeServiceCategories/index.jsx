@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { client } from "../../../sanity/lib/client";
+import { cachedSanityFetch } from "../../../lib/cachedSanity";
 import styles from "./styles.module.css";
 import { serviceCategoryHref, servicePageHref } from "../../../lib/servicePaths";
 
@@ -73,8 +73,7 @@ function categoryHref(slug, city) {
 export default async function HomeServiceCategories({ city = "" }) {
   let categories = [];
   try {
-    categories = await client.fetch(CATEGORY_QUERY);
-    console.log(categories);
+    categories = await cachedSanityFetch("home-service-categories", CATEGORY_QUERY);
   } catch {
     categories = [];
   }

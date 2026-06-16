@@ -10,6 +10,14 @@ import CategoryForm from "../../components/CategoryForm";
 import styles from "./styles.module.css";
 import StatCont from "../../components/StatCont";
 
+import { generateCityParams } from "../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateCityParams();
+}
+
 const PHONE_DISPLAY = "(720) 272-2562";
 const PHONE_HREF = "tel:+17202722562";
 const ADDRESS = "5650 N Washington St. Unit C-6, Denver, CO 80216";

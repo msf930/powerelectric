@@ -27,6 +27,14 @@ import { color } from "framer-motion";
 import { getPortableTextComponentsCopy } from "./portableTextComponentsCopy";
 import { servicePageHref } from "../../../../lib/servicePaths";
 
+import { generateServiceParams } from "../../../../lib/staticParams";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  return generateServiceParams();
+}
+
 const CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $category][0]{
   _id,
   title,
