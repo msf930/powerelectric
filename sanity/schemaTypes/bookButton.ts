@@ -10,7 +10,7 @@ export const bookButtonType = defineType({
         title: 'Link',
         description: 'The link that will be connected to the book button.  Must start with http:// or https://',
         type: 'string',
-        validation: (rule) => rule.required().regex(/^https?:\/\//),
+       
     }),
   ],
 });

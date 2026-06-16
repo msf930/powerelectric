@@ -101,11 +101,11 @@
     .blogPost {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
+        align-items: stretch;
+        align-self: stretch;
+        flex: 1 1 300px;
         max-width: 300px;
+        justify-content: flex-start;
         padding: 20px;
         gap: 10px;
         border-radius: 10px;
@@ -115,7 +115,8 @@
 
     .blogPostImage {
         width: 100%;
-        height: 100%;
+        height: auto;
+        aspect-ratio: 1;
         object-fit: cover;
         border-radius: 10px;
     }
@@ -128,6 +129,7 @@
     }
 
     .blogPostExcerpt {
+        flex: 1;
         font-size: 16px;
         color: #000000;
     }
@@ -137,8 +139,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
         width: 100%;
-        height: 100%;
         gap: 10px;
     }
 
@@ -152,6 +154,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        margin-top: auto;
         gap: 10px;
         color: var(--primary);
     }
@@ -270,11 +273,11 @@
     .blogPost {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
+        align-items: stretch;
+        align-self: stretch;
+        flex: 1 1 300px;
         max-width: 300px;
+        justify-content: flex-start;
         padding: 20px;
         gap: 10px;
         border-radius: 10px;
@@ -284,7 +287,8 @@
 
     .blogPostImage {
         width: 100%;
-        height: 100%;
+        height: auto;
+        aspect-ratio: 1;
         object-fit: cover;
         border-radius: 10px;
     }
@@ -297,6 +301,7 @@
     }
 
     .blogPostExcerpt {
+        flex: 1;
         font-size: 16px;
         color: #000000;
     }
@@ -306,8 +311,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        flex-wrap: wrap;
         width: 100%;
-        height: 100%;
         gap: 10px;
     }
 
@@ -321,6 +326,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        margin-top: auto;
         gap: 10px;
         color: var(--primary);
     }

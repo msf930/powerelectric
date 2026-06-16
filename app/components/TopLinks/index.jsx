@@ -5,17 +5,17 @@ const TOP_LINKS = [
   {
     label: "Electrical Repair",
     description: "Fast Diagnostics + Same-Day Service",
-    href: "/service/electrical/electrical-repair",
+    href: "/service/electrical/electrical-repair-services-you-can-trust",
   },
   {
     label: "Panel Upgrades",
     description: "Safe, Code-Compliant Upgrades",
-    href: "/service/electrical/panel-upgrades",
+    href: "/service/electrical/electrical-panel-upgrade--replacement-services",
   },
   {
     label: "EV Charger Installation",
     description: "Level 2 Charger + Same-Day Evaluations",
-    href: "/service/electrical/ev-charger-installation",
+    href: "/service/electrical/ev-charger-installation-services",
   },
   {
     label: "Heating Services",
@@ -25,7 +25,7 @@ const TOP_LINKS = [
   {
     label: "Furnace Repair",
     description: "Fast, Reliable Heat Restored",
-    href: "/service/heating/furnace-repair",
+    href: "/service/heating/furnace-repair-services",
   },
   {
     label: "Cooling Services",
@@ -35,7 +35,7 @@ const TOP_LINKS = [
   {
     label: "AC Maintenance",
     description: "Inspections, Tune-Ups & Cleaning",
-    href: "/service/cooling/ac-maintenance",
+    href: "/service/cooling/ac-maintenance-services",
   },
   {
     label: "Membership Plans",

@@ -262,7 +262,7 @@ export default async function ServicePage({ params }) {
                   <h3>{svc.title}</h3>
                 </Link>
                 <Link href={servicePageHref(svc.slug.current)} >
-                  <p>{svc.bookNowSubtext}</p>
+                  <p>{svc.bookNowText}</p>
                 </Link>
                 <div className={styles.relatedServicesItemButtonContainer}>
                   <BookBtn />
