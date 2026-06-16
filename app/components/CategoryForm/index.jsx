@@ -1,7 +1,7 @@
 "use client";
 import styles from "./styles.module.css";
 import { HCaptcha } from "@hcaptcha/react-hcaptcha";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { client } from "../../../sanity/lib/client";
 import { urlFor } from "../../../sanity/sanityImageUrl";
 import Image from "next/image";
@@ -17,6 +17,7 @@ const CONTACT_QUERY = `*[_type == "contact"][0]{
    
 }`;
 export default function CategoryForm() {
+    const captchaRef = useRef(null);
     const onHCaptchaChange = (token) => {
         setValue("h-captcha-response", token);
     };

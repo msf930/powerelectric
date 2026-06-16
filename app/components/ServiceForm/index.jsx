@@ -23,9 +23,7 @@ export default function ServiceForm({ serviceName }) {
     const [data, setData] = useState(null);
 
     const onHCaptchaChange = (token) => {
-        if (captchaRef.current) {
-            captchaRef.current.value = token ?? "";
-        }
+        setValue("h-captcha-response", token);
     };
 
     useEffect(() => {
@@ -62,7 +60,7 @@ export default function ServiceForm({ serviceName }) {
                         <input
                             type="hidden"
                             name="access_key"
-                            value={contactData?.accessString ?? ""}
+                            value={contactData?.accessString ?? "d6ffcb9a-65d9-4a10-85a8-51ed76bcd533"}
                         />
                         <input
                             ref={captchaRef}
@@ -114,7 +112,6 @@ export default function ServiceForm({ serviceName }) {
                                 sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
                                 reCaptchaCompat={false}
                                 onVerify={onHCaptchaChange}
-                                theme="light"
                             />
                         </div>
                         <button className={styles.homeFormContSubmitButton} type="submit">

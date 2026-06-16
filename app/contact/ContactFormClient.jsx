@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { HCaptcha } from "@hcaptcha/react-hcaptcha";
 import styles from "./styles.module.css";
+import { useRef } from "react";
 
 function formatPhoneDisplay(number) {
   if (!number) return "";
@@ -12,12 +13,10 @@ function formatPhoneDisplay(number) {
 }
 
 export default function ContactFormClient({ accessKey, phoneNumber }) {
-  const [captchaToken, setCaptchaToken] = useState("");
-
-  const handleCaptchaVerify = (token) => {
-    setCaptchaToken(token || "");
+  const captchaRef = useRef(null);
+  const onHCaptchaChange = (token) => {
+    setValue("h-captcha-response", token);
   };
-
   return (
     <div className={styles.homeFormCont}>
       <form action="https://api.web3forms.com/submit" method="POST">
@@ -51,13 +50,8 @@ export default function ContactFormClient({ accessKey, phoneNumber }) {
               </a>
             )}
           </div>
-          <input type="hidden" name="access_key" value={accessKey ?? ""} />
-          <textarea
-            name="h-captcha-response"
-            value={captchaToken}
-            readOnly
-            style={{ display: "none" }}
-          />
+          <input type="hidden" name="access_key" value={accessKey ?? "d6ffcb9a-65d9-4a10-85a8-51ed76bcd533"} />
+          <input ref={captchaRef} type="hidden" name="h-captcha-response" defaultValue="" />
           <div className={styles.homeFormContInputCont}>
             <p className={styles.homeFormContInputContLabel}>Name *</p>
             <input type="text" required name="name" />
@@ -95,11 +89,10 @@ export default function ContactFormClient({ accessKey, phoneNumber }) {
             </div>
           </div>
           <div className={styles.hCaptchaCont}>
-            <HCaptcha
+          <HCaptcha
               sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
               reCaptchaCompat={false}
-              onVerify={handleCaptchaVerify}
-              theme="light"
+              onVerify={onHCaptchaChange}
             />
           </div>
           <button

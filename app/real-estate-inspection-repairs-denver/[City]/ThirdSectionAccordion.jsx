@@ -23,7 +23,7 @@ export default function ThirdSectionAccordion({ thirdItems }) {
   return (
     <div className={styles.thirdSectionItemsContainer}>
       {thirdItems?.map((item) => (
-        <div key={item._id}>
+        <div key={item._id} className={"w-[50vw]"}>
           <button
             onClick={() => toggleContent(item._id)}
             className={styles.thirdSectionItemButton}
@@ -40,8 +40,8 @@ export default function ThirdSectionAccordion({ thirdItems }) {
           <div
             className={
               selectedItem !== item._id || hideContent
-                ? "h-0 opacity-0 overflow-hidden transition-all duration-300"
-                : "h-auto opacity-100 overflow-visible transition-all duration-300 w-[80%]"
+                ? "h-0 w-[50vw] opacity-0 overflow-hidden transition-all duration-300"
+                : "h-auto w-[50vw] opacity-100 overflow-visible transition-all duration-300 w-[80%]"
             }
           >
             <ul className={styles.thirdSectionItemList}>

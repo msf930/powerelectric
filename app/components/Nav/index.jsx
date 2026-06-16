@@ -92,8 +92,6 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
     }
   };
 
-  const instantQuoteHref = `/instant-quote${city ? `/${city}` : ""}`;
-
   return (
     <>
       <header className={styles.siteHeader}>
@@ -434,7 +432,7 @@ export default function Nav({ dropdownItems = [], city = "", aboutMoreItems = []
             <span className={styles.offerBannerSep} aria-hidden>
               |
             </span>
-            <MenuLink href={instantQuoteHref} className={styles.offerBannerLink}>
+            <MenuLink href="/contact" className={styles.offerBannerLink}>
               Claim This Offer
             </MenuLink>
             <span className={styles.offerBannerSep} aria-hidden>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { HCaptcha } from "@hcaptcha/react-hcaptcha";
 import { client } from "../../sanity/lib/client";
 import styles from "./styles.module.css";
@@ -20,7 +20,7 @@ const HEAR_ABOUT_OPTIONS = [
 export default function MembershipSignupForm() {
   const [accessKey, setAccessKey] = useState("");
   const [captchaToken, setCaptchaToken] = useState("");
-
+  const captchaRef = useRef(null);
   useEffect(() => {
     client.fetch(CONTACT_QUERY).then((data) => {
       if (data?.accessString) setAccessKey(data.accessString);
@@ -28,7 +28,7 @@ export default function MembershipSignupForm() {
   }, []);
 
   const onHCaptchaChange = (token) => {
-    setCaptchaToken(token ?? "");
+    setValue("h-captcha-response", token);
   };
 
   return (
@@ -38,12 +38,9 @@ export default function MembershipSignupForm() {
       action="https://api.web3forms.com/submit"
       method="POST"
     >
-      <input type="hidden" name="access_key" value={accessKey} />
-      <input
-        type="hidden"
-        name="subject"
-        value="Membership Signup Application — Power Electrical"
-      />
+      <input type="hidden" name="access_key" value={accessKey ?? "d6ffcb9a-65d9-4a10-85a8-51ed76bcd533"} />
+      <input ref={captchaRef} type="hidden" name="h-captcha-response" defaultValue="" />
+
       <input type="hidden" name="form_type" value="Membership Signup" />
 
       <div className={styles.formRow}>

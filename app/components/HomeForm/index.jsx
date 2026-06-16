@@ -1,26 +1,41 @@
 "use client";
 
 import styles from "./styles.module.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { urlFor } from "../../../sanity/sanityImageUrl";
 import Image from "next/image";
 import Link from "next/link";
 import BookBtn from "../BookBtn";
 import LazyHCaptcha from "../LazyHCaptcha";
 import { servicePageHref } from "../../../lib/servicePaths";
+import { client } from "../../../sanity/lib/client";
+import { HCaptcha } from "@hcaptcha/react-hcaptcha";
 
 const CAROUSEL_INTERVAL_MS = 4000;
-
+const CONTACT_QUERY = `*[_type == "contact"][0]{
+  _id,
+  accessString
+}`;
 export default function HomeForm({
   city = "",
   contactData = null,
   bookLink = null,
 }) {
-  const [captchaToken, setCaptchaToken] = useState("");
+  const captchaRef = useRef(null);
   const [carouselIndex, setCarouselIndex] = useState(0);
 
   const serviceItems = contactData?.serviceItems ?? [];
 
+  const onHCaptchaChange = (token) => {
+    setValue("h-captcha-response", token);
+  };
+  useEffect(() => {
+    const fetchContact = async () => {
+      const contact = await client.fetch(CONTACT_QUERY);
+      setContactData(contact);
+    };
+    fetchContact();
+  }, []);
   useEffect(() => {
     if (serviceItems.length <= 1) return;
     const id = setInterval(
@@ -43,8 +58,8 @@ export default function HomeForm({
         <form action="https://api.web3forms.com/submit" method="POST">
           <div className={styles.homeFormContInner}>
             <h2 className={styles.homeFormContTitle}>Get In Touch</h2>
-            <input type="hidden" name="access_key" value={contactData?.accessString ?? ""} />
-            <input type="hidden" name="h-captcha-response" value={captchaToken} />
+            <input type="hidden" name="access_key" value={contactData?.accessString ?? "d6ffcb9a-65d9-4a10-85a8-51ed76bcd533"} />
+            <input ref={captchaRef} type="hidden" name="h-captcha-response" defaultValue="" />
             <div className={styles.homeFormContInputCont}>
               <p className={styles.homeFormContInputContLabel}>Name *</p>
               <input type="text" required name="name" />
@@ -73,9 +88,10 @@ export default function HomeForm({
                 <p className={styles.homeFormContCheckContLabel}>I am a previous client</p>
               </div>
             </div>
-            <LazyHCaptcha
-              className={styles.hCaptchaCont}
-              onVerify={setCaptchaToken}
+            <HCaptcha
+              sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+              reCaptchaCompat={false}
+              onVerify={onHCaptchaChange}
             />
             <button className={styles.homeFormContSubmitButton} type="submit">
               Submit

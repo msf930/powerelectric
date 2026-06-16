@@ -23,7 +23,7 @@ export default function ThirdSectionAccordion({ thirdItems }) {
   return (
     <div className={styles.thirdSectionItemsContainer}>
       {thirdItems?.map((item) => (
-        <div key={item._id}>
+        <div key={item._id} className={"w-[50vw]"}>
           <button
             onClick={() => toggleContent(item._id)}
             className={styles.thirdSectionItemButton}

@@ -100,7 +100,7 @@ export default function OfferPopup() {
         </p>
 
         <div className={styles.actions}>
-          <Link href="/instant-quote" className={styles.primaryCta} onClick={close}>
+          <Link href="/contact" className={styles.primaryCta} onClick={close}>
             Claim This Offer
           </Link>
           <Link href="/contact" className={styles.secondaryCta} onClick={close}>
