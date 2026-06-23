@@ -15,7 +15,7 @@ import {
     excerptToMaxWords,
 } from "./blogPostQueries";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export default async function BlogPage({ searchParams }) {
     const sp = await searchParams;

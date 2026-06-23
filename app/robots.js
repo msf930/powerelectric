@@ -1,6 +1,6 @@
 const SITE_URL = "https://www.powerelectricalservices.net";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 const SEARCH_ENGINE_BOTS = ["Googlebot", "Bingbot", "Slurp", "DuckDuckBot"];
 

@@ -11,7 +11,7 @@ import FinancingAccordion from "./FinancingAccordion";
 import styles from "./styles.module.css";
 
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 const MOMNT_WIDGET_URL =
   "https://app.momnt.com/widgets/?merchantId=60aa7462-3380-4077-855b-bf116c4235a3&widget=ConsumerLoanApplicationWizard";

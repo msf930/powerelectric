@@ -26,7 +26,7 @@ const ALL_BLOG_POSTS_QUERY = `*[_type == "blogPost"] | order(date desc) {
 
 import { generateBlogCityParams } from "../../../../lib/staticParams";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return generateBlogCityParams();

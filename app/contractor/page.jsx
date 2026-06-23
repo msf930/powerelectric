@@ -12,7 +12,7 @@ import NavServer from "../components/Nav/NavServer";
 import { getContractorLinks } from "./resolveServiceLinks";
 
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 const CITY_NAME = "Denver";
 const CITY_SLUG = "Denver";

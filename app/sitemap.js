@@ -3,7 +3,7 @@ import { normalizeSlugPath } from "../lib/servicePaths";
 
 const SITE_URL = "https://www.powerelectricalservices.net";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 const STATIC_PATHS = [
   { path: "/", priority: 1.0 },

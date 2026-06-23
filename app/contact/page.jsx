@@ -19,7 +19,7 @@ const CONTACT_QUERY = `*[_type == "contact"][0]{
     }
 }`;
 
-export const revalidate = 3600;
+export const revalidate = false;
 const CALL_BUTTON_QUERY = `*[_type == "callButton"][0]{
     _id,
     number

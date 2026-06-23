@@ -24,7 +24,7 @@ const GoogleCarousel = dynamic(() => import("./components/GoogleCarousel"));
 const HomeForm = dynamic(() => import("./components/HomeForm"));
 const LocationsCont = dynamic(() => import("./components/LocationsCont"));
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export default async function Home() {
   const {

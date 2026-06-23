@@ -10,7 +10,7 @@ import HolidayLightingAccordion from "./HolidayLightingAccordion";
 import styles from "./styles.module.css";
 
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 const PHONE_DISPLAY = "(720) 272-2562";
 const PHONE_HREF = "tel:+17202722562";

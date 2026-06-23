@@ -13,7 +13,7 @@ import { getContractorLinks } from "./resolveServiceLinks";
 
 import { generateCapitalizedCityParams } from "../../../lib/staticParams";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return generateCapitalizedCityParams();

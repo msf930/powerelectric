@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import styles from "./styles.module.css";
 import InstantQuote from "./InstantQuote";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export default function InstantQuotePage() {
   return (

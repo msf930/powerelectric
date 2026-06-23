@@ -84,7 +84,7 @@ export default function GoogleCarousel({ widget = null, reviews: reviewsProp = [
           <button
             type="button"
             onClick={() => setCurrent((c) => c - 1)}
-            className={`absolute ${visibleCount === VISIBLE_COUNT_DESKTOP ? "left-[50px]" : "left-[0px]"} top-1/3 cursor-pointer z-10`}
+            className={`absolute ${visibleCount === VISIBLE_COUNT_DESKTOP ? "left-[50px]" : "left-0"} top-1/3 cursor-pointer z-10`}
             aria-label="Show previous review"
           >
             <SlArrowLeft className="w-10 h-10" />
@@ -92,7 +92,7 @@ export default function GoogleCarousel({ widget = null, reviews: reviewsProp = [
           <button
             type="button"
             onClick={() => setCurrent((c) => c + 1)}
-            className={`absolute ${visibleCount === VISIBLE_COUNT_DESKTOP ? "right-[50px]" : "right-[0px]"} top-1/3 cursor-pointer z-10`}
+            className={`absolute ${visibleCount === VISIBLE_COUNT_DESKTOP ? "right-[50px]" : "right-0"} top-1/3 cursor-pointer z-10`}
             aria-label="Show next review"
           >
             <SlArrowRight className="w-10 h-10" />

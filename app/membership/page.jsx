@@ -10,7 +10,7 @@ import MembershipSignupForm from "./MembershipSignupForm";
 import styles from "./styles.module.css";
 
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 const COMPARISON_ROWS = [
   ["Monthly Price", "$14/month", "$24/month", "$39/month"],

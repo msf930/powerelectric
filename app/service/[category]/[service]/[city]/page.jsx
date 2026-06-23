@@ -29,7 +29,7 @@ import { servicePageHref } from "../../../../../lib/servicePaths";
 
 import { generateServiceCityParams } from "../../../../../lib/staticParams";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return generateServiceCityParams();

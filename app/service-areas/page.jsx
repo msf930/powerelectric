@@ -15,7 +15,7 @@ const LOCATIONS_QUERY = `*[_type == "locations"]{
     cities
 }`;
 
-export const revalidate = 3600;
+export const revalidate = false;
 export default async function ServiceAreasPage() {
     const serviceAreas = await client.fetch(LOCATIONS_QUERY);
     return (

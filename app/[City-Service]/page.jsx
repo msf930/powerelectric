@@ -43,7 +43,7 @@ const SERVICE_QUERY = `*[_type == "newServicePage" && slug.current == $slug][0]{
 
 import { generateCityServiceParams } from "../../lib/staticParams";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return generateCityServiceParams();

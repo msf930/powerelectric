@@ -1,4 +1,3 @@
-
 import { client } from "../../../sanity/lib/client";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -24,7 +23,7 @@ import ServiceProtectionPlanCta from "../../components/ServiceProtectionPlanCta"
 
 import { generateCategoryParams } from "../../../lib/staticParams";
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 export async function generateStaticParams() {
   return generateCategoryParams();

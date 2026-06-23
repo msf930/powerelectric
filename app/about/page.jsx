@@ -11,7 +11,7 @@ import styles from "./styles.module.css";
 import StatCont from "../components/StatCont";
 
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 const PHONE_DISPLAY = "(720) 272-2562";
 const PHONE_HREF = "tel:+17202722562";

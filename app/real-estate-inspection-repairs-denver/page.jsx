@@ -16,7 +16,7 @@ import ThirdSectionAccordion from "./ThirdSectionAccordion";
 import ClosingCTA from "../components/ClosingCTA";
 
 
-export const revalidate = 3600;
+export const revalidate = false;
 
 const CITY_NAME = "Denver";
 const CITY_SLUG = "Denver";
