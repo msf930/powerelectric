@@ -1,5 +1,6 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import { getSanityRevalidationTargets } from "../../../lib/sanityRevalidate";
+import { resolveSanityWebhookDocuments } from "../../../lib/resolveSanityWebhookDocuments";
 
 function isAuthorized(request) {
   const secret = process.env.REVALIDATE_SECRET;
@@ -10,6 +11,25 @@ function isAuthorized(request) {
 
   const querySecret = request.nextUrl.searchParams.get("secret");
   return querySecret === secret;
+}
+
+function applyRevalidation(tags, paths) {
+  for (const tag of tags) {
+    revalidateTag(tag);
+  }
+
+  for (const path of paths) {
+    if (path === "/") {
+      revalidatePath(path, "layout");
+    } else {
+      revalidatePath(path);
+    }
+  }
+
+  if (tags.includes("sitemap-data")) {
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/robots.txt");
+  }
 }
 
 export async function POST(request) {
@@ -27,32 +47,41 @@ export async function POST(request) {
   const manualPath = request.nextUrl.searchParams.get("path");
   const manualTag = request.nextUrl.searchParams.get("tag");
 
-  const { tags, paths } = getSanityRevalidationTargets(body);
+  const documents = await resolveSanityWebhookDocuments(body);
+  const tags = new Set();
+  const paths = new Set();
+  const types = new Set();
 
-  if (manualTag) tags.push(manualTag);
-  if (manualPath) paths.push(manualPath);
-
-  const uniqueTags = [...new Set(tags)];
-  const uniquePaths = [...new Set(paths)];
-
-  for (const tag of uniqueTags) {
-    revalidateTag(tag);
+  for (const document of documents) {
+    types.add(document._type);
+    const targets = getSanityRevalidationTargets(document);
+    targets.tags.forEach((tag) => tags.add(tag));
+    targets.paths.forEach((path) => paths.add(path));
   }
 
-  for (const path of uniquePaths) {
-    if (path === "/" || path === "/service") {
-      revalidatePath(path, "layout");
-    } else {
-      revalidatePath(path);
-    }
+  if (manualTag) tags.add(manualTag);
+  if (manualPath) paths.add(manualPath);
+
+  const uniqueTags = [...tags];
+  const uniquePaths = [...paths];
+
+  if (uniqueTags.length === 0 && uniquePaths.length === 0) {
+    return Response.json(
+      {
+        revalidated: false,
+        message:
+          "No documents resolved. Use a Sanity projection with _type and slug, or send ids.created/updated.",
+      },
+      { status: 400 }
+    );
   }
 
-  revalidatePath("/sitemap.xml");
-  revalidatePath("/robots.txt");
+  applyRevalidation(uniqueTags, uniquePaths);
 
   return Response.json({
     revalidated: true,
-    documentType: body?._type ?? null,
+    documentCount: documents.length,
+    documentTypes: [...types],
     tags: uniqueTags,
     paths: uniquePaths,
   });
