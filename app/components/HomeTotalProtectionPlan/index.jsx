@@ -7,8 +7,8 @@ const BENEFITS = [
   "Keep systems running safely",
 ];
 
-export default function HomeTotalProtectionPlan({ city = "" }) {
-  const plansHref = city ? `/membership/${city}` : "/membership";
+export default function HomeTotalProtectionPlan() {
+  const plansHref = "/membership";
 
   return (
     <section

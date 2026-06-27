@@ -20,25 +20,7 @@ const STATIC_PATHS = [
   { path: "/instant-quote", priority: 0.7 },
 ];
 
-const CITY_PATH_PREFIXES = [
-  "/location",
-  "/about",
-  "/contact",
-  "/membership",
-  "/financing",
-  "/instant-quote",
-  "/real-estate-inspection-repairs-denver",
-  "/contractor",
-  "/holidayLighting",
-  "/service-areas",
-  "/blog/location",
-];
-
 const SITEMAP_DATA_QUERY = `{
-  "cities": *[_type == "locations"]->{
-    "slug": slug.current,
-    "_updatedAt": _updatedAt
-  },
   "categories": *[_type == "serviceCategory"]{
     "slug": slug.current,
     "_updatedAt": _updatedAt
@@ -82,7 +64,6 @@ function parseServiceSlug(slug) {
 
 export default async function sitemap() {
   let data = {
-    cities: [],
     categories: [],
     services: [],
     newServicePages: [],
@@ -110,25 +91,10 @@ export default async function sitemap() {
     add(path, null, priority);
   }
 
-  const cities = (data.cities || []).filter((c) => c?.slug);
-
-  for (const city of cities) {
-    for (const prefix of CITY_PATH_PREFIXES) {
-      add(`${prefix}/${city.slug}`, city._updatedAt, 0.6);
-    }
-  }
-
   for (const category of data.categories || []) {
     if (!category?.slug) continue;
     const categorySlug = normalizeSlugPath(category.slug);
     add(`/service/${categorySlug}`, category._updatedAt, 0.75);
-    for (const city of cities) {
-      add(
-        `/service/${categorySlug}/service-area/${city.slug}`,
-        category._updatedAt || city._updatedAt,
-        0.6
-      );
-    }
   }
 
   for (const service of data.services || []) {
@@ -138,14 +104,6 @@ export default async function sitemap() {
 
     const { category, service: serviceSlug } = parsed;
     add(`/service/${category}/${serviceSlug}`, service._updatedAt, 0.8);
-
-    for (const city of cities) {
-      add(
-        `/service/${category}/${serviceSlug}/${city.slug}`,
-        service._updatedAt,
-        0.65
-      );
-    }
   }
 
   for (const page of data.newServicePages || []) {
@@ -158,17 +116,11 @@ export default async function sitemap() {
     if (!post?.slug) continue;
     const lastMod = post.date || post._updatedAt;
     add(`/blog/${post.slug}`, lastMod, 0.7, "monthly");
-    for (const city of cities) {
-      add(`/blog/${post.slug}/${city.slug}`, lastMod, 0.6, "monthly");
-    }
   }
 
   for (const page of data.aboutMorePages || []) {
     if (!page?.slug) continue;
     add(`/about/more/${page.slug}`, page._updatedAt, 0.5);
-    for (const city of cities) {
-      add(`/about/more/${page.slug}/${city.slug}`, page._updatedAt, 0.5);
-    }
   }
 
   return entries;

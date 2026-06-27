@@ -18,7 +18,7 @@ const VALUE_ITEM_CONTAINER_QUERY = `*[_type == "valueItemContainer"][0]{
         pageLink
     }
 }`;
-export default function ValueCont({ city = "" }) {
+export default function ValueCont() {
     const [valueItems, setValueItems] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
@@ -35,7 +35,7 @@ export default function ValueCont({ city = "" }) {
             {valueItems?.valueItems && valueItems.valueItems.length > 0 && (
                 <div className={styles.valueContInner}>
                     {(valueItems.valueItems ?? []).map((valueItem, index) => (
-                        <Link href={valueItem?.pageLink === 1 ? `/contact${city ? `/${city}` : ""}` : valueItem?.pageLink === 2 ? `/about${city ? `/${city}` : ""}` : valueItem?.pageLink === 3 ? `/financing${city ? `/${city}` : ""}` : `/membership${city ? `/${city}` : ""}`} key={index} className={styles.valueItem}>
+                        <Link href={valueItem?.pageLink === 1 ? "/contact" : valueItem?.pageLink === 2 ? "/about" : valueItem?.pageLink === 3 ? "/financing" : "/membership"} key={index} className={styles.valueItem}>
                             {valueItem.icon?.asset?.url && (
                                 <Image src={valueItem.icon.asset.url} alt={valueItem.title} width={65} height={65} />
                             )}

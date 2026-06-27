@@ -27,7 +27,6 @@ const SERVICE_AREAS_NEW = [
 ];
 
 export default function LocationsCont({
-  city = "",
   bookLink = null,
   callNumber = null,
 }) {
@@ -48,18 +47,17 @@ export default function LocationsCont({
         <h2 className={styles.locationsContTitle}>Areas we Serve</h2>
         <div className={styles.locationsContList}>
           {SERVICE_AREAS_NEW.map((location) => (
-            <Link
+            <span
               key={location}
-              href={`/location/${location.replace(/\s+/g, "-") || ""}`}
               className={styles.locationsContItemContentItem}
             >
               <FaMapMarkerAlt aria-hidden />
               {location}
-            </Link>
+            </span>
           ))}
         </div>
         <Link
-          href={`/service-areas/${city && `${city}`}`}
+          href="/service-areas"
           className={styles.locationsContItemContentLink}
         >
           See All Locations

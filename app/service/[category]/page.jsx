@@ -82,7 +82,7 @@ export default async function CategoryPage({ params }) {
       <ServiceMenuCategory slug={category} />
       <LocationsCont />
       <InfoContCategory />
-      <ValueCont city={""} />
+      <ValueCont />
       <GoogleCarousel />
       <ProcessCont category={data.title} />
       <FinanceCont />

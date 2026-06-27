@@ -35,7 +35,7 @@ export default async function ContactPage() {
 
   return (
     <>
-    <NavServer city={""} />
+    <NavServer />
       <div className={styles.homeFormContOuter}>
         <ContactFormClient accessKey={accessKey} phoneNumber={phoneNumber} />
         <div className={styles.contactPageRightContainer}>

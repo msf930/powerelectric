@@ -26,7 +26,7 @@ export function getBlogPostBySlug(slug) {
     return cachedSanityFetch(`blog-post-${slug}`, BLOG_POST_QUERY, { slug });
 }
 
-// --- Blog index & /blog/location/[city] listing (paginated, category filter) ---
+// --- Blog index listing (paginated, category filter) ---
 
 export const BLOG_LIST_PAGE_SIZE = 6;
 

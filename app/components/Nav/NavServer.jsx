@@ -2,7 +2,6 @@ import { getLayoutNavData } from "../../../lib/navData";
 import Nav from "./index.jsx";
 
 export default async function NavServer({
-  city,
   bookLink: bookLinkProp,
   callNumber: callNumberProp,
 }) {
@@ -17,7 +16,6 @@ export default async function NavServer({
   return (
     <Nav
       dropdownItems={dropdownItems}
-      city={city}
       aboutMoreItems={aboutMoreItems}
       cityItems={cityItems}
       bookLink={bookLink}

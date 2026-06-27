@@ -17,16 +17,16 @@ function normalizePath(path) {
   return (path || "").replace(/^\//, "").replace(/\/$/, "");
 }
 
-function serviceHref(pathSegment, citySlug) {
+function serviceHref(pathSegment) {
   const p = normalizePath(pathSegment);
-  return `/service/${p}/${citySlug}`;
+  return `/service/${p}`;
 }
 
 /**
  * Resolves internal links for the contractor page. Prefer live Sanity matches by title/slug;
  * fall back to FALLBACK_PATHS when no document matches (e.g. services not yet published).
  */
-export async function getContractorLinks(citySlug = "Denver") {
+export async function getContractorLinks() {
   const services = await client.fetch(
     `*[_type == "service"]{ title, "path": slug.current }`
   );
@@ -75,14 +75,14 @@ export async function getContractorLinks(citySlug = "Denver") {
   };
 
   return {
-    panelUpgrades: serviceHref(path.panelUpgrades, citySlug),
-    wiringRewiring: serviceHref(path.wiringRewiring, citySlug),
-    electricalRepair: serviceHref(path.electricalRepair, citySlug),
-    hvacInstallation: serviceHref(path.hvacInstallation, citySlug),
-    codeCorrections: serviceHref(path.codeCorrections, citySlug),
-    troubleshooting: serviceHref(path.troubleshooting, citySlug),
-    about: `/about/${citySlug}`,
-    contact: `/contact/${citySlug}`,
+    panelUpgrades: serviceHref(path.panelUpgrades),
+    wiringRewiring: serviceHref(path.wiringRewiring),
+    electricalRepair: serviceHref(path.electricalRepair),
+    hvacInstallation: serviceHref(path.hvacInstallation),
+    codeCorrections: serviceHref(path.codeCorrections),
+    troubleshooting: serviceHref(path.troubleshooting),
+    about: "/about",
+    contact: "/contact",
     inspectionRepairs: "/real-estate-inspection-repairs-denver",
   };
 }

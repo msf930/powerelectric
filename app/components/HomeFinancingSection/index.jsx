@@ -4,8 +4,8 @@ import styles from "./styles.module.css";
 const MOMNT_WIDGET_URL =
   "https://app.momnt.com/widgets/?merchantId=60aa7462-3380-4077-855b-bf116c4235a3&widget=ConsumerLoanApplicationWizard";
 
-export default function HomeFinancingSection({ city = "" }) {
-  const financingHref = city ? `/financing/${city}` : "/financing";
+export default function HomeFinancingSection() {
+  const financingHref = "/financing";
 
   return (
     <section className={styles.section} aria-labelledby="financing-home-heading">

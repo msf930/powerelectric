@@ -206,7 +206,7 @@ export default function RealEstatePage() {
         </div>
       </section>
 
-      <ValueCont city={CITY_NAME} />
+      <ValueCont />
 
       <section className={styles.secondarySection}>
         <div className={styles.secondarySectionInnerContainer}>
@@ -397,7 +397,7 @@ export default function RealEstatePage() {
     
 
       <GoogleCarousel />
-      <FinanceCont city={CITY_NAME} />
+      <FinanceCont />
 
       <section className={styles.extraSection}>
         <div className={styles.extraSectionInner}>
@@ -427,7 +427,7 @@ export default function RealEstatePage() {
         </div>
       </section>
 
-      <LocationCont city={CITY_NAME} />
+      <LocationCont />
 
       <section className={`${styles.extraSection} ${styles.extraSectionAlt}`}>
         <div className={styles.extraSectionInner}>

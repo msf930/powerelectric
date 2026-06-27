@@ -28,8 +28,8 @@ const PLANS = [
   },
 ];
 
-export default function HomeMembership({ city = "" }) {
-  const plansHref = city ? `/membership/${city}` : "/membership";
+export default function HomeMembership() {
+  const plansHref = "/membership";
 
   return (
     <section className={styles.section} aria-labelledby="membership-heading">

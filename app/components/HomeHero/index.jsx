@@ -5,27 +5,14 @@ import Link from "next/link";
 import BookBtn from "../BookBtn";
 import CallBtn from "../CallBtn";
 import homeHeroImage from "../../../public/homeHero.jpg";
-function getHeroLinks(city) {
-  const service = (category, serviceSlug) =>
-    city
-      ? `/service/${category}/${serviceSlug}/${city}`
-      : `/service/${category}/${serviceSlug}`;
-  const category = (categorySlug) =>
-    city
-      ? `/service/${categorySlug}/service-area/${city}`
-      : `/service/${categorySlug}`;
 
-  return {
-    noPower: category("electrical"),
-    noHeat: category("heating"),
-    noCooling: category("cooling"),
-  };
-}
+const HERO_LINKS = {
+  noPower: "/service/electrical",
+  noHeat: "/service/heating",
+  noCooling: "/service/cooling",
+};
 
-export default function HomeHero({ city, widget, bookLink, callNumber }) {
-  const cityLabel = city ? city.replace(/-/g, " ") : "";
-  const links = getHeroLinks(city);
-
+export default function HomeHero({ widget, bookLink, callNumber }) {
   return (
     <div className={styles.hero}>
       <div className={styles.heroImage}>
@@ -47,25 +34,20 @@ export default function HomeHero({ city, widget, bookLink, callNumber }) {
             No runaround. No waiting on two different companies. Just fast, honest work from a family-owned team backed by 20+ years in the trade.
             Serving Thornton, Brighton, Denver, Northglenn, Westminster, Broomfield, Commerce City, Arvada, Erie, and the surrounding Denver metro area.
           </p>
-          {cityLabel ? (
-            <p className={styles.heroDescription}>
-              Serving {cityLabel} and surrounding communities.
-            </p>
-          ) : null}
 
           <ul className={styles.quickLinks} aria-label="Common problems">
             <li>
-              <Link href={links.noPower} className={styles.quickLink}>
+              <Link href={HERO_LINKS.noPower} className={styles.quickLink}>
                 No power
               </Link>
             </li>
             <li>
-              <Link href={links.noHeat} className={styles.quickLink}>
+              <Link href={HERO_LINKS.noHeat} className={styles.quickLink}>
                 No heat
               </Link>
             </li>
             <li>
-              <Link href={links.noCooling} className={styles.quickLink}>
+              <Link href={HERO_LINKS.noCooling} className={styles.quickLink}>
                 No cooling
               </Link>
             </li>

@@ -28,10 +28,7 @@ const SERVICE_CATEGORIES_QUERY = `*[_type == "allServices"]{
       }
   }
 }`;
-export default async function ServiceMenuHome({city}) {
-  const params = {
-    city: city,
-  }
+export default async function ServiceMenuHome() {
   const serviceCategorys = await client.fetch(SERVICE_CATEGORIES_QUERY);
   const serviceCategories = serviceCategorys[0].allServices;
   
@@ -44,12 +41,12 @@ export default async function ServiceMenuHome({city}) {
                     <Image src={urlFor(serviceCategory.icon).url()} alt={serviceCategory.title} fill objectFit="cover"  />
                 </div>
             </div>
-          <Link href={serviceCategoryHref(serviceCategory.slug.current, city)} className={styles.serviceCategoryTitle}>{serviceCategory.title}</Link>
+          <Link href={serviceCategoryHref(serviceCategory.slug.current)} className={styles.serviceCategoryTitle}>{serviceCategory.title}</Link>
           {serviceCategory.subCategories.map((subCategory) => (
             subCategory.services.map((service, index) => (
               <div key={`${service._id}-${index}`}>
                 <div className={styles.serviceText}>
-                  <Link href={servicePageHref(service.slug.current, city)} className={styles.serviceTitle}>{service.title}</Link>
+                  <Link href={servicePageHref(service.slug.current)} className={styles.serviceTitle}>{service.title}</Link>
                   </div>
                 </div>  
               ))

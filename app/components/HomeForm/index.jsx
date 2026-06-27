@@ -17,7 +17,6 @@ const CONTACT_QUERY = `*[_type == "contact"][0]{
   accessString
 }`;
 export default function HomeForm({
-  city = "",
   contactData = null,
   bookLink = null,
 }) {
@@ -119,7 +118,7 @@ export default function HomeForm({
                 >
                   {service?.imagePrimary && (
                     <div className={styles.homeFormCarouselImageCont}>
-                      <Link href={servicePageHref(service.slug.current, city)}>
+                      <Link href={servicePageHref(service.slug.current)}>
                         <Image
                           src={urlFor(service.imagePrimary).url()}
                           alt={service.title ?? ""}
@@ -134,7 +133,7 @@ export default function HomeForm({
                   {service.bookNowText && (
                     <div className={styles.homeFormCarouselImageButtonCont}>
                       <Link
-                        href={servicePageHref(service.slug.current, city)}
+                        href={servicePageHref(service.slug.current)}
                         className={styles.homeFormCarouselServiceTitle}
                       >
                         {service.bookNowText}
@@ -143,7 +142,7 @@ export default function HomeForm({
                   )}
                   <div className={styles.homeFormCarouselImageButtonCont}>
                     <Link
-                      href={servicePageHref(service.slug.current, city)}
+                      href={servicePageHref(service.slug.current)}
                       className={styles.homeFormCarouselServiceButton}
                     >
                       View Service

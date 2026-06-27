@@ -66,11 +66,11 @@ const BLOCKS = [
   // },
 ];
 
-function categoryHref(slug, city) {
-  return serviceCategoryHref(slug, city);
+function categoryHref(slug) {
+  return serviceCategoryHref(slug);
 }
 
-export default async function HomeServiceCategories({ city = "" }) {
+export default async function HomeServiceCategories() {
   let categories = [];
   try {
     categories = await cachedSanityFetch("home-service-categories", CATEGORY_QUERY);
@@ -84,7 +84,7 @@ export default async function HomeServiceCategories({ city = "" }) {
       key: block.slug.current,
       title: block.subCategories[0].title,
       list: block.subCategories[0].services.map((service) => ({ title: service.title, slug: service.slug.current })),
-      href: categoryHref(block.slug.current, city)
+      href: categoryHref(block.slug.current)
     };
   });
 
@@ -101,7 +101,7 @@ export default async function HomeServiceCategories({ city = "" }) {
               <ul className={styles.list}>
                 {row.list.map((item) => (
                   <li key={`${row.key}-${item.slug ?? item.title}`}>
-                    <Link href={servicePageHref(item.slug, city)}>{item.title}</Link>
+                    <Link href={servicePageHref(item.slug)}>{item.title}</Link>
                   </li>
                 ))}
               </ul>

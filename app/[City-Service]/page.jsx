@@ -81,7 +81,7 @@ export default async function ServicePage({ params }) {
 
   return (
     <article className={styles.servicePage}>
-      <NavServer city={citySlug} />
+      <NavServer />
       <div className={styles.hero}>
         <Image
           src={urlFor(data.imagePrimary).width(1200).height(600).url()}
@@ -137,7 +137,7 @@ export default async function ServicePage({ params }) {
           </div>
         </div>
       </section>
-      <ValueCont city={cityName} />
+      <ValueCont />
 
       <section className={styles.secondarySection}>
         <div className={styles.secondarySectionInnerContainer}>
@@ -189,8 +189,8 @@ export default async function ServicePage({ params }) {
           </div>
         </div>
       </section>
-      <FinanceCont city={cityName} />
-      <LocationCont city={cityName} />
+      <FinanceCont />
+      <LocationCont />
       <FaqAccordion faqItems={data.faqItems} serviceTitle={cityName + " " + service.charAt(0).toUpperCase() + service.slice(1).toLowerCase()} />
       <GoogleCarousel />
 

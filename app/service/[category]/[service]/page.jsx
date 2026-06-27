@@ -138,7 +138,7 @@ export default async function ServicePage({ params }) {
           </div>
         </div>
       </section>
-      <ValueCont city={""} />
+      <ValueCont />
 
       <section className={styles.secondarySection}>
         <div className={styles.secondarySectionInnerContainer}>

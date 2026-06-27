@@ -8,7 +8,7 @@ import Link from "next/link";
 import { servicePageHref } from "../../../lib/servicePaths";
 
 import Image from "next/image";
-export default function ServiceMenuCategory({ slug, city = "" }) {
+export default function ServiceMenuCategory({ slug }) {
         const SERVICE_CATEGORY_QUERY = `*[_type == "serviceCategory" && slug.current == $slug][0]{
             _id,
             title,
@@ -49,7 +49,7 @@ export default function ServiceMenuCategory({ slug, city = "" }) {
             subCategory.services.map((service, index) => (
               <div key={`${service._id}-${index}`}>
                 <div className={styles.serviceText}>
-                  <Link href={servicePageHref(service.slug.current, city)} className={styles.serviceTitle}>{service.title}</Link>
+                  <Link href={servicePageHref(service.slug.current)} className={styles.serviceTitle}>{service.title}</Link>
                   </div>
                 </div>  
               ))

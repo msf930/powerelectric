@@ -29,7 +29,7 @@ export const metadata = {
 };
 
 export default async function ContractorPage() {
-  const L = await getContractorLinks(CITY_SLUG);
+  const L = await getContractorLinks();
 
   return (
     <article className={styles.servicePage}>
@@ -444,7 +444,7 @@ export default async function ContractorPage() {
         </div>
       </section>
 
-      <LocationCont city={CITY_NAME} />
+      <LocationCont />
 
       <section className={`${styles.extraSection} ${styles.extraSectionAlt}`}>
         <div className={styles.extraSectionInner}>
