@@ -7,8 +7,8 @@ import styles from "./styles.module.css";
 const MAP_CONFIG = {
   locations: [
     {
-      title: "North Washington Street",
-      address1: "N Washington St",
+      title: "Washington Street",
+      address1: "Washington St",
       address2: "Denver, CO, USA",
       coords: { lat: 39.7990428164447, lng: -104.97794645938568 },
       placeId:

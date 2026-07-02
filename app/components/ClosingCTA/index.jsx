@@ -5,7 +5,7 @@ import styles from "./styles.module.css";
 
 const PHONE_DISPLAY = "(720) 272-2562";
 const PHONE_HREF = "tel:+17202722562";
-const ADDRESS = "5650 N Washington St. Unit C-6, Denver, CO 80216";
+const ADDRESS = "5650 Washington St. Unit C-6, Denver, CO 80216";
 const MAPS_HREF = "https://maps.app.goo.gl/Lw2x8JKXuSi5YrMq9";
 
 export default function ClosingCTA({

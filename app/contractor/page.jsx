@@ -20,7 +20,7 @@ const HERO_IMAGE = "/homeHero.jpg";
 const SECONDARY_IMAGE = "/statsBG.jpg";
 const PHONE_DISPLAY = "(720) 272-2562";
 const PHONE_HREF = "tel:+17202722562";
-const ADDRESS = "5650 N Washington St. Unit C-6, Denver, CO 80216";
+const ADDRESS = "5650 Washington St. Unit C-6, Denver, CO 80216";
 
 export const metadata = {
   title: "Electrical & HVAC for Contractors | Denver Metro",

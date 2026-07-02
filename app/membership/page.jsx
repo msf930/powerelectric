@@ -465,7 +465,7 @@ export default function MembershipPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            5650 N Washington St. Unit C-6, Denver, CO 80216
+            5650 Washington St. Unit C-6, Denver, CO 80216
           </a>
         </p>
       </section>
