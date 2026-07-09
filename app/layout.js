@@ -56,7 +56,7 @@ const jsonLd = {
   telephone: "+1-720-272-2562",
   priceRange: "$$",
   description:
-    "Power Electrical Heating & Cooling Services is a licensed electrical and HVAC contractor providing electrical repair, panel upgrades, EV charger installation, air conditioning repair, furnace installation, and heating & cooling maintenance throughout Denver and surrounding Colorado communities.",
+    "Power Electrical Heating & Cooling Services is a licensed electrical and HVAC contractor providing electrical repair, panel upgrades, EV charger installation, air conditioning repair, furnace installation, and heating & cooling maintenance throughout Denver and surrounding Colorado communities",
   address: {
     "@type": "PostalAddress",
     streetAddress: "5650 Washington St Unit c-6",
