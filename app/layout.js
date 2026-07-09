@@ -20,8 +20,31 @@ const siteDescription =
 const GA_MEASUREMENT_ID = "G-7TMYKNHR2T";
 
 export const metadata = {
+  metadataBase: new URL("https://www.powerelectricalservices.net"),
   title: "Power Electrical Services",
   description: siteDescription,
+  openGraph: {
+    title: "Power Electrical Services",
+    description: siteDescription,
+    url: "https://www.powerelectricalservices.net",
+    siteName: "Power Electrical Services",
+    images: [
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Power Electrical Services",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Power Electrical Services",
+    description: siteDescription,
+    images: ["/twitter-image.jpg"],
+  },
 };
 
 const jsonLd = {
