@@ -45,6 +45,11 @@ export const metadata = {
     description: siteDescription,
     images: ["/twitter-image.jpg"],
   },
+  verification: {
+    other: {
+      "msvalidate.01": "4BD8ABB7AF9FAB723C92C3E07711F5D3",
+    },
+  },
 };
 
 const jsonLd = {
