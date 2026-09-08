@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import StickyMobileCallServer from "./components/StickyMobileCall/StickyMobileCallServer";
 import DeferredOfferPopup from "./components/DeferredOfferPopup";
+import PodiumWidget from "./components/PodiumWidget";
 
 const geistSans = Geist({
   variable: "--font-montserrat-sans",
@@ -173,12 +174,7 @@ export default function RootLayout({ children }) {
         {children}
         <StickyMobileCallServer />
         <DeferredOfferPopup />
-        <Script
-          strategy="lazyOnload"
-          src="https://connect.podium.com/widget.js#ORG_TOKEN=ca9d015d-d28a-4e9d-a4f1-e875bf1b580b"
-          id="podium-widget"
-          data-organization-api-token="ca9d015d-d28a-4e9d-a4f1-e875bf1b580b"
-        />
+        <PodiumWidget />
       </body>
     </html>
   );
