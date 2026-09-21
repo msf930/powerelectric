@@ -76,7 +76,11 @@ export default async function ServicePage({ params }) {
   // console.log(cityName, service);
   // GROQ uses $slug — param keys must match (not cityService)
   const data = await client.fetch(SERVICE_QUERY, { slug: cityService });
- 
+
+  if (!data?.imagePrimary) {
+    notFound();
+  }
+
   const ptComponents = getPortableTextComponents(styles);
 
   return (
