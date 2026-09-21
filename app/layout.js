@@ -3,7 +3,6 @@ import "./globals.css";
 import StickyMobileCallServer from "./components/StickyMobileCall/StickyMobileCallServer";
 import DeferredOfferPopup from "./components/DeferredOfferPopup";
 import DeferredThirdParty from "./components/DeferredThirdParty";
-import PodiumWidget from "./components/PodiumWidget";
 
 const geistSans = Geist({
   variable: "--font-montserrat-sans",
@@ -147,7 +146,7 @@ export default function RootLayout({ children }) {
         {children}
         <StickyMobileCallServer />
         <DeferredOfferPopup />
-        <PodiumWidget />
+        <DeferredThirdParty />
       </body>
     </html>
   );

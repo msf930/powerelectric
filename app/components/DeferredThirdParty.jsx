@@ -6,6 +6,21 @@ import { useEffect, useState } from "react";
 
 const GA_MEASUREMENT_ID = "G-7TMYKNHR2T";
 const LOAD_DELAY_MS = 6000;
+const PODIUM_SRC =
+  "https://connect.podium.com/widget.js#ORG_TOKEN=ca9d015d-d28a-4e9d-a4f1-e875bf1b580b";
+const PODIUM_TOKEN = "ca9d015d-d28a-4e9d-a4f1-e875bf1b580b";
+const PODIUM_SCRIPT_ID = "podium-widget";
+
+function loadPodiumWidget() {
+  if (document.getElementById(PODIUM_SCRIPT_ID)) return;
+
+  const script = document.createElement("script");
+  script.id = PODIUM_SCRIPT_ID;
+  script.src = PODIUM_SRC;
+  script.async = true;
+  script.setAttribute("data-organization-api-token", PODIUM_TOKEN);
+  document.body.appendChild(script);
+}
 
 export default function DeferredThirdParty() {
   const pathname = usePathname();
@@ -32,6 +47,11 @@ export default function DeferredThirdParty() {
       events.forEach((event) => window.removeEventListener(event, enable));
     };
   }, [pathname]);
+
+  useEffect(() => {
+    if (!load || pathname?.includes("/studio")) return undefined;
+    loadPodiumWidget();
+  }, [load, pathname]);
 
   if (!load || pathname?.includes("/studio")) return null;
 
