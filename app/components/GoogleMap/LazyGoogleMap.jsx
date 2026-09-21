@@ -104,6 +104,7 @@ export default function LazyGoogleMap({ className }) {
     <div
       ref={containerRef}
       className={className}
+      role="region"
       aria-label="Map showing business location"
     />
   );

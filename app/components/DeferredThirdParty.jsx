@@ -8,6 +8,7 @@ const PODIUM_SRC =
   "https://connect.podium.com/widget.js#ORG_TOKEN=ca9d015d-d28a-4e9d-a4f1-e875bf1b580b";
 const PODIUM_TOKEN = "ca9d015d-d28a-4e9d-a4f1-e875bf1b580b";
 const PODIUM_SCRIPT_ID = "podium-widget";
+const PODIUM_DELAY_MS = 2500;
 
 function injectScript(src, { id, attrs } = {}) {
   if (id && document.getElementById(id)) return;
@@ -23,9 +24,18 @@ function injectScript(src, { id, attrs } = {}) {
   document.body.appendChild(script);
 }
 
-function loadThirdPartyScripts() {
-  if (window.__pesThirdPartyLoaded) return;
-  window.__pesThirdPartyLoaded = true;
+function loadPodium() {
+  if (window.__pesPodiumLoaded) return;
+  window.__pesPodiumLoaded = true;
+  injectScript(PODIUM_SRC, {
+    id: PODIUM_SCRIPT_ID,
+    attrs: { "data-organization-api-token": PODIUM_TOKEN },
+  });
+}
+
+function loadAnalytics() {
+  if (window.__pesAnalyticsLoaded) return;
+  window.__pesAnalyticsLoaded = true;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag() {
@@ -36,13 +46,7 @@ function loadThirdPartyScripts() {
   injectScript(
     `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
   );
-
   injectScript("https://www.clarity.ms/tag/wbop021nwj");
-
-  injectScript(PODIUM_SRC, {
-    id: PODIUM_SCRIPT_ID,
-    attrs: { "data-organization-api-token": PODIUM_TOKEN },
-  });
 }
 
 export default function DeferredThirdParty() {
@@ -51,14 +55,31 @@ export default function DeferredThirdParty() {
   useEffect(() => {
     if (pathname?.includes("/studio")) return undefined;
 
-    const enable = () => loadThirdPartyScripts();
+    const onInteract = () => {
+      loadPodium();
+      loadAnalytics();
+    };
     const events = ["pointerdown", "keydown", "touchstart"];
     events.forEach((event) =>
-      window.addEventListener(event, enable, { once: true, passive: true })
+      window.addEventListener(event, onInteract, { once: true, passive: true })
     );
 
+    let idleId;
+    if (typeof window.requestIdleCallback === "function") {
+      idleId = window.requestIdleCallback(loadPodium, {
+        timeout: PODIUM_DELAY_MS,
+      });
+    }
+    const timer = window.setTimeout(loadPodium, PODIUM_DELAY_MS);
+
     return () => {
-      events.forEach((event) => window.removeEventListener(event, enable));
+      events.forEach((event) =>
+        window.removeEventListener(event, onInteract)
+      );
+      if (idleId != null && typeof window.cancelIdleCallback === "function") {
+        window.cancelIdleCallback(idleId);
+      }
+      window.clearTimeout(timer);
     };
   }, [pathname]);
 
