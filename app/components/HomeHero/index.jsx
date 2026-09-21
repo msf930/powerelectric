@@ -1,5 +1,6 @@
+import { preload } from "react-dom";
+import { getImageProps } from "next/image";
 import styles from "./styles.module.css";
-import Image from "next/image";
 import GoogleBadge from "../GoogleBadge";
 import Link from "next/link";
 import BookBtn from "../BookBtn";
@@ -12,16 +13,38 @@ const HERO_LINKS = {
   noCooling: "/service/cooling",
 };
 
+const HERO_IMAGE_SIZES = "(max-width: 767px) 1px, 50vw";
+
 export default function HomeHero({ widget, bookLink, callNumber }) {
+  const {
+    props: { srcSet: heroSrcSet, src: heroSrc },
+  } = getImageProps({
+    src: homeHeroImage,
+    alt: "",
+    fill: true,
+    sizes: HERO_IMAGE_SIZES,
+    quality: 50,
+  });
+
+  preload(heroSrc, {
+    as: "image",
+    imageSrcSet: heroSrcSet,
+    imageSizes: HERO_IMAGE_SIZES,
+    fetchPriority: "high",
+    media: "(min-width: 768px)",
+  });
+
   return (
     <div className={styles.hero}>
       <div className={styles.heroImage}>
-        <Image
-          src={homeHeroImage}
+        <img
+          src={heroSrc}
+          srcSet={heroSrcSet}
+          sizes={HERO_IMAGE_SIZES}
           alt=""
-          width={500}
-          height={600}
-          className="w-[50%] h-[600px] object-cover absolute top-0 right-0"
+          className={styles.heroImg}
+          decoding="sync"
+          fetchPriority="high"
         />
       </div>
       <div className={styles.heroContent}>
