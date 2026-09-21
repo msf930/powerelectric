@@ -30,7 +30,7 @@
         position: absolute;
         inset: 0;
         z-index: 0;
-        background-image: url("/statsBG.jpg");
+        background-image: url("/statsBG.webp");
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
@@ -128,10 +128,8 @@
         position: absolute;
         inset: 0;
         z-index: 0;
-        background-image: url("/statsBG.jpg");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+        background-image: none;
+        background-color: var(--primary-dark, #0d4210);
     }
 
     .statContInnerBg::after {

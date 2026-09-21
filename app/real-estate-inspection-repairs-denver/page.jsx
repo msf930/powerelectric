@@ -21,7 +21,7 @@ export const revalidate = false;
 const CITY_NAME = "Denver";
 const CITY_SLUG = "Denver";
 const HERO_IMAGE = "/homeHero.jpg";
-const SECONDARY_IMAGE = "/statsBG.jpg";
+const SECONDARY_IMAGE = "/statsBG.webp";
 
 const INSPECTION_ACCORDION_ITEMS = [
   {

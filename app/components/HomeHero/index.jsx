@@ -13,7 +13,8 @@ const HERO_LINKS = {
   noCooling: "/service/cooling",
 };
 
-const HERO_IMAGE_SIZES = "(max-width: 767px) 1px, 50vw";
+const HERO_IMAGE_SIZES = "50vw";
+const DESKTOP_HERO_MEDIA = "(min-width: 768px)";
 
 export default function HomeHero({ widget, bookLink, callNumber }) {
   const {
@@ -31,21 +32,25 @@ export default function HomeHero({ widget, bookLink, callNumber }) {
     imageSrcSet: heroSrcSet,
     imageSizes: HERO_IMAGE_SIZES,
     fetchPriority: "high",
-    media: "(min-width: 768px)",
+    media: DESKTOP_HERO_MEDIA,
   });
 
   return (
     <div className={styles.hero}>
       <div className={styles.heroImage}>
-        <img
-          src={heroSrc}
-          srcSet={heroSrcSet}
-          sizes={HERO_IMAGE_SIZES}
-          alt=""
-          className={styles.heroImg}
-          decoding="sync"
-          fetchPriority="high"
-        />
+        <picture>
+          <source
+            media={DESKTOP_HERO_MEDIA}
+            srcSet={heroSrcSet}
+            sizes={HERO_IMAGE_SIZES}
+          />
+          <img
+            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+            alt=""
+            className={styles.heroImg}
+            decoding="async"
+          />
+        </picture>
       </div>
       <div className={styles.heroContent}>
         <div className={styles.heroContentInner}>

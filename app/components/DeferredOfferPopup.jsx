@@ -1,20 +1,34 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
-const OfferPopup = dynamic(() => import("./OfferPopup"), { ssr: false });
-const LOAD_DELAY_MS = 8000;
-
 export default function DeferredOfferPopup() {
-  const [ready, setReady] = useState(false);
+  const pathname = usePathname();
+  const [Popup, setPopup] = useState(null);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setReady(true), LOAD_DELAY_MS);
-    return () => window.clearTimeout(timer);
-  }, []);
+    if (pathname?.includes("/studio")) return undefined;
+    if (Popup) return undefined;
 
-  if (!ready) return null;
+    let cancelled = false;
+    const enable = () => {
+      import("./OfferPopup").then((mod) => {
+        if (!cancelled) setPopup(() => mod.default);
+      });
+    };
+    const events = ["pointerdown", "keydown", "touchstart", "scroll"];
+    events.forEach((event) =>
+      window.addEventListener(event, enable, { once: true, passive: true })
+    );
 
-  return <OfferPopup />;
+    return () => {
+      cancelled = true;
+      events.forEach((event) => window.removeEventListener(event, enable));
+    };
+  }, [pathname, Popup]);
+
+  if (!Popup) return null;
+
+  return <Popup />;
 }
