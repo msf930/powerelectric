@@ -9,7 +9,6 @@ import { GoTriangleDown } from "react-icons/go";
 import { HiMenu, HiX } from "react-icons/hi";
 import BookBtn from "../BookBtn";
 import CallBtn from "../CallBtn";
-import { useRouter } from "next/navigation";
 import { servicePageHref } from "../../../lib/servicePaths";
 
 function MenuLink({ prefetch = false, ...props }) {
@@ -36,7 +35,6 @@ function serviceLinkHref(slug) {
 
 export default function Nav({ dropdownItems = [], aboutMoreItems = [], cityItems = [], bookLink = null, callNumber = null }) {
   const pathname = usePathname();
-  const router = useRouter();
   const [openDropdown, setOpenDropdown] = useState(null);
   const [activeServiceSubCategoryId, setActiveServiceSubCategoryId] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -446,15 +444,17 @@ export default function Nav({ dropdownItems = [], aboutMoreItems = [], cityItems
 
       <div className={styles.headerSpacer} aria-hidden />
 
+      {mobileMenuOpen ? (
+        <>
       <div
-        className={`${styles.mobileBackdrop} ${mobileMenuOpen ? styles.mobileOpen : ""}`}
-        aria-hidden={!mobileMenuOpen}
+        className={`${styles.mobileBackdrop} ${styles.mobileOpen}`}
+        aria-hidden="false"
         onClick={() => setMobileMenuOpen(false)}
       />
       <aside
         id="mobile-nav-panel"
-        className={`${styles.mobilePanel} ${mobileMenuOpen ? styles.mobileOpen : ""}`}
-        aria-hidden={!mobileMenuOpen}
+        className={`${styles.mobilePanel} ${styles.mobileOpen}`}
+        aria-hidden="false"
       >
         <div className={styles.mobilePanelHeader}>
           <span className={styles.mobilePanelTitle}>Menu</span>
@@ -505,24 +505,22 @@ export default function Nav({ dropdownItems = [], aboutMoreItems = [], cityItems
           )}
         </div>
         <div className={styles.mobileSection}>
-          <button
-            type="button"
+          <Link
+            href="/real-estate-inspection-repairs-denver"
             className={styles.mobileSectionToggle}
-            onClick={() => router.push("/real-estate-inspection-repairs-denver")}
+            onClick={() => setMobileMenuOpen(false)}
           >
             Real Estate Pro
-
-          </button>
-
+          </Link>
         </div>
         <div className={styles.mobileSection}>
-          <button
-            type="button"
+          <Link
+            href="/contractor"
             className={styles.mobileSectionToggle}
-            onClick={() => router.push("/contractor")}
+            onClick={() => setMobileMenuOpen(false)}
           >
             Contractor
-          </button>
+          </Link>
         </div>
         <div>
           {dropdownItems.map((item, index) => (
@@ -719,6 +717,8 @@ export default function Nav({ dropdownItems = [], aboutMoreItems = [], cityItems
           </div>
         </div>
       </aside>
+        </>
+      ) : null}
     </>
   );
 }

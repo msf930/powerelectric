@@ -5,6 +5,7 @@ const nextConfig = {
       dynamic: 3600,
       static: 3600,
     },
+    optimizePackageImports: ["react-icons"],
   },
   images: {
     minimumCacheTTL: 86400,

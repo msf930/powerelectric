@@ -7,7 +7,6 @@ import { HiX } from "react-icons/hi";
 import styles from "./styles.module.css";
 
 const STORAGE_KEY = "pes-offer-popup-dismissed";
-const SHOW_DELAY_MS = 8000;
 const PHONE_DISPLAY = "(720) 272-2562";
 const PHONE_HREF = "tel:+17202722562";
 
@@ -35,8 +34,7 @@ export default function OfferPopup() {
     }
     if (dismissed) return;
 
-    const timer = window.setTimeout(() => setOpen(true), SHOW_DELAY_MS);
-    return () => window.clearTimeout(timer);
+    setOpen(true);
   }, [pathname]);
 
   useEffect(() => {

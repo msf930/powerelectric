@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { getHomePageData } from "../lib/siteData";
 import HomeHero from "./components/HomeHero";
 import HomeCouponSection from "./components/HomeCouponSection";
@@ -19,10 +18,9 @@ import Footer from "./components/Footer";
 import ClosingCTA from "./components/ClosingCTA";
 import NavServer from "./components/Nav/NavServer";
 import TopLinks from "./components/TopLinks";
-
-const GoogleCarousel = dynamic(() => import("./components/GoogleCarousel"));
-const HomeForm = dynamic(() => import("./components/HomeForm"));
-const LocationsCont = dynamic(() => import("./components/LocationsCont"));
+import LocationsCont from "./components/LocationsCont";
+import LazyGoogleCarousel from "./components/GoogleCarousel/LazyGoogleCarousel";
+import LazyHomeForm from "./components/HomeForm/LazyHomeForm";
 
 export const revalidate = false;
 
@@ -56,10 +54,10 @@ export default async function Home() {
       <HomeProLinks />
       <HomeMembership />
       <HomeTotalProtectionPlan />
-      <GoogleCarousel widget={widget} reviews={carouselReviews} />
+      <LazyGoogleCarousel widget={widget} reviews={carouselReviews} />
       <HomeCouponThird />
-      <HomeForm contactData={contact} bookLink={bookLink} />
-      <HomeFinalCTA />
+      <LazyHomeForm contactData={contact} bookLink={bookLink} />
+      <HomeFinalCTA bookLink={bookLink} callNumber={callNumber} />
       <HomeFAQ />
       <ParallaxStrip />
       <LocationsCont bookLink={bookLink} callNumber={callNumber} />

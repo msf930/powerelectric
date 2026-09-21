@@ -1,8 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import StickyMobileCallServer from "./components/StickyMobileCall/StickyMobileCallServer";
 import DeferredOfferPopup from "./components/DeferredOfferPopup";
+import DeferredThirdParty from "./components/DeferredThirdParty";
 import PodiumWidget from "./components/PodiumWidget";
 
 const geistSans = Geist({
@@ -17,8 +17,6 @@ const geistMono = Geist_Mono({
 
 const siteDescription =
   "Trustworthy, professional, kind electricians serving residential and commercial customers, wiring new electric systems and repairing existing ones.";
-
-const GA_MEASUREMENT_ID = "G-7TMYKNHR2T";
 
 export const metadata = {
   metadataBase: new URL("https://www.powerelectricalservices.net"),
@@ -143,31 +141,6 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(jsonLd),
-          }}
-        />
-
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${GA_MEASUREMENT_ID}');
-            `,
-          }}
-        />
-
-        <Script
-          id="microsoft-clarity"
-          strategy="lazyOnload"
-          dangerouslySetInnerHTML={{
-            __html: `(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "wbop021nwj");`,
           }}
         />
 

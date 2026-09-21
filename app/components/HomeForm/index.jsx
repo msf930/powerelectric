@@ -8,14 +8,9 @@ import Link from "next/link";
 import BookBtn from "../BookBtn";
 import LazyHCaptcha from "../LazyHCaptcha";
 import { servicePageHref } from "../../../lib/servicePaths";
-import { client } from "../../../sanity/lib/client";
-import { HCaptcha } from "@hcaptcha/react-hcaptcha";
 
 const CAROUSEL_INTERVAL_MS = 4000;
-const CONTACT_QUERY = `*[_type == "contact"][0]{
-  _id,
-  accessString
-}`;
+
 export default function HomeForm({
   contactData = null,
   bookLink = null,
@@ -26,15 +21,11 @@ export default function HomeForm({
   const serviceItems = contactData?.serviceItems ?? [];
 
   const onHCaptchaChange = (token) => {
-    setValue("h-captcha-response", token);
+    if (captchaRef.current) {
+      captchaRef.current.value = token;
+    }
   };
-  useEffect(() => {
-    const fetchContact = async () => {
-      const contact = await client.fetch(CONTACT_QUERY);
-      setContactData(contact);
-    };
-    fetchContact();
-  }, []);
+
   useEffect(() => {
     if (serviceItems.length <= 1) return;
     const id = setInterval(
@@ -87,11 +78,7 @@ export default function HomeForm({
                 <p className={styles.homeFormContCheckContLabel}>I am a previous client</p>
               </div>
             </div>
-            <HCaptcha
-              sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
-              reCaptchaCompat={false}
-              onVerify={onHCaptchaChange}
-            />
+            <LazyHCaptcha onVerify={onHCaptchaChange} />
             <button className={styles.homeFormContSubmitButton} type="submit">
               Submit
             </button>
