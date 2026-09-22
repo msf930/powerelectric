@@ -8,7 +8,6 @@ const PODIUM_SRC =
   "https://connect.podium.com/widget.js#ORG_TOKEN=ca9d015d-d28a-4e9d-a4f1-e875bf1b580b";
 const PODIUM_TOKEN = "ca9d015d-d28a-4e9d-a4f1-e875bf1b580b";
 const PODIUM_SCRIPT_ID = "podium-widget";
-const PODIUM_DELAY_MS = 2500;
 
 function injectScript(src, { id, attrs } = {}) {
   if (id && document.getElementById(id)) return;
@@ -49,37 +48,28 @@ function loadAnalytics() {
   injectScript("https://www.clarity.ms/tag/wbop021nwj");
 }
 
+function loadThirdParty() {
+  loadPodium();
+  loadAnalytics();
+}
+
 export default function DeferredThirdParty() {
   const pathname = usePathname();
 
   useEffect(() => {
     if (pathname?.includes("/studio")) return undefined;
 
-    const onInteract = () => {
-      loadPodium();
-      loadAnalytics();
-    };
-    const events = ["pointerdown", "keydown", "touchstart"];
-    events.forEach((event) =>
-      window.addEventListener(event, onInteract, { once: true, passive: true })
-    );
-
-    let idleId;
-    if (typeof window.requestIdleCallback === "function") {
-      idleId = window.requestIdleCallback(loadPodium, {
-        timeout: PODIUM_DELAY_MS,
-      });
+    if (window.scrollY > 0) {
+      loadThirdParty();
+      return undefined;
     }
-    const timer = window.setTimeout(loadPodium, PODIUM_DELAY_MS);
 
+    window.addEventListener("scroll", loadThirdParty, {
+      once: true,
+      passive: true,
+    });
     return () => {
-      events.forEach((event) =>
-        window.removeEventListener(event, onInteract)
-      );
-      if (idleId != null && typeof window.cancelIdleCallback === "function") {
-        window.cancelIdleCallback(idleId);
-      }
-      window.clearTimeout(timer);
+      window.removeEventListener("scroll", loadThirdParty);
     };
   }, [pathname]);
 

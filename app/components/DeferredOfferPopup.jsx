@@ -17,14 +17,16 @@ export default function DeferredOfferPopup() {
         if (!cancelled) setPopup(() => mod.default);
       });
     };
-    const events = ["pointerdown", "keydown", "touchstart", "scroll"];
-    events.forEach((event) =>
-      window.addEventListener(event, enable, { once: true, passive: true })
-    );
 
+    if (window.scrollY > 0) {
+      enable();
+      return undefined;
+    }
+
+    window.addEventListener("scroll", enable, { once: true, passive: true });
     return () => {
       cancelled = true;
-      events.forEach((event) => window.removeEventListener(event, enable));
+      window.removeEventListener("scroll", enable);
     };
   }, [pathname, Popup]);
 
